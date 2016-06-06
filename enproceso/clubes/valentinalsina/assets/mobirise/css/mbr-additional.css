@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700);
+
+
+
+
+
+
+
+
+#menu-1 .mbr-brand__name {
+  font-size: 16px;
+}
+#menu-1.mbr-navbar--stuck .mbr-navbar__section {
+  background: #023063;
+}
+#menu-1 .mbr-navbar__hamburger {
+  color: #ffffff;
+}
+#menu-1 .mbr-navbar__items a {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 17px;
+}
+#header1-0 H1 {
+  font-family: 'PT Sans Narrow', sans-serif;
+  color: #fac51c;
+}
+#header1-0 P {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #ffffff;
+}
+#header3-7 H3 {
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 25px;
+}
+#header3-7 P {
+  text-align: center;
+}
+#content4-3 .mbr-section__col .mbr-header__text {
+  text-align: left;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 25px;
+}
+#content4-3 P {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 18px;
+  text-align: left;
+}
+#gallery1-7 SMALL {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+}
+#contacts2-5 STRONG {
+  color: #faaf40;
+}
+#contacts2-5 P {
+  color: #faaf40;
+}
+#contacts2-5 UL {
+  color: #ffffff;
+}
+#footer1-6 P {
+  text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 15px;
+}

@@ -1,0 +1,734 @@
+{
+  "settings": {
+    "currentPage": "index.html",
+    "versionFirst": "2.11",
+    "versionPublish": "2.11",
+    "name": "ROTARY",
+    "theme": {
+      "name": "default",
+      "title": "Mobirise"
+    },
+    "publishType": "local",
+    "publishPath": "file:///C:/Users/Win7/Desktop/webrotary4905",
+    "path": "file:///C:/Users/Win7/Desktop/webrotary4905",
+    "screenshot": "screenshot.png",
+    "favicon": "@PROJECT_PATH@/assets/images/footer-logo-110x119-73-110x119-64.png",
+    "google-analytics": ""
+  },
+  "pages": {
+    "index.html": {
+      "settings": {
+        "main": true,
+        "title": "",
+        "meta_descr": "",
+        "header_custom": "",
+        "footer_custom": "",
+        "html_before": ""
+      },
+      "components": [
+        {
+          "_inherit": "menu",
+          "_styles": {
+            ".mbr-brand__name": {
+              "font-size": "16px"
+            },
+            "&.mbr-navbar--stuck .mbr-navbar__section": {
+              "background": "#ffffff"
+            },
+            ".mbr-navbar__section": {
+              "background": "#ffffff"
+            },
+            ".mbr-navbar__hamburger": {
+              "color": "#003f84"
+            },
+            ".mbr-navbar__items a": {
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700",
+              "font-size": "17px"
+            }
+          },
+          "_name": "ext.menu",
+          "_anchor": "ext_menu-1",
+          "_params": {
+            "color": "#ffffff",
+            "hamburgerColor": "#003f84",
+            "transparent": false,
+            "sticky": true,
+            "collapsed": false,
+            "logo": true,
+            "showBrand": false,
+            "showButtons": false
+          },
+          "logo": {
+            "image": {
+              "active": true,
+              "src": "@PROJECT_PATH@/assets/images/rotarylogo-331x128-97-331x128-69-331x128-74.png",
+              "class": "mbr-navbar__brand-img mbr-brand__img",
+              "height": 128,
+              "alt": "",
+              "link": "",
+              "title": "",
+              "linkInNewWindow": false
+            }
+          },
+          "brand": "<a class=\"mbr-brand__name text-white\" data-app-btn=\"true\" href=\"https://mobirise.com\" data-app-selector=\".mbr-brand__name a\" data-app-placeholder=\"Type Brand Name\">MOBIRISE</a>",
+          "items": "<li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"https://www.rotary.org/es\" target=\"_blank\">QUE ES ROTARY</a></li> <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"index.html#msg-box3-10\">AUTORIDADES</a></li>    <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"clubes.html\">CLUBES</a></li> <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"index.html\">AGENDA</a></li> <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"index.html#form1-5\">CONTACTO</a></li>",
+          "buttons": "<li class=\"mbr-navbar__item\"><a data-app-btn=\"parent\" class=\"mbr-buttons__btn btn btn-danger\" data-app-selector=\".mbr-navbar__items a\" href=\"https://mobirise.com\">DOWNLOAD</a></li>"
+        },
+        {
+          "_inherit": "header1",
+          "_afterNavbarItem": ".mbr-section > .mbr-box__magnet",
+          "_name": "header4",
+          "_styles": {
+            "H1": {
+              "font-family": "'Roboto Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700"
+            },
+            "P": {
+              "font-family": "'Open Sans Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700",
+              "font-size": "22px"
+            }
+          },
+          "_anchor": "header4-0",
+          "_params": {
+            "parallax": true,
+            "bgImageRadio": true,
+            "bgImage": "@PROJECT_PATH@/assets/images/20050430-us-051-3000x2000-72-1200x800-3.jpg",
+            "bgColor": "#4c6972",
+            "bgColorRadio": false,
+            "bgVideo": {
+              "url": "http://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "contentAlign": "left",
+            "overlay": true,
+            "overlayOpacity": "0.2",
+            "overlayColor": "#222",
+            "showTitle": true,
+            "showText": true,
+            "showButtons": false,
+            "showArrow": true
+          },
+          "title": "BIENVENIDOS a&nbsp;<br>ROTARY Distrito 4905",
+          "text": "En Rotary encontrarás a tus propios vecinos, a líderes comunitarios y a ciudadanos del mundo que trabajan unidos por el bien de todos. <br>Estamos convencidos de que con la unión podremos conseguir mucho más.",
+          "buttons": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-danger animated fadeInUp delay\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">VER MAS</a> <a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">FOR MAC</a>"
+        },
+        {
+          "_styles": {
+            ".mbr-header .mbr-header__text": {
+              "text-align": "center",
+              "font-family": "'Open Sans Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700",
+              "color": "#ffffff",
+              "font-size": "30px"
+            },
+            ".mbr-header .mbr-header__subtext": {
+              "text-align": "center"
+            },
+            ".mbr-article P": {
+              "text-align": "center",
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700",
+              "color": "#ffffff",
+              "font-size": "18px"
+            },
+            ".mbr-article PRE": {
+              "font-size": "16px"
+            }
+          },
+          "_name": "msg-box3",
+          "_anchor": "msg-box3-10",
+          "_params": {
+            "showCaption": true,
+            "paddingTop": "3",
+            "paddingBottom": 3,
+            "showTitle": true,
+            "showText": true,
+            "showButton": false,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#023063",
+            "bgColorRadio": true,
+            "bgVideo": {
+              "url": "http://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showMeta": false,
+            "darkBackground": false
+          },
+          "title": "EQUIPO DE LIDERAZGO DISTRITAL D4905&nbsp;<span style=\"color: inherit; line-height: 1.5em; font-weight: normal;\">(Periodo 2016/2017)</span>",
+          "meta": "By John Smith posted July 30, 2015",
+          "text": "<p></p><p>GOBERNADOR:&nbsp;<b>Omar Dionisio Rauzi /&nbsp;</b>RC Lanús&nbsp;</p><p></p><p>INSTRUCTOR DISTRITAL:&nbsp;<b>Heraldo Ramón Zoni &nbsp;/&nbsp;</b>RC Meridiano V&nbsp;</p><p>ASESOR CONSULTOR: <b>Carlos Speroni</b> / RC Temperley</p><p>COORDINADOR DE ASISTENTES: <b>Eduardo Iglesias</b> / RC Aldo Bonzi</p><p>SECRETARIA DISTRITAL: <b>Noemí Sosa</b> / RC La Plata Norte</p><p>TESORERIA DISTRITAL: <b>Nicolás Spadaccini </b>/ RC Lanús</p><p>COMITE DE CAPACITACION DISTRITAL: <b>Heraldo Ramón Zoni</b> / RC Meridiano V</p><p>COMITE DE EXTENSION y CUADRO SOCIAL: <b>Juan Carlos Protic Gardenal </b>/ RC Lomas de Zamora E.</p><p>COMITE DE IMAGEN PUBLICA, COMUNICACIONES Y PRENSA: <b>Gustavo Verta </b>/ RC Ituzaingo</p><p>COMITE DE LA FUNDACION ROTARIA: <b>Julián Blanco </b>/ RC Quilmes</p><p>COMITE DE LEGISLACION DISTRITAL: <b>Osvaldo Troccoli</b> / RC Lomas de Zamora</p><p>COMITE DE NUEVAS GENERACIONES: <b>Mónica Aguirre </b>/ RC Moreno Sur</p><p>COMITE DE PLANEAMIENTO ESTRATEGICO: <b>Oscar Vergara</b> / RC Haedo Norte</p><p>COMITE DE PROGRAMAS DISTRITALES: <b>Osvaldo Cuello</b> / RC Merlo Norte</p><p>COMITE DE PROMOCION EVENTOS DISTRITALES y CONVENCIÓN R.I. ATLANTA: <br><b>Juan Manuel Duran</b> / RC Quilmes</p><p>COMITE DE RELACIONES INSTITUCIONALES: <b>Carlos Embeita</b> / RC Sarandí</p><p>COMITE DE RUEDA DE CONYUGES y FAMILIA ROTARIA: <b>Nené Rauz</b>i / RC Lanús</p><p>COMITE DE SERVICIO A TRAVES DE LA OCUPACION: <b>Juan Dmytrow</b> / RC San Martin</p><p>GOBERNADOR PROPUESTO: <b>Mario Morrone</b> / RC Cañuelas</p>",
+          "button": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-default\" href=\"https://mobirise.com\">SEE ALL TEMPLATES</a>"
+        },
+        {
+          "_afterNavbarItem": ".mbr-section > .mbr-box__magnet",
+          "_name": "slider",
+          "_styles": {
+            "P": {
+              "text-align": "center",
+              "font-family": "'Roboto Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700"
+            },
+            "H1": {
+              "text-align": "center",
+              "font-family": "'Roboto Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700",
+              "font-size": "48px"
+            }
+          },
+          "_params": {
+            "autoplay": true,
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "slides": [
+              {
+                "active": false,
+                "image": "@PROJECT_PATH@/assets/images/20050417-ni-276-1200x800-34-1200x800-33.jpg",
+                "contentAlign": "center",
+                "overlay": true,
+                "showTitle": true,
+                "title": "Únete a líderes",
+                "showText": true,
+                "text": "En Rotary conocerás a líderes de otros continentes y culturas distintas de la tuya, dedicados a toda una gama de profesiones.",
+                "showButtons": false,
+                "buttons": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-danger\" href=\"https://mobirise.com\">FOR WINDOWS</a> <a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-default\" href=\"https://mobirise.com\">FOR MAC</a>"
+              },
+              {
+                "active": false,
+                "image": "@PROJECT_PATH@/assets/images/20050125-th-014-1200x800-40-1200x800-50.jpg",
+                "contentAlign": "center",
+                "overlay": true,
+                "showTitle": true,
+                "title": "Acércate al club rotario",
+                "showText": true,
+                "text": "Los clubes son el corazón de Rotary, el lugar donde se reúnen nuestros socios, unidos por la amistad y por el anhelo común de servir y ser útiles a la sociedad.",
+                "showButtons": false,
+                "buttons": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-danger\" href=\"https://mobirise.com\">FOR WINDOWS</a> <a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-default\" href=\"https://mobirise.com\">FOR MAC</a>"
+              },
+              {
+                "active": true,
+                "image": "@PROJECT_PATH@/assets/images/exploreourcauses-polio-1200-1200x800-97-1200x800-75.jpg",
+                "contentAlign": "center",
+                "overlay": true,
+                "showTitle": true,
+                "title": "Potencia tus aptitudes <br>de liderazgo",
+                "showText": true,
+                "text": "Rotary te puede ayudar a ser un buen líder, tanto si aún estás en la universidad <br>como si ya eres profesional.",
+                "showButtons": false,
+                "buttons": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-danger\" href=\"https://mobirise.com\">FOR WINDOWS</a> <a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-default\" href=\"https://mobirise.com\">FOR MAC</a>"
+              }
+            ],
+            "fullScreen": true,
+            "bgColor": "#ffffff",
+            "showBullets": true
+          },
+          "_anchor": "slider-9",
+          "articleLayout": false
+        },
+        {
+          "_styles": {
+            ".mbr-header .mbr-header__text": {
+              "color": "#fff",
+              "font-family": "'Open Sans Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700",
+              "font-size": "22px"
+            },
+            ".mbr-article": {
+              "color": "#fff"
+            },
+            ".btn": {
+              "font-family": "'Roboto Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700"
+            }
+          },
+          "_name": "msg-box1",
+          "_anchor": "msg-box1-16",
+          "_params": {
+            "paddingTop": "1",
+            "paddingBottom": "2",
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#3C3C3C",
+            "bgColorRadio": true,
+            "bgVideo": {
+              "url": "http://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showTitle": true,
+            "showText": false,
+            "showButtons": true
+          },
+          "title": "MANUAL DE LA ASAMBLEA",
+          "text": "Mobirise comes with huge collection of pre made layouts to help make your development faster.",
+          "button": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-danger\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">DESCARGAR</a>"
+        },
+        {
+          "_params": {
+            "postsNumber": "8"
+          },
+          "alias": "facebook-comments",
+          "_name": "facebook-comments-block",
+          "_anchor": "facebook-comments-block-11",
+          "innerText": "<div class=\"facebookPlaceholder\" data-numposts=\"\"><h2>FACEBOOK COMMENTS WILL BE SHOWN ONLY WHEN YOUR SITE IS ONLINE</h2> <img src=\"file:///C:/Users/Win7/AppData/Local/Mobirise.com/Mobirise/info_0040lineados_002ecom/addons/facebook-comments/facebook-comments-block/assets/facebook-comments.jpg\"></div>"
+        },
+        {
+          "_name": "social-buttons2",
+          "_styles": {
+            ".mbr-header__text": {
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700",
+              "font-size": "20px"
+            }
+          },
+          "_anchor": "social-buttons2-10",
+          "_params": {
+            "paddingTop": "2",
+            "paddingBottom": "1",
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#f0f0f0",
+            "bgColorRadio": true,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222"
+          },
+          "text": "Comparte Nuestra Pagina !!!",
+          "icons": "<a data-app-btn=\"true\" class=\"mbr-social-icons__icon socicon-bg-twitter\" title=\"Twitter\" target=\"_blank\" href=\"https://twitter.com/mobirise\" data-toolbar=\"-mbrBtnAdd,-mbrBtnMove,-mbrFonts,-mbrFontSize\"><i class=\"socicon socicon-twitter\"></i></a> <a data-app-btn=\"true\" class=\"mbr-social-icons__icon socicon-bg-facebook\" title=\"Facebook\" target=\"_blank\" href=\"https://www.facebook.com/pages/Mobirise/1616226671953247\" data-toolbar=\"-mbrBtnAdd,-mbrBtnMove,-mbrFonts,-mbrFontSize\"><i class=\"socicon socicon-facebook\"></i></a>  <a data-app-btn=\"true\" class=\"mbr-social-icons__icon socicon-bg-youtube\" title=\"YouTube\" target=\"_blank\" href=\"http://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw\" data-toolbar=\"-mbrBtnAdd,-mbrBtnMove,-mbrFonts,-mbrFontSize\"><i class=\"socicon socicon-youtube\"></i></a> <a data-app-btn=\"true\" class=\"mbr-social-icons__icon socicon-bg-instagram\" title=\"Instagram\" target=\"_blank\" href=\"https://instagram.com/mobirise/\" data-toolbar=\"-mbrBtnAdd,-mbrBtnMove,-mbrFonts,-mbrFontSize\"><i class=\"socicon socicon-instagram\"></i></a>      "
+        },
+        {
+          "_name": "form1",
+          "_styles": {
+            ".mbr-header__text": {
+              "text-align": "left",
+              "font-family": "'Open Sans Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700",
+              "color": "#faaf40",
+              "font-size": "23px"
+            },
+            ".btn": {
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700"
+            }
+          },
+          "_anchor": "form1-5",
+          "_params": {
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#023063",
+            "bgColorRadio": true,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showTitle": true
+          },
+          "title": "CONSULTAS",
+          "form": {
+            "action": "info@lineados.com",
+            "alerts": {
+              "success": "La consulta a sido recibida !"
+            },
+            "fields": {
+              "name": {
+                "title": "Name",
+                "visible": true,
+                "customTitle": "Nombre*"
+              },
+              "email": {
+                "title": "Email",
+                "visible": true,
+                "customTitle": "Email*"
+              },
+              "phone": {
+                "title": "Phone",
+                "visible": false,
+                "customTitle": "Tel"
+              },
+              "message": {
+                "title": "Message",
+                "customTitle": "Mensaje"
+              }
+            }
+          },
+          "buttons": "<a data-app-btn=\"true\" type=\"submit\" class=\"mbr-buttons__btn btn btn-lg btn-warning\" data-toolbar=\"-mbrLink,-mbrBtnAdd,-mbrBtnMove\">ENVIAR</a>"
+        },
+        {
+          "_name": "form2",
+          "_styles": {
+            ".mbr-header__text": {
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700",
+              "font-size": "25px",
+              "text-align": "left"
+            },
+            ".btn": {
+              "font-family": "'Roboto Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700"
+            }
+          },
+          "_anchor": "form2-15",
+          "_params": {
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#efefef",
+            "bgColorRadio": true,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showTitle": true
+          },
+          "title": "Suscríbete a y recibe nuestro Newsletter&nbsp;",
+          "form": {
+            "action": "info@lineados.com",
+            "alerts": {
+              "success": "La solicitud a sido recibida !"
+            },
+            "fields": {
+              "email": {
+                "title": "Email",
+                "customTitle": "Ingrese su mail"
+              }
+            }
+          },
+          "buttons": "<a data-app-btn=\"true\" type=\"submit\" class=\"mbr-buttons__btn btn btn-lg btn-danger\" data-toolbar=\"-mbrLink,-mbrBtnAdd,-mbrBtnMove,-mbrBtnRemove\">ENVIAR</a>"
+        },
+        {
+          "_name": "footer1",
+          "_styles": {
+            "P": {
+              "text-align": "center",
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700",
+              "font-size": "16px"
+            }
+          },
+          "_anchor": "footer1-8",
+          "_params": {
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#000000",
+            "bgColorRadio": true,
+            "overlay": true,
+            "overlayOpacity": 0.8,
+            "overlayColor": "#444444"
+          },
+          "text": "Copyright (c) 2016 Rotary Distrito 4905. Terminos y Condiciones - &nbsp;|<a href=\"http://www.lineados.com\" target=\"_blank\" class=\"text-gray\"> Sitio desarrollado por Lineados&nbsp;</a>"
+        }
+      ]
+    },
+    "clubes.html": {
+      "settings": {
+        "title": "Rotary 4905",
+        "meta_descr": "Clubes que componen el distrito 4905 "
+      },
+      "components": [
+        {
+          "_inherit": "menu",
+          "_styles": {
+            ".mbr-brand__name": {
+              "font-size": "16px"
+            },
+            "&.mbr-navbar--stuck .mbr-navbar__section": {
+              "background": "#ffffff"
+            },
+            ".mbr-navbar__section": {
+              "background": "#ffffff"
+            },
+            ".mbr-navbar__hamburger": {
+              "color": "#003f84"
+            },
+            ".mbr-navbar__items a": {
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700",
+              "font-size": "17px"
+            }
+          },
+          "_name": "ext.menu",
+          "_anchor": "ext_menu-1",
+          "_params": {
+            "color": "#ffffff",
+            "hamburgerColor": "#003f84",
+            "transparent": false,
+            "sticky": true,
+            "collapsed": false,
+            "logo": true,
+            "showBrand": false,
+            "showButtons": false
+          },
+          "logo": {
+            "image": {
+              "active": true,
+              "src": "@PROJECT_PATH@/assets/images/rotarylogo-331x128-97-331x128-69-331x128-74.png",
+              "class": "mbr-navbar__brand-img mbr-brand__img",
+              "height": 128,
+              "alt": "",
+              "link": "",
+              "title": "",
+              "linkInNewWindow": false
+            }
+          },
+          "brand": "<a class=\"mbr-brand__name text-white\" data-app-btn=\"true\" href=\"https://mobirise.com\" data-app-selector=\".mbr-brand__name a\" data-app-placeholder=\"Type Brand Name\">MOBIRISE</a>",
+          "items": "<li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"https://www.rotary.org/es\" target=\"_blank\">QUE ES ROTARY</a></li> <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"index.html#msg-box3-10\">AUTORIDADES</a></li>    <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"clubes.html\">CLUBES</a></li> <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"index.html\">AGENDA</a></li> <li class=\"mbr-navbar__item\"><a data-app-btn=\"true\" class=\"mbr-buttons__link btn mbr-menu-item text-primary\" data-app-selector=\".mbr-navbar__items a\" href=\"index.html#form1-5\">CONTACTO</a></li>",
+          "buttons": "<li class=\"mbr-navbar__item\"><a data-app-btn=\"parent\" class=\"mbr-buttons__btn btn btn-danger\" data-app-selector=\".mbr-navbar__items a\" href=\"https://mobirise.com\">DOWNLOAD</a></li>"
+        },
+        {
+          "_afterNavbarItem": ".mbr-section > .mbr-box__magnet",
+          "_name": "header1",
+          "_styles": {
+            "H1": {
+              "font-family": "'Roboto Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700",
+              "font-size": "48px"
+            },
+            "P": {
+              "font-family": "'Open Sans Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700"
+            }
+          },
+          "_anchor": "header1-7",
+          "_params": {
+            "parallax": true,
+            "bgImageRadio": true,
+            "bgImage": "@PROJECT_PATH@/assets/images/mapa-1430x780-75.jpg",
+            "bgColor": "#4c6972",
+            "bgColorRadio": false,
+            "bgVideo": {
+              "url": "http://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "contentAlign": "center",
+            "overlay": true,
+            "overlayOpacity": "0.3",
+            "overlayColor": "#222",
+            "showTitle": true,
+            "showText": true,
+            "showButtons": false,
+            "showArrow": true
+          },
+          "title": "Clubes que componen<br>el Distrito 4905 &nbsp;",
+          "text": "El corazón de Rotary está en nuestros clubes. En las reuniones semanales, los socios charlan con amigos, se enteran de los sucesos locales, comparten planes e intercambian <br>ideas para producir cambios positivos y duraderos.<br>Mediante la afiliación al club los socios disfrutan de oportunidades para el desarrollo de <br>aptitudes para hablar en público, gestionar proyectos y planificar eventos.<br>En el marco del club, conocerás gente interesante de la propia comunidad y de todas partes del mundo, y abordarás problemas locales e internacionales.<br><br><b>VER LISTADO DE CLUBES</b>",
+          "buttons": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-danger animated fadeInUp delay\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">AUTORIDADES</a> <a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">DIRECCIONES</a>"
+        },
+        {
+          "_inherit": "msg-box1",
+          "_styles": {
+            ".mbr-header .mbr-header__text": {
+              "color": "#252525",
+              "font-family": "'Open Sans Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700"
+            },
+            ".mbr-article": {
+              "color": "#252525"
+            },
+            ".btn": {
+              "font-family": "'Roboto Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700"
+            },
+            ".mbr-header .mbr-header__text SPAN": {
+              "font-size": "20px"
+            }
+          },
+          "_name": "msg-box2",
+          "_anchor": "msg-box2-12",
+          "_params": {
+            "paddingTop": 2,
+            "paddingBottom": "2",
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#fff",
+            "bgColorRadio": true,
+            "bgVideo": {
+              "url": "http://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showTitle": true,
+            "showText": false,
+            "showButtons": false
+          },
+          "title": "LISTADO DE CLUBES <br><span style=\"font-weight: normal;\">( haga click en el club que quiera visitar)</span>",
+          "text": "",
+          "button": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-info\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">DOWNLOAD PDF</a>"
+        },
+        {
+          "_inherit": "features1",
+          "_name": "content4",
+          "_styles": {
+            "P": {
+              "font-family": "'Open Sans Condensed', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700",
+              "font-size": "18px"
+            },
+            "B": {
+              "font-size": "20px"
+            }
+          },
+          "_anchor": "content4-11",
+          "_params": {
+            "paddingTop": "1",
+            "paddingBottom": "1",
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#fff",
+            "bgColorRadio": true,
+            "bgVideo": {
+              "url": "http://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": false,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showHeader": false,
+            "showSubheader": false,
+            "columns": "4",
+            "showImages": false,
+            "showTitles": false,
+            "showCaptions": true,
+            "showButtons": false
+          },
+          "headerAlign": "left",
+          "header": "DROP-DEAD EASY WEBSITE MAKER",
+          "subheader": "By John Smith posted July 30, 2015",
+          "media1": {
+            "image": {
+              "active": true,
+              "src": "images/bootstrap.png",
+              "class": "mbr-figure__img",
+              "width": 600
+            },
+            "video": {
+              "class": "mbr-figure__img",
+              "src": "http://www.youtube.com/embed/sOSTC6FM6Bw"
+            }
+          },
+          "title1": "BOOTSTRAP 3",
+          "caption1": "R.C. de Abasto&nbsp;<br>R.C. de Adrogué&nbsp;<br>R.C. de Alberti&nbsp;<br>R.C. de Aldo Bonzi&nbsp;<br>R.C. de Almirante Brown&nbsp;<br>R.C. de Avellaneda<br>R.C. de Banfield Este<br>R.C. de Bella Vista&nbsp;<br>R.C. de Berazategui<br>R.C. de Berisso<br>R.C. de Bernal<br>R.C. de Bragado<br>R.C. de Burzaco<br>R.C. de Burzaco Parque Industrial<br>R.C. de Canning<br>R.C. de Cañuelas<br>R.C. de Carlos Casares<br>R.C. de Caseros<br>R.C. de Caseros Norte<br>R.C. de Caseros Sur&nbsp;<br>R.C. de Castelar<br>R.C. de Castelar Sur<br>R.C. de Chascomús<br>R.C. de Chivilcoy<br>R.C. de Chivilcoy Oeste<br>R.C. de City Bell<br>R.C. de Ciudadela<br>R.C. de Ciudadela Norte<br>R.C. de Coronel Brandsen<br>R.C. de Crovara<br>R.C. de Cruce Florencio Varela<br>R.C. de Dominico<br>R.C. E-Club del Camino de Cintura&nbsp;<br>R.C. E-Club del Conurbano<br>R.C. E-Club de Oeste<br>R.C. de El Dique&nbsp;<br>R.C. de El Palomar<br>R.C. de Ensenada<br>R.C. de Esteban Echeverría <br>R.C. de Ezpeleta<br><br><b>      </b>",
+          "button1": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"mbr-buttons__btn btn btn-wrap btn-xs-lg btn-default\">LEARN MORE</a>",
+          "media2": {
+            "image": {
+              "active": true,
+              "src": "images/responsive.png",
+              "class": "mbr-figure__img",
+              "width": 600
+            },
+            "video": {
+              "class": "mbr-figure__img",
+              "src": "http://www.youtube.com/embed/sOSTC6FM6Bw"
+            }
+          },
+          "title2": "RESPONSIVE",
+          "caption2": "R.C. de Florencio Varela<br>R.C. de Francisco Álvarez <br>R.C. de General Las Heras<br>R.C. de General Rodríguez<br>R.C. de General San Martín<br>R.C. de General Sarmiento<br>R.C. de Gerli Este<br>R.C. de Glew<br>R.C. de Ensenada<br>R.C. de Esteban Echeverría&nbsp;<br>R.C. de Ezpeleta<br>R.C. de Florencio Varela<br>R.C. de Francisco Álvarez&nbsp;<br>R.C. de General Las Heras<br>R.C. de General Rodríguez<br>R.C. de General San Martín<br>R.C. de General Sarmiento<br>R.C. de Gerli Este<br>R.C. de Glew<br>R.C. de González Catán<br>R.C. de Grand Bourg<br>R.C. de Haedo<br>R.C. de Haedo Norte<br>R.C. de Hudson<br>R.C. de Hurlingham<br>R.C. de Isidro Casanova<br>R.C. de Ituzaingó<br>R.C. de Ituzaingó Posta Santa Rosa<br>R.C. de Jean Thompson Los Hornos<br>R.C. de José C. Paz<br>R.C. de José Hernández de General San Martín<br>R.C. de José Ingenieros<br>R.C. de José León Suárez<br>R.C. de José María Ezeiza<br>R.C. de José María Jáuregui “Don Julio Sterverlynck<br>R.C. de Lanús<br>",
+          "button2": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"mbr-buttons__btn btn btn-wrap btn-xs-lg btn-default\">LEARN MORE</a>",
+          "media3": {
+            "image": {
+              "active": true,
+              "src": "images/google-fonts.png",
+              "class": "mbr-figure__img",
+              "width": 600
+            },
+            "video": {
+              "class": "mbr-figure__img",
+              "src": "http://www.youtube.com/embed/sOSTC6FM6Bw"
+            }
+          },
+          "title3": "WEB FONTS",
+          "caption3": "R.C. de La Plata Meridiano Vº<br>R.C. de La Plata<br>R.C. de La Plata Norte<br>R.C. de La Plata Oeste<br>R.C. de La Plata Sur<br>R.C. de La Plata Tribunales<br>R.C. de La Tablada<br>R.C. de Lavallol:&nbsp;<br>R.C. de Libertad:&nbsp;<br>R.C. de Lobos<br>R.C. de Lomas del Mirador<br>R.C. de Lomas de Zamora<br>R.C. de Lomas de Zamora Este<br>R.C. de Longchamps<br>R.C. de Los Hornos<br>R.C. de Los Polvorines<br>R.C. de Luis Guillón<br>R.C. de Luján<br>R.C. de Luján Ana de Matos<br>R.C. de Luján Juan B. Barnech<br>R.C. de Magdalena<br>R.C. de Manuel B. Gonnet<br>R.C. de Marcos Paz<br>R.C. de Matanza<br>R.C. de Mercedes<br>R.C. de Mercedes Bulevar 40<br>R.C. de Merlo<br>R.C. de Merlo Norte<br>R.C. de Monte Grande del Centenario<br>R.C. de Moreno<br>R.C. de Moreno Florencio Molina Campos<br>R.C. de Moreno Norte<br>R.C. de Moreno Sur<br>R.C. de Moreno Trujui<br>R.C. de Morón<br>R.C. de Navarro<br>R.C. de Nueve de Julio<br>R.C. de Olmos Etcheverry<br><br><br><br>",
+          "button3": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"mbr-buttons__btn btn btn-wrap btn-xs-lg btn-default\">LEARN MORE</a>",
+          "media4": {
+            "image": {
+              "active": true,
+              "src": "images/unlimited-websites.png",
+              "class": "mbr-figure__img",
+              "width": 600
+            },
+            "video": {
+              "class": "mbr-figure__img",
+              "src": "http://www.youtube.com/embed/sOSTC6FM6Bw"
+            }
+          },
+          "title4": "UNLIMITED WEBSITES",
+          "caption4": "R.C. de Pablo Podestá<br>R.C. de Parque San Martín<br>R.C. de Paso del Rey<br>R.C. de Quilmes<br>R.C. de Quilmes Oeste<br>R.C. de Quilmes Sudeste<br>R.C. de Rafael Calzada<br>R.C. de Ranchos General Paz<br>R.C. de Ranelagh<br>R.C. de Ramos Mejía<br>R.C. de Remedios de Escalada<br>R.C. de Remedios de Escalada Oeste<br>R.C. de Saladillo<br>R.C. de San Andrés de General San Martín<br>R.C. de San Antonio de Padua<br>R.C. de San Francisco Solano<br>R.C. de San José<br>R.C. de San Miguel del Monte<br>R.C. de Santos Lugares<br>R.C. de San Vicente<br>R.C. de Sarandí<br>R.C. de Tapiales<br>R.C. de Temperley<br>R.C. de Tolosa<br>R.C. de Turdera<br><a href=\"http://www.rotary4905.com.ar/enproceso/clubes/valentinalsina/\" class=\"text-danger\">R.C. de Valentín Alsina</a><br>R.C. de Veinticinco de Mayo<br>R.C. de Verónica<br>R.C. de Villa Celina<br>R.C. de Villa Constructora<br>R.C. de Villa Don Bosco&nbsp;<br>R.C. de Villa Industriales&nbsp;<br>R.C. de Villa Libertad de General San Martín<br>R.C. de Villa Madero&nbsp;<br>R.C. de Villa Maipú<br>R.C. de Villa Sarmiento&nbsp;<br>R.C. de Villa Tesei&nbsp;<br>R.C. de Wilde<br>",
+          "button4": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"mbr-buttons__btn btn btn-wrap btn-xs-lg btn-default\">LEARN MORE</a>",
+          "media5": {
+            "image": {
+              "active": true,
+              "src": "images/blocks.png",
+              "class": "mbr-figure__img",
+              "width": 600
+            },
+            "video": {
+              "class": "mbr-figure__img",
+              "src": "http://www.youtube.com/embed/sOSTC6FM6Bw"
+            }
+          },
+          "title5": "TRENDY WEBSITE BLOCKS",
+          "caption5": "Choose from the large selection of latest pre-made blocks - jumbotrons, hero images, parallax scrolling, video backgrounds, hamburger menu, sticky header and more.",
+          "button5": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"mbr-buttons__btn btn btn-wrap btn-xs-lg btn-default\">LEARN MORE</a>",
+          "media6": {
+            "image": {
+              "active": true,
+              "src": "images/host.png",
+              "class": "mbr-figure__img",
+              "width": 600
+            },
+            "video": {
+              "class": "mbr-figure__img",
+              "src": "http://www.youtube.com/embed/sOSTC6FM6Bw"
+            }
+          },
+          "title6": "HOST ANYWHERE",
+          "caption6": "Publish your website to a local drive, FTP or host on Amazon S3, Google Drive, Github. Don't limit yourself to just one platform or service provider.",
+          "button6": "<a data-app-btn=\"true\" href=\"https://mobirise.com\" class=\"mbr-buttons__btn btn btn-wrap btn-xs-lg btn-default\">LEARN MORE</a>"
+        },
+        {
+          "_name": "footer1",
+          "_styles": {
+            "P": {
+              "text-align": "center",
+              "font-family": "'PT Sans Narrow', sans-serif",
+              "googleLink": "https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700",
+              "font-size": "16px"
+            }
+          },
+          "_anchor": "footer1-8",
+          "_params": {
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "bgImageRadio": false,
+            "parallax": true,
+            "bgImage": "images/bg3.jpg",
+            "bgColor": "#000000",
+            "bgColorRadio": true,
+            "overlay": true,
+            "overlayOpacity": 0.8,
+            "overlayColor": "#444444"
+          },
+          "text": "Copyright (c) 2016 Rotary Distrito 4905. Terminos y Condiciones - &nbsp;|<a href=\"http://www.lineados.com\" target=\"_blank\" class=\"text-gray\"> Sitio desarrollado por Lineados&nbsp;</a>"
+        }
+      ]
+    }
+  }
+}
