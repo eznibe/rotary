@@ -4,7 +4,7 @@ include_once 'include/headers.php';
 include_once 'include/dbutils.php';
 include_once 'include/main.php';
 
-include_once 'domain/socios.php';
+include_once 'domain/asistencias.php';
 
 db_connect();
 
@@ -18,8 +18,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$json = json_decode($request_payload);
 
-	if(isset($_GET['altaSocio'])) {
-		$value = altaSocio($json);
+	if(isset($_GET['formAsistencias'])) {
+		$value = formAsistencias($json);
 	}
 	else if(isset($_GET['modificacionSocio'])) {
 		$value = modificacionSocio($json);

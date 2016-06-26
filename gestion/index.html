@@ -9,6 +9,8 @@
   <link rel="shortcut icon" href="../assets/images/footer-logo-110x119-73-110x119-64.png" type="image/x-icon">
   <meta name="description" content="">
 
+  <title>Gestión rotary</title>
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/animate.css/animate.min.css">
@@ -38,9 +40,9 @@
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
                         <div class="mbr-navbar__column">
                             <ul class="mbr-navbar__items mbr-navbar__items--right float-left mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios">SOCIOS</a></li>
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#clubes">CLUBES</a></li>
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#asistencias">ASISTENCIAS</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios" onclick="mostrarSubsection(['label-socios', 'label-asistencias'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias'])">SOCIOS</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#clubes" onclick="mostrarSubsection(['label-socios', 'label-asistencias'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias'])">CLUBES</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#asistencias" onclick="mostrarSubsection(['label-socios', 'label-asistencias'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias'])">ASISTENCIAS</a></li>
                               <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="../index.html">LOGOUT</a></li>
                             </ul>
                         </div>
@@ -76,21 +78,21 @@
 
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="socios" style="background-color: rgb(40, 50, 78);">
 
-    <div class="mbr-section__container container mbr-section__container--first form-horizontal" style="padding-top: 93px;">
+    <div class="mbr-section__container container mbr-section__container--first form-horizontal" style="padding-top: 50px;">
         <div class="label-socios mbr-header mbr-header--wysiwyg row">
-            <div class="mbr-hero col-sm-8 col-sm-offset-2">
+            <div class="mbr-hero col-sm-8">
                 <h2 class="mbr-hero__text">SOCIOS</h2>
             </div>
         </div>
         <div class="label-socios row row-buttons">
-            <span class="col-sm-3 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-primary">Alta de socios</a></span>
-            <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-primary">Modificación de socios</a></span>
-            <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-primary">Baja de socios</a></span>
+            <span class="col-sm-4"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['form-socios-alta', 'form-socios'], ['label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios']);  accionSocio = 'ALTA';">Alta de socios</a></span>
+            <span class="col-sm-4"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['form-socios-modificacion', 'form-socios'], ['label-socios', 'form-socios-alta', 'form-socios-baja', 'admin-socios', 'historico-socios']); accionSocio = 'MODIFICACION';">Modificación de socios</a>            </span>
+            <span class="col-sm-4"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['form-socios-baja'], ['label-socios', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios'])">Baja de socios</a>            </span>
         </div>
         <div class="label-socios row row-buttons">
-            <span class="col-sm-3 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-primary">Administración de socios</a></span>
-            <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-primary">Historial de socios</a></span>
-            <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-default">Listado de socios</a></span>
+            <span class="col-sm-4"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['admin-socios'], ['label-socios', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'form-socios-baja', 'historico-socios']);">Administración de socios</a></span>
+            <span class="col-sm-4"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['historico-socios'], ['label-socios', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'form-socios-baja', 'admin-socios']);">Historial de socios</a></span>
+            <span class="col-sm-4"><a href="index.html#socios" class="btn btn-default">Listado de socios</a></span>
         </div>
         <div class="form-socios-alta mbr-header mbr-header--wysiwyg row" style="display:none;">
             <div class=" mbr-hero col-sm-9 col-sm-offset-2">
@@ -99,33 +101,53 @@
         </div>
         <div class="form-socios-modificacion mbr-header mbr-header--wysiwyg row" style="display:none;">
             <div class="mbr-hero col-sm-8 col-sm-offset-2">
-                <h2 class="mbr-hero__text">MODIFICACION de SOCIOS</h2>
+                <h2 class="mbr-hero__text">MODIFICACIÓN de SOCIOS</h2>
             </div>
         </div>
         <div class="form-socios-baja mbr-header mbr-header--wysiwyg row" style="display:none;">
-            <div class="admin-asistencias mbr-hero col-sm-8 col-sm-offset-2">
+            <div class="mbr-hero col-sm-8 col-sm-offset-2">
                 <h2 class="mbr-hero__text">BAJA de SOCIOS</h2>
+            </div>
+        </div>
+        <div class="admin-socios mbr-header mbr-header--wysiwyg row" style="display:none;">
+            <div class="mbr-hero col-sm-8 col-sm-offset-2">
+                <h2 class="mbr-hero__text">Administración de pendientes SOCIOS</h2>
+            </div>
+        </div>
+        <div class="historico-socios mbr-header mbr-header--wysiwyg row" style="display:none;">
+            <div class="mbr-hero col-sm-8 col-sm-offset-2">
+                <h2 class="mbr-hero__text">Listado de SOCIOS histórico</h2>
             </div>
         </div>
     </div>
 
-    <div class="form-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px;">
+    <div class="form-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Club que informa:</span>
-            <span class="col-sm-3 col-sm-offset-2">{{ Club }}</span>
+            <span class="col-sm-3 col-sm-offset-2">
+              <!-- <span>{{ Club }}</span> -->
+              <select id="sf_club_select" class="form-control small"><option value="0">Ingrese Club</option>
+              </select>
+              <input type="hidden" id="sf_club" value="123"/>
+            </span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Mes:</span>
             <span class="col-sm-3 col-sm-offset-2">
-              <select id="af_mes" class="form-control small">
+              <select id="sf_mes" class="form-control small">
                 <option value="0">Ingrese mes</option>
-                <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-                <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+                <option value="ENERO">Enero</option><option value="FEBRERO">Febrero</option><option value="MARZO">Marzo</option><option value="ABRIL">Abril</option><option value="MAYO">Mayo</option><option value="JUNIO">Junio</option>
+                <option value="JULIO">Julio</option><option value="AGOSTO">Agosto</option><option value="SEPTIEMBRE">Septiembre</option><option value="OCTUBRE">Octubre</option><option value="NOVIEMBRE">Noviembre</option><option value="DICIEMBRE">Diciembre</option>
               </select></span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Socio:</span>
-            <span class="col-sm-3 col-sm-offset-2"><select id="sf_categoria" class="form-control small"><option value="0">Seleccione un socio</option></select></span>
+            <span class="col-sm-3 col-sm-offset-2">
+              <select id="sf_socio_select" class="form-control small"><option value="0">Seleccione un socio</option></select>
+
+              <input type="hidden" id="sf_socio" value="456"/>
+              <input type="hidden" id="sf_nrori" value="789"/>
+            </span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Categoría de socio:</span>
@@ -149,33 +171,46 @@
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Responsable del informe</span>
-            <span class="col-sm-3 col-sm-offset-2">{{ Nombre, Apellido }}</span>
+            <span class="col-sm-3 col-sm-offset-2">
+              {{ Nombre, Apellido }}
+            </span>
         </div>
         <div class="row">
         </div>
         <div class="row">
-            <span class="col-sm-2 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-primary">Cancelar</a></span>
-            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="javascript:void(0)" class="btn btn-success">Enviar</a></span>
+            <span class="col-sm-2 col-sm-offset-2"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios'])">Cancelar</a></span>
+            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="javascript:void(0)" class="btn btn-success" onclick="sendSocioForm()">Enviar</a></span>
         </div>
     </div>
 
-    <div class="form-socios-baja mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px;">
+    <div class="form-socios-baja mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Club que informa:</span>
-            <span class="col-sm-3 col-sm-offset-2">{{ Club }}</span>
+            <span class="col-sm-3 col-sm-offset-2">
+              <!-- {{ Club }} -->
+              <select id="sfb_club_select" class="form-control small"><option value="0">Ingrese Club</option>
+              </select>
+              <input type="hidden" id="sfb_club" value="123"/>
+            </span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Mes:</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sfb_mes" class="form-control small">
                 <option value="0">Ingrese mes</option>
-                <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-                <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
-              </select></span>
+                <option value="ENERO">Enero</option><option value="FEBRERO">Febrero</option><option value="MARZO">Marzo</option><option value="ABRIL">Abril</option><option value="MAYO">Mayo</option><option value="JUNIO">Junio</option>
+                <option value="JULIO">Julio</option><option value="AGOSTO">Agosto</option><option value="SEPTIEMBRE">Septiembre</option><option value="OCTUBRE">Octubre</option><option value="NOVIEMBRE">Noviembre</option><option value="DICIEMBRE">Diciembre</option>
+              </select>
+            </span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Socio:</span>
-            <span class="col-sm-3 col-sm-offset-2"><select id="sfb_socio" class="form-control small"><option value="0">Seleccione un socio</option></select></span>
+            <span class="col-sm-3 col-sm-offset-2">
+              <select id="sfb_socio_select" class="form-control small"><option value="0">Seleccione un socio</option></select>
+
+              <input type="hidden" id="sfb_socio" value="456"/>
+              <input type="hidden" id="sfb_nrori" value="789"/>
+            </span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Motivo:</span>
@@ -188,12 +223,13 @@
         <div class="row">
         </div>
         <div class="row">
-            <span class="col-sm-2 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-primary">Cancelar</a></span>
-            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="javascript:void(0)" class="btn btn-success">Dar de baja</a></span>
+            <span class="col-sm-2 col-sm-offset-2"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios'])">Cancelar</a></span>
+            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="javascript:void(0)" class="btn btn-success" onclick="sendSocioBajaForm();">Dar de baja</a></span>
         </div>
     </div>
 
-    <div class="admin-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px;">
+    <div class="admin-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
+      <div style="margin-bottom: 15px;"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios'])">Volver</a></div>
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -204,51 +240,33 @@
             <th>Categoría</th>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Cargo</th>
             <th>Clasificación</th>
             <th>E-mail</th>
             <th>Aceptar</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              {{ accion }}
-            </td>
-            <td>
-              {{ club }}
-            </td>
-            <td>
-              {{ fecha }}
-            </td>
-            <td>
-              {{ mes }}
-            </td>
-            <td>
-              {{ categoria }}
-            </td>
-            <td>
-              {{ nombre }}
-            </td>
-            <td>
-              {{ apellido }}
-            </td>
-            <td>
-              {{ clasificación }}
-            </td>
-            <td>
-              {{ e-mail }}
-            </td>
+        <tbody id="admin-socios-body">
+          <!-- <tr>
+            <td>              {{ accion }}            </td>
+            <td>              {{ club }}            </td>
+            <td>              {{ fecha }}            </td>
+            <td>              {{ mes }}            </td>
+            <td>              {{ categoria }}            </td>
+            <td>              {{ nombre }}            </td>
+            <td>              {{ apellido }}            </td>
+            <td>              {{ clasificación }}            </td>
+            <td>              {{ e-mail }}            </td>
             <td style="width:80px; text-align:center;">
-      				<a class="btn btn-default">
-      					<span class="glyphicon glyphicon-ok"></span>
-      				</a>
+      				<a class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></a>
       			</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
 
-    <div class="hostorico-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px;">
+    <div class="historico-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
+      <div style="margin-bottom: 15px;"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios'])">Volver</a></div>
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -257,30 +275,21 @@
             <th>Mes baja</th>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Cargo</th>
+            <th>Clasificación</th>
+            <th>Contacto</th>
             <th>Motivo</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              {{ club }}
-            </td>
-            <td>
-              {{ fecha }}
-            </td>
-            <td>
-              {{ mes }}
-            </td>
-            <td>
-              {{ nombre }}
-            </td>
-            <td>
-              {{ apellido }}
-            </td>
-            <td>
-              {{ motivo }}
-            </td>
-          </tr>
+        <tbody id="historico-socios-body">
+          <!-- <tr>
+            <td>              {{ club }}            </td>
+            <td>              {{ fecha }}            </td>
+            <td>              {{ mes }}            </td>
+            <td>              {{ nombre }}            </td>
+            <td>              {{ apellido }}            </td>
+            <td>              {{ motivo }}            </td>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -289,38 +298,38 @@
 
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="clubes" style="background-color: rgb(40, 50, 78);">
 
-    <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 93px;">
+    <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 50px;">
         <div class="mbr-header mbr-header--wysiwyg row">
-            <div class="mbr-hero col-sm-8 col-sm-offset-2">
-                <h2 class="mbr-hero__text">CLUBES</h2>
-            </div>
-            <div class="row row-buttons">
-                <span class="col-sm-3 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-default">Alta de club</a></span>
-                <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-default">Modificación de club</a></span>
-                <!-- <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-primary">Baja de club</a></span> -->
-            </div>
-            <div class="row row-buttons">
-                <span class="col-sm-3 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-default">Administración de clubes</a></span>
-                <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-default">Listado de clubes</a></span>
-            </div>
+          <div class="mbr-hero col-sm-8">
+              <h2 class="mbr-hero__text">CLUBES</h2>
+          </div>
+        </div>
+        <div class="row row-buttons">
+            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default">Alta de club</a></span>
+            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default">Modificación de club</a></span>
+            <!-- <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-primary">Baja de club</a></span> -->
+        </div>
+        <div class="row row-buttons">
+            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default">Administración de clubes</a></span>
+            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default">Listado de clubes</a></span>
         </div>
     </div>
 
 </section>
 
 
-<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="asistencias" style="background-color: rgb(40, 50, 78);">
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="asistencias" style="background-color: rgb(40, 50, 78); padding-bottom:350px">
 
-    <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 93px;">
+    <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 70px;">
         <div class="label-asistencias mbr-header mbr-header--wysiwyg row">
-            <div class="mbr-hero col-sm-8 col-sm-offset-2">
-                <h2 class="mbr-hero__text">ASISTENCIAS</h2>
-            </div>
-            <div class="row row-buttons">
-                <span class="col-sm-3 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-primary">Formulario de asistencias</a></span>
-                <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-primary">Administración de asistencias</a></span>
-                <span class="col-sm-3"><a href="javascript:void(0)" class="btn btn-default">Listado de asistencias</a></span>
-            </div>
+          <div class="mbr-hero col-sm-12">
+              <h2 class="mbr-hero__text">ASISTENCIAS</h2>
+          </div>
+        </div>
+        <div class="label-asistencias row row-buttons">
+            <span class="col-sm-4"><a href="index.html#asistencias" class="btn btn-primary" onclick="mostrarSubsection(['form-asistencias'], ['label-asistencias', 'admin-asistencias', 'listado-asistencias']);">Formulario de asistencias</a></span>
+            <span class="col-sm-4"><a href="index.html#asistencias" class="btn btn-primary" onclick="mostrarSubsection(['admin-asistencias'], ['label-asistencias', 'form-asistencias', 'listado-asistencias']);">Administración de asistencias</a></span>
+            <span class="col-sm-4"><a href="index.html#asistencias" class="btn btn-default">Listado de asistencias</a></span>
         </div>
         <div class="form-asistencias mbr-header mbr-header--wysiwyg row" style="display:none;">
             <div class="mbr-hero col-sm-9 col-sm-offset-2">
@@ -339,14 +348,14 @@
         </div>
     </div>
 
-    <div class="form-asistencias mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px;">
+    <div class="form-asistencias mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Club que informa: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
-              <spaan>{{ Club }}</span>
-              <input type="hidden" id="af_club" value=""/>
-              <!-- <select id="af_club_select" class="form-control small"><option value="0">Ingrese Club</option>
-              </select> -->
+              <!-- <spaan>{{ Club }}</span> -->
+              <input type="hidden" id="af_club" value="123"/>
+              <select id="af_club_select" class="form-control small"><option value="0">Ingrese Club</option>
+              </select>
             </span>
         </div>
         <div class="row">
@@ -354,8 +363,8 @@
             <span class="col-sm-3 col-sm-offset-2">
               <select id="af_mes" class="form-control small">
                 <option value="0">Ingrese mes</option>
-                <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-                <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+                <option value="ENERO">Enero</option><option value="FEBRERO">Febrero</option><option value="MARZO">Marzo</option><option value="ABRIL">Abril</option><option value="MAYO">Mayo</option><option value="JUNIO">Junio</option>
+                <option value="JULIO">Julio</option><option value="AGOSTO">Agosto</option><option value="SEPTIEMBRE">Septiembre</option><option value="OCTUBRE">Octubre</option><option value="NOVIEMBRE">Noviembre</option><option value="DICIEMBRE">Diciembre</option>
               </select></span>
         </div>
         <div class="row">
@@ -364,19 +373,19 @@
         </div>
         <div class="row">
             <span class="col-sm-3 col-sm-offset-2">Total de Reuniones del mes:</span>
-            <span class="col-sm-3 col-sm-offset-1"><input type="number" name="af_totreu" type="text" class="form-control small"></span>
+            <span class="col-sm-3 col-sm-offset-1"><input type="number" id="af_tot_reun" type="text" class="form-control small"></span>
         </div>
         <div class="row">
             <span class="col-sm-3 col-sm-offset-2">Promedio de asistencia del mes: </span>
-            <span class="col-sm-3 col-sm-offset-1"><input type="number" name="club" type="text" class="form-control small"></span>
+            <span class="col-sm-3 col-sm-offset-1"><input type="number" id="af_prom_asist" type="text" class="form-control small"></span>
         </div>
         <div class="row">
             <span class="col-sm-4 col-sm-offset-2">Reuniones con el 100% de asistencia en el mes: </span>
-            <span class="col-sm-3 col-sm-offset-0"><input type="number" name="club" type="text" class="form-control small"></span>
+            <span class="col-sm-3 col-sm-offset-0"><input type="number" id="af_reun_comp" type="text" class="form-control small"></span>
         </div>
         <div class="row">
             <span class="col-sm-4 col-sm-offset-2">Total de socios activos al finalizar el mes: (*)</span>
-            <span class="col-sm-3 col-sm-offset-0"><input type="number" name="club" type="text" class="form-control small"></span>
+            <span class="col-sm-3 col-sm-offset-0"><input type="number" id="af_total_soc" type="text" class="form-control small"></span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Responsable del informe</span>
@@ -385,12 +394,13 @@
         <div class="row">
         </div>
         <div class="row">
-            <span class="col-sm-2 col-sm-offset-2"><a href="javascript:void(0)" class="btn btn-primary">Cancelar</a></span>
-            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="javascript:void(0)" class="btn btn-success">Enviar</a></span>
+            <span class="col-sm-2 col-sm-offset-2"><a href="index.html#asistencias" class="btn btn-primary" onclick="mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias'])">Cancelar</a></span>
+            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="javascript:void(0)" class="btn btn-success" onclick="sendAsistenciasForm()">Enviar</a></span>
         </div>
     </div>
 
-    <div class="admin-asistencias mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px;">
+    <div class="admin-asistencias mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">
+      <div style="margin-bottom: 15px;"><a href="index.html#asistencias" class="btn btn-primary" onclick="mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);">Volver</a></div>
       <table class="table table-bordered table-striped table-hover">
       	<thead>
       		<tr>
@@ -404,40 +414,23 @@
       			<th>Aceptar</th>
       		</tr>
       	</thead>
-      	<tbody>
-      		<tr>
-      			<td>
-      				{{ club }}
-      			</td>
-      			<td>
-      				{{ mes }}
-      			</td>
-      			<td>
-      				{{ periodo}}
-      			</td>
-            <td>
-      				{{ total reuniones }}
-      			</td>
-            <td>
-      				{{ promedio }}
-      			</td>
-            <td>
-      				{{ reuniones 100% }}
-      			</td>
-            <td>
-      				{{ total socios }}
-      			</td>
-      			<td style="width:80px; text-align:center;">
-      				<a class="btn btn-default">
-      					<span class="glyphicon glyphicon-ok"></span>
-      				</a>
-      			</td>
-      		</tr>
+      	<tbody id="admin-asistencias-body">
+      		<!-- <tr>
+      			<td>      				{{ club }}      			</td>
+      			<td>      				{{ mes }}      			</td>
+      			<td>      				{{ periodo}}      			</td>
+            <td>      				{{ total reuniones }}      			</td>
+            <td>      				{{ promedio }}      			</td>
+            <td>      				{{ reuniones 100% }}      			</td>
+            <td>      				{{ total socios }}      			</td>
+      			<td style="width:80px; text-align:center;"><a class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></a></td>
+      		</tr> -->
       	</tbody>
       </table>
     </div>
 
-    <div class="listado-asistencias mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px;">
+    <div class="listado-asistencias mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">
+      <div style="margin-bottom: 15px;"><a href="index.html#asistencias" class="btn btn-primary" onclick="mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias'])">Volver</a></div>
       <table class="table table-bordered table-striped table-hover">
       	<thead>
       		<tr>
@@ -507,6 +500,7 @@
   <script src="../assets/dropdown-menu-plugin/script.js"></script>
   <script src="../assets/formoid/formoid.min.js"></script>
 
+  <script src="../js/gestion.js"></script>
 
 </body>
 </html>
