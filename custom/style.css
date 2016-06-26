@@ -1,0 +1,103 @@
+.dropdown-menu {
+  background-color: rgb(2, 48, 99);
+  color: white;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.login-section {
+  display: none;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp.principal {
+    left: -100px;
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+
+@media(max-width:1200px){
+  a.mbr-buttons__link.btn.text-primary {
+      padding-left: 0px;
+  }
+}
+
+/**/
+
+.form-control.small {
+    font-size: 11px;
+    padding: 2px 4px;
+    height: 26px;
+    margin-bottom: 5px;
+}
+
+.form-horizontal .row {
+  margin-top: 10px;
+}
+
+.row-buttons {
+  margin-top: 20px !important;
+}
+
+.row-buttons a {
+  width: 100%;
+}
+
+#socios h2.mbr-hero__text,
+#clubes h2.mbr-hero__text,
+#asistencias h2.mbr-hero__text {
+  font-size: 25px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #4c6972;
+}
