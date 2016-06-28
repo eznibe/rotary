@@ -1,23 +1,29 @@
 <?php
 
-function getSocios() {
+function getAsistencias($aceptadas) {
 
-	$query = "SELECT * FROM socios s ORDER BY apellido, nombre";
+	$query = "SELECT a.*, c.nombre as club, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha
+						FROM asistencias a left join clubes c on c.nrori = a.nrclub
+						WHERE a.aceptado = $aceptadas
+						ORDER BY c.nombre";
 
 	$result = mysql_query($query);
 
 	return fetch_array($result);
 }
 
-function getAsistenciasPendientes() {
+function aceptarAccion($accion) {
 
-	$query = "SELECT a.*, c.nombre as club, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha
-						FROM asistencias a left join clubes c on c.nrori = a.nrclub
-						WHERE a.aceptado = false";
+	$obj->successful = true;
+	$obj->method = 'aceptarAccion';
 
-	$result = mysql_query($query);
+	$query = "UPDATE asistencias SET aceptado = true WHERE id = ".$accion->id;
+	if(!mysql_query($query)) {
+		$obj->successful = false;
+		$obj->query = $query;
+	}
 
-	return fetch_array($result);
+	return $obj;
 }
 
 

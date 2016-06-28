@@ -30,8 +30,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	else if(isset($_GET['bajaSocio'])) {
 		$value = bajaSocio($json);
 	}
-	else {
-		$value = saveOneDesign($json);
+	else if(isset($_GET['aceptarAccion'])) {
+		$value = aceptarAccion($json);
 	}
 
 	//return JSON array

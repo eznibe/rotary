@@ -6,7 +6,7 @@ include_once 'include/headers.php';
 include_once 'include/dbutils.php';
 include_once 'include/main.php';
 
-include_once 'domain/asistencias.php';
+include_once 'domain/socios.php';
 
 db_connect();
 
@@ -15,11 +15,14 @@ db_connect();
 if(isset($_GET['id'])) {
 	$value = getBoat($_GET['id']);
 }
-else if(isset($_GET['aceptadas'])) {
-	$value = getAsistencias($_GET['aceptadas']);
+else if(isset($_GET['pendientes'])) {
+	$value = getSociosConAccionesPendientes();
+}
+else if(isset($_GET['historial'])) {
+	$value = getSociosBajaHistorial();
 }
 else {
-	$value = getAsistencias();
+	$value = getSocios();
 }
 
 //return JSON array

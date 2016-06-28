@@ -4,7 +4,7 @@ include_once 'include/headers.php';
 include_once 'include/dbutils.php';
 include_once 'include/main.php';
 
-include_once 'domain/socios.php';
+include_once 'domain/usuarios.php';
 
 db_connect();
 
@@ -18,20 +18,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$json = json_decode($request_payload);
 
-	if(isset($_GET['altaSocio'])) {
-		$value = altaSocio($json);
+	if(isset($_GET['login'])) {
+		$value = getUsuarios($json);
 	}
 	else if(isset($_GET['modificacionSocio'])) {
 		$value = modificacionSocio($json);
-	}
-	else if(isset($_GET['accionSocio'])) {
-		$value = accionSocio($json, $_GET['accionSocio']);
-	}
-	else if(isset($_GET['bajaSocio'])) {
-		$value = bajaSocio($json);
-	}
-	else if(isset($_GET['aceptarAccion'])) {
-		$value = aceptarAccion($json);
 	}
 	else {
 		$value = saveOneDesign($json);
