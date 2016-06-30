@@ -14,15 +14,12 @@ function getUsuarios($login) {
 
 
 
-function accionSocio($socio, $accion) {
+function modificacionUsuario($usuario) {
 
 	$obj->successful = true;
-	$obj->method = 'altaSocio';
+	$obj->method = 'modificacionUsuario';
 
-	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo)
-						VALUES ('$accion', '".$socio->mes."', '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
-						'".$socio->cargo."', '".$socio->categoria."', '".$socio->contacto."', ".$socio->orden.",
-						".$socio->nrori.", ".$socio->nrclub.", '".$socio->motivo."')";
+	$query = "UPDATE usuarios SET usuario = '".$usuario->usuario."' , password = '".$usuario->password."' WHERE id = ".$usuario->id;
 
 	if(!mysql_query($query)) {
 		$obj->successful = false;

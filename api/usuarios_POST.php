@@ -21,11 +21,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if(isset($_GET['login'])) {
 		$value = getUsuarios($json);
 	}
-	else if(isset($_GET['modificacionSocio'])) {
-		$value = modificacionSocio($json);
-	}
-	else {
-		$value = saveOneDesign($json);
+	else if(isset($_GET['formPerfil'])) {
+		$value = modificacionUsuario($json);
 	}
 
 	//return JSON array

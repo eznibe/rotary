@@ -40,9 +40,10 @@
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
                         <div class="mbr-navbar__column">
                             <ul class="mbr-navbar__items mbr-navbar__items--right float-left mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios" onclick="mostrarSubsection(['label-socios', 'label-asistencias'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias'])">SOCIOS</a></li>
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#clubes" onclick="mostrarSubsection(['label-socios', 'label-asistencias'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias'])">CLUBES</a></li>
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#asistencias" onclick="mostrarSubsection(['label-socios', 'label-asistencias'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias'])">ASISTENCIAS</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios" onclick="mostrarSubsection(['label-socios', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">SOCIOS</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#clubes" onclick="mostrarSubsection(['label-socios', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">CLUBES</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#asistencias" onclick="mostrarSubsection(['label-socios', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">ASISTENCIAS</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#perfil" onclick="mostrarSubsection(['label-socios', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">PERFIL</a></li>
                               <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="../index.html" onclick="clearLogin();">LOGOUT</a></li>
                             </ul>
                         </div>
@@ -319,7 +320,7 @@
 </section>
 
 
-<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="asistencias" style="background-color: rgb(40, 50, 78); padding-bottom:350px">
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="asistencias" style="background-color: rgb(40, 50, 78);">
 
     <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 70px;">
         <div class="label-asistencias mbr-header mbr-header--wysiwyg row">
@@ -455,6 +456,50 @@
       		</tr> -->
       	</tbody>
       </table>
+    </div>
+
+</section>
+
+
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="perfil" style="background-color: rgb(40, 50, 78); padding-bottom:350px">
+
+    <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 70px;">
+        <div class="label-perfil mbr-header mbr-header--wysiwyg row">
+          <div class="mbr-hero col-sm-12">
+              <h2 class="mbr-hero__text">PERFIL</h2>
+          </div>
+        </div>
+        <div class="label-perfil row row-buttons">
+            <span class="col-sm-4"><a href="index.html#perfil" class="btn btn-primary btn-user" onclick="clearPerfilForm(); mostrarSubsection(['form-perfil'], ['label-perfil']);">Editar</a></span>
+        </div>
+        <div class="form-perfil mbr-header mbr-header--wysiwyg row" style="display:none;">
+            <div class="mbr-hero col-sm-9 col-sm-offset-2">
+                <h2 class="mbr-hero__text">Editar perfil</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-perfil mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">
+        <div class="row">
+            <span class="col-sm-2 col-sm-offset-2">Usuario: (*)</span>
+            <span class="col-sm-3 col-sm-offset-2">
+              <input type="text" id="pf_usuario" class="form-control small">
+            </span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Nueva contraseña: (*)</span>
+            <span class="col-sm-3 col-sm-offset-1"><input type="password" id="pf_password" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Repita nueva contraseña: (*)</span>
+            <span class="col-sm-3 col-sm-offset-1"><input type="password" id="pf_repeat_password" class="form-control small"></span>
+        </div>
+        <div class="row">
+        </div>
+        <div class="row">
+            <span class="col-sm-2 col-sm-offset-2"><a href="index.html#perfil" class="btn btn-primary" onclick="mostrarSubsection(['label-perfil'], ['form-perfil'])">Cancelar</a></span>
+            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="index.html#perfil" class="btn btn-success" onclick="sendPerfilForm()">Enviar</a></span>
+        </div>
     </div>
 
 </section>

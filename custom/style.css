@@ -94,7 +94,8 @@
 
 #socios h2.mbr-hero__text,
 #clubes h2.mbr-hero__text,
-#asistencias h2.mbr-hero__text {
+#asistencias h2.mbr-hero__text,
+#perfil h2.mbr-hero__text {
   font-size: 25px;
   padding-bottom: 10px;
 }
