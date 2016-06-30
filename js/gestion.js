@@ -51,7 +51,8 @@ function sendSocioForm(accion) {
                apellido: $('#sf_apellido').val(),
                clasificacion: $('#sf_clasificacion').val(),
                contacto: $('#sf_email').val(),
-               cargo: 'SOCIO'
+               cargo: 'SOCIO',
+               usuario_id: $('#sf_usuario_id').val()
                };
 
   $.ajax({
@@ -86,7 +87,8 @@ function sendSocioBajaForm(accion) {
                apellido: selectedSocio[0].apellido,
                clasificacion: selectedSocio[0].clasificacion,
                contacto: selectedSocio[0].contacto,
-               cargo: selectedSocio[0].cargo
+               cargo: selectedSocio[0].cargo,
+               usuario_id: $('#sfb_usuario_id').val()
                };
 
   $.ajax({
@@ -192,8 +194,8 @@ function getSociosConAccionesPendientes(elementId) {
   function fillTable(socios, id) {
     var trs = "";
     socios.map(function(s) {
-      trs += "<tr><td>"+s.accion+"</td><td>"+s.club+"</td><td>"+s.fecha+"</td><td>"+s.mes+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
-      "<td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td>"+
+      trs += "<tr><td>"+s.accion+"</td><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+s.mes+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
+      "<td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+s.informante+"</td>"+
       "<td style='width:80px; text-align:center;' onclick='aceptarSocioAccionPendiente(this);'><input type='hidden' id='sa_id' value='"+s.id+"'/><a class='btn btn-default'><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
     });
 
@@ -230,8 +232,8 @@ function getSociosBajaHistorial(elementId) {
   function fillTable(socios, id) {
     var trs = "";
     socios.map(function(s) {
-      trs += "<tr><td>"+s.club+"</td><td>"+s.fecha+"</td><td>"+s.mes+"</td><td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td>"+
-      "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.motivo?s.motivo:"")+"</td></tr>";
+      trs += "<tr><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+s.mes+"</td><td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td>"+
+      "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.motivo?s.motivo:"")+"</td><td>"+s.informante+"</td></tr>";
     });
 
     $('#'+id).removeData();
@@ -313,7 +315,8 @@ function sendAsistenciasForm() {
                      total_reuniones: $('#af_tot_reun').val(),
                      promedio_asist: $('#af_prom_asist').val(),
                      reuniones_completas: $('#af_reun_comp').val(),
-                     total_socios: $('#af_total_soc').val()
+                     total_socios: $('#af_total_soc').val(),
+                     usuario_id: $('#af_usuario_id').val()
                      };
 
   $.ajax({
@@ -337,7 +340,7 @@ function getAsistenciasPendientes(elementId) {
     var trs = "";
     asistencias.map(function(a) {
       trs += "<tr><td>"+a.club+"</td><td>"+a.mes+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
-      "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td>"+
+      "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td><td>"+a.informante+"</td>"+
       "<td style='width:80px; text-align:center;'><a class='btn btn-default' onclick='aceptarAsistenciasPendiente(this);'><input type='hidden' id='af_id' value='"+a.id+"'/><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
     });
 
@@ -356,7 +359,7 @@ function getAsistenciasConfirmadas(elementId) {
     var trs = "";
     asistencias.map(function(a) {
       trs += "<tr><td>"+a.club+"</td><td>"+a.mes+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
-      "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td></tr>";
+      "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td><td>"+a.informante+"</td></tr>";
     });
 
     $('#'+id).removeData();

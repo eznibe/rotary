@@ -20,16 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if(isset($_GET['formAsistencias'])) {
 		$value = formAsistencias($json);
-	}
-	else if(isset($_GET['modificacionSocio'])) {
-		$value = modificacionSocio($json);
-	}
-	else if(isset($_GET['accionSocio'])) {
-		$value = accionSocio($json, $_GET['accionSocio']);
-	}
-	else if(isset($_GET['bajaSocio'])) {
-		$value = bajaSocio($json);
-	}
+	}	
 	else if(isset($_GET['aceptarAccion'])) {
 		$value = aceptarAccion($json);
 	}

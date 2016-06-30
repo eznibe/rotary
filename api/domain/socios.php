@@ -13,8 +13,10 @@ function getSociosConAccionesPendientes() {
 
 	$query = "SELECT a.id, a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido,
 									 c.nombre as club, a.mes, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, coalesce(a.categoria, s.categoria, '') as categoria,
-									 coalesce(a.clasificacion, s.clasificacion, '') as clasificacion, coalesce(a.contacto, s.contacto, '') as contacto, coalesce(a.cargo, s.cargo, '') as cargo
+									 coalesce(a.clasificacion, s.clasificacion, '') as clasificacion, coalesce(a.contacto, s.contacto, '') as contacto, coalesce(a.cargo, s.cargo, '') as cargo,
+									 coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante
 						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nrori = a.nrclub
+								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = false
 						ORDER BY a.accion, c.nombre, s.apellido, s.nombre";
 
@@ -27,8 +29,9 @@ function getSociosBajaHistorial() {
 
 	$query = "SELECT a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido, c.nombre as club, a.mes, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, a.motivo,
 									 coalesce(a.categoria, s.categoria, '') as categoria, coalesce(a.clasificacion, s.clasificacion, '') as clasificacion,
-									 coalesce(a.contacto, s.contacto, '') as contacto, a.cargo
+									 coalesce(a.contacto, s.contacto, '') as contacto, a.cargo, coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante
 						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nrori = a.nrclub
+								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = true and a.accion = 'BAJA'
 						ORDER BY s.apellido, s.nombre";
 
@@ -45,10 +48,10 @@ function accionSocio($socio, $accion) {
 
 	$nrori = isset($accion->nrori) && trim($accion->nrori)!='' ? $accion->nrori : 'null' ;
 
-	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo)
+	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id)
 						VALUES ('$accion', '".$socio->mes."', '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
 						'".$socio->cargo."', '".$socio->categoria."', '".$socio->contacto."', ".$socio->orden.",
-						".$nrori.", ".$socio->nrclub.", '".$socio->motivo."')";
+						".$nrori.", ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.")";
 
 	if(!mysql_query($query)) {
 		$obj->successful = false;
@@ -65,10 +68,10 @@ function bajaSocio($socio) {
 
 	$nrori = isset($accion->nrori) && trim($accion->nrori)!='' ? $accion->nrori : 'null' ;
 
-	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo)
+	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id)
 						VALUES ('BAJA', '".$socio->mes."', '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
 						'".$socio->cargo."', '".$socio->categoria."', '".$socio->contacto."', ".$socio->orden.",
-						".$nrori.", ".$socio->nrclub.", '".$socio->motivo."')";
+						".$nrori.", ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.")";
 
 	if(!mysql_query($query)) {
 		$obj->successful = false;
