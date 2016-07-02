@@ -304,6 +304,115 @@ function clearSociosForms() {
   $('#sfb_motivo').val('');
 }
 
+//---- Clubes ----//
+
+function initClubesForm(nrori) {
+
+  clearClubesForm();
+
+  if (nrori) {
+    // => modificacion
+    var club = clubes.filter(function(c) {
+      return c.nrori == nrori;
+    });
+
+    if(club && club.length==1) {
+
+      $('#cf_nombre').val(club[0].nombre);
+      $('#cf_direccion').val(club[0].direccion);
+      $('#cf_localidad').val(club[0].localidad);
+      $('#cf_zona').val(club[0].zona);
+      $('#cf_dia').val(club[0].dia);
+      $('#cf_horario').val(club[0].horario);
+      $('#cf_aniversario').val(club[0].aniversario);
+      $('#cf_contacto').val(club[0].contacto);
+      $('#cf_asistente').val(club[0].asistente);
+      $('#cf_nrori').val(club[0].nrori);
+      $('#cf_nro').val(club[0].nro);
+
+      mostrarSubsection(['form-clubes-modificacion', 'form-clubes'], ['form-clubes-alta', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);
+    }
+  }
+}
+
+function sendClubForm() {
+
+  var club = { nrori: $('#cf_nrori').val(),
+               nombre: $('#cf_nombre').val(),
+               direccion: $('#cf_direccion').val(),
+               localidad: $('#cf_localidad').val(),
+               zona: $('#cf_zona').val(),
+               dia: $('#cf_dia').val(),
+               horario: $('#cf_horario').val(),
+               aniversario: $('#cf_aniversario').val(),
+               contacto: $('#cf_contacto').val(),
+               asistente: $('#cf_asistente').val(),
+               nro: $('#cf_nro').val()
+               };
+
+  $.ajax({
+      type: 'POST',
+      url: '../api/clubes_POST.php?clubAccion=true',
+      data: JSON.stringify(club),
+      success: function(data) {
+        console.log(data);
+        // TODO mostrar cartel de OK y borrar form
+        mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
+        mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+        mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);
+      },
+      contentType: "application/json",
+      dataType: 'json'
+  });
+}
+
+function getClubesListado(zonaSurId, zonaOesteId) {
+
+  function fillTable(clubes, id) {
+    var trsSur = "";
+    var trsOeste = "";
+    clubes.filter(function(c) {
+      return c.distrito == 4915;
+    }).map(function(c) {
+      trsSur += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
+      "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
+      "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nrori+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
+    });
+
+    $('#'+zonaSurId).removeData();
+    $('#'+zonaSurId).html(trsSur);
+
+    clubes.filter(function(c) {
+      return c.distrito == 4855;
+    }).map(function(c) {
+      trsOeste += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
+      "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
+      "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nrori+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
+    });
+
+    $('#'+zonaOesteId).removeData();
+    $('#'+zonaOesteId).html(trsOeste);
+  }
+
+  $.get("../api/clubes_GET.php", function(data, status){
+    clubes = data;
+    fillTable(data, zonaSurId, zonaOesteId);
+  });
+}
+
+function clearClubesForm() {
+  $('#cf_nombre').val('');
+  $('#cf_direccion').val('');
+  $('#cf_localidad').val('');
+  $('#cf_zona').val('Todas');
+  $('#cf_dia').val('Todos');
+  $('#cf_horario').val('');
+  $('#cf_aniversario').val('');
+  $('#cf_contacto').val('');
+  $('#cf_asistente').val('');
+  $('#cf_nrori').val('');
+  $('#cf_nro').val('');
+}
 
 //---- Asistencias ----//
 

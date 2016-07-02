@@ -107,3 +107,8 @@
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #4c6972;
 }
+
+#listado-clubes-sur-body td,
+#listado-clubes-oeste-body td {
+  font-size: 12px;
+}

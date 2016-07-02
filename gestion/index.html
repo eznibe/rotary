@@ -62,7 +62,6 @@
                 <div class="row"><div class=" col-sm-6">
                     <div class="mbr-hero animated fadeInUp">
                         <h1 class="mbr-hero__text">GESTION DE ROTARY</h1>
-                        <!-- <p class="mbr-hero__subtext"><strong>En Rotary encontrarás a tus propios vecinos, a líderes comunitarios y a ciudadanos del mundo que trabajan unidos por el bien de todos. </strong><br><strong>Estamos convencidos de que con la unión podremos conseguir mucho más.</strong></p> -->
                     </div>
 
                 </div></div>
@@ -145,7 +144,8 @@
                 <option value="0">Ingrese mes</option>
                 <option value="ENERO">Enero</option><option value="FEBRERO">Febrero</option><option value="MARZO">Marzo</option><option value="ABRIL">Abril</option><option value="MAYO">Mayo</option><option value="JUNIO">Junio</option>
                 <option value="JULIO">Julio</option><option value="AGOSTO">Agosto</option><option value="SEPTIEMBRE">Septiembre</option><option value="OCTUBRE">Octubre</option><option value="NOVIEMBRE">Noviembre</option><option value="DICIEMBRE">Diciembre</option>
-              </select></span>
+              </select>
+            </span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Categoría de socio:</span>
@@ -280,22 +280,151 @@
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size clubes" id="clubes" style="background-color: rgb(40, 50, 78);">
 
     <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 50px;">
-        <div class="mbr-header mbr-header--wysiwyg row">
+        <div class="label-clubes mbr-header mbr-header--wysiwyg row">
           <div class="mbr-hero col-sm-8">
               <h2 class="mbr-hero__text">CLUBES</h2>
           </div>
         </div>
-        <div class="row row-buttons">
-            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default btn-user">Alta de club</a></span>
-            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default btn-user">Modificación de club</a></span>
+        <div class="label-clubes row row-buttons">
+            <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-user" onclick="initClubesForm(); mostrarSubsection(['form-clubes-alta', 'form-clubes'], ['form-clubes-modificacion', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);">Alta de club</a></span>
+            <!-- <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-user" onclick="initClubesForm('MODIFICACION'); mostrarSubsection(['form-clubes-modificacion', 'form-clubes'], ['form-clubes-alta', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);">Modificación de club</a></span> -->
             <!-- <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-primary">Baja de club</a></span> -->
+            <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-admin"  onclick="getClubesListado('listado-clubes-sur-body', 'listado-clubes-oeste-body'); mostrarSubsection(['listado-clubes'], ['form-clubes-modificacion', 'form-clubes', 'form-clubes-alta', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios']);">Listado de clubes</a></span>
         </div>
-        <div class="row row-buttons">
+        <!-- <div class="label-clubes row row-buttons">
             <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default btn-admin">Administración de clubes</a></span>
-            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default btn-admin">Listado de clubes</a></span>
+            <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-admin"  onclick="getClubes(); mostrarSubsection(['listado-clubes'], ['form-clubes-modificacion', 'form-clubes', 'form-clubes-alta', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios']);">Listado de clubes</a></span>
+        </div> -->
+
+        <div class="form-clubes-alta mbr-header mbr-header--wysiwyg row" style="display:none;">
+            <div class=" mbr-hero col-sm-9 col-sm-offset-2">
+                <h2 class="mbr-hero__text">ALTA de CLUB</h2>
+            </div>
+        </div>
+        <div class="form-clubes-modificacion mbr-header mbr-header--wysiwyg row" style="display:none;">
+            <div class="mbr-hero col-sm-8 col-sm-offset-2">
+                <h2 class="mbr-hero__text">MODIFICACION de CLUB</h2>
+            </div>
+        </div>
+        <div class="listado-clubes mbr-header mbr-header--wysiwyg row" style="display:none;">
+            <div class="mbr-hero col-sm-8 col-sm-offset-2">
+                <h2 class="mbr-hero__text">Listado de CLUBES</h2>
+            </div>
         </div>
     </div>
 
+    <div class="form-clubes mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
+
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Nombre: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_nombre" type="text" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Dirección: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_direccion" type="text" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Localidad: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_localidad" type="text" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Zona: </span>
+            <span class="col-sm-3 col-sm-offset-1">
+              <select id="cf_zona" class="form-control small">
+                <option value="Todas">Todas</option>
+                <option value="NE">NE</option><option value="NO">NO</option><option value="SE">SE</option><option value="SO">SO</option>
+              </select>
+            </span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Día reunión: </span>
+            <span class="col-sm-3 col-sm-offset-1">
+              <select id="cf_dia" class="form-control small">
+                <option value="Todos">Todos</option>
+                <option value="Lunes">Lunes</option><option value="Martes">Martes</option><option value="Miercoles">Miércoles</option><option value="Jueves">Jueves</option><option value="Viernes">Viernes</option>
+              </select>
+            </span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Hora reunión: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_horario" type="text" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Fecha aniversario: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_aniversario" type="text" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Contacto: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_contacto" type="text" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Asistente: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_asistente" type="text" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Nro RI: </span>
+            <span class="col-sm-3 col-sm-offset-1"><input id="cf_nrori" type="text" class="form-control small"></span>
+            <input id="cf_nro" type="hidden" class="form-control small">
+        </div>
+        <!-- <div class="row">
+            <span class="col-sm-2 col-sm-offset-2">Responsable del informe</span>
+            <span class="col-sm-3 col-sm-offset-2" id="cf_responsable">
+              {{ Nombre, Apellido }}
+            </span>
+            <input type="hidden" id="cf_usuario_id"/>
+        </div> -->
+        <div class="row">
+        </div>
+        <div class="row">
+            <span class="col-sm-2 col-sm-offset-2"><a href="index.html#clubes" class="btn btn-primary" onclick="mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes'])">Cancelar</a></span>
+            <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="index.html#clubes" class="btn btn-success" onclick="sendClubForm()">Enviar</a></span>
+        </div>
+    </div>
+
+    <div class="listado-clubes mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">
+      <div style="margin-bottom: 15px;"><a href="index.html#clubes" class="btn btn-primary" onclick="mostrarSubsection(['label-clubes'], ['form-clubes', 'listado-clubes'])">Volver</a></div>
+      <div>ZONA SUR</div>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Club</th>
+            <th>Direccion</th>
+            <th>Zona</th>
+            <th>Día reunión</th>
+            <th>Horario reunión</th>
+            <th>Fecha aniv.</th>
+            <th>Contacto</th>
+            <th>Asistente</th>
+            <th>Nro RI</th>
+            <th>Modificar</th>
+            <!-- <th>Eliminar</th> -->
+          </tr>
+        </thead>
+        <tbody id="listado-clubes-sur-body">
+        </tbody>
+      </table>
+
+      <div>ZONA OESTE</div>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Club</th>
+            <th>Direccion</th>
+            <th>Zona</th>
+            <th>Día reunión</th>
+            <th>Horario reunión</th>
+            <th>Fecha aniv.</th>
+            <th>Contacto</th>
+            <th>Asistente</th>
+            <th>Nro RI</th>
+            <th>Modificar</th>
+            <!-- <th>Eliminar</th> -->
+          </tr>
+        </thead>
+        <tbody id="listado-clubes-oeste-body">
+        </tbody>
+      </table>
+    </div>
 </section>
 
 
