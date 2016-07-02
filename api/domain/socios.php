@@ -1,8 +1,14 @@
 <?php
 
-function getSocios() {
+function getSocios($nrclub) {
 
-	$query = "SELECT * FROM socios s ORDER BY apellido, nombre";
+	$condition = "";
+	if (isset($nrclub) && $nrclub != '0') {
+		$condition = " WHERE c.nrori = ".$nrclub;
+	}
+
+	$query = "SELECT s.*, c.nombre as club FROM socios s join clubes c on c.nrori = s.nrclub $condition
+						ORDER BY club, cargo, apellido, nombre";
 
 	$result = mysql_query($query);
 

@@ -32,6 +32,7 @@ else if (+logged.nivel > 2) {
 setClubes('sf_club_select');
 setClubes('sfb_club_select');
 setClubes('af_club_select');
+setClubes('filter_clubes_select');
 
 setSocios('sf_socio_select');
 setSocios('sfb_socio_select');
@@ -141,6 +142,10 @@ function setClubes(elementId) {
   }
 }
 
+function filterClub() {
+  getSociosListado('listado-socios-body', $('#filter_clubes_select').val());
+}
+
 function defaultClub() {
   var match;
   clubes.map(function(c) {
@@ -243,6 +248,27 @@ function getSociosBajaHistorial(elementId) {
   }
 
   $.get("../api/socios_GET.php?historial=true", function(data, status){
+    fillTable(data, elementId);
+  });
+}
+
+function getSociosListado(elementId, nrclub) {
+
+  function fillTable(socios, id) {
+    var trs = "";
+    socios.map(function(s) {
+      trs += "<tr><td>"+s.club+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+s.nombre+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td>"+
+      "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.categoria?s.categoria:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.nrori?s.nrori:"")+"</td></tr>";
+      // "<td style='width:80px; text-align:center;' onclick=''><input type='hidden' id='sa_id' value='"+s.orden+"'/><a class='btn btn-default'><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
+    });
+
+    $('#'+id).removeData();
+    $('#'+id).html(trs);
+  }
+
+  var filter = nrclub ? '?nrclub='+nrclub : '';
+
+  $.get("../api/socios_GET.php"+filter, function(data, status){
     fillTable(data, elementId);
   });
 }
