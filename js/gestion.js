@@ -25,6 +25,8 @@ else if (+logged.nivel > 2) {
 } else {
   // no admin -> hide some buttons
   mostrarSubsection([], ['btn-admin', 'menu-clubes', 'clubes']);
+
+  // $('#sf_cargo_row').hide();
 }
 
 setClubes('sf_club_select');
@@ -51,7 +53,7 @@ function sendSocioForm(accion) {
                apellido: $('#sf_apellido').val(),
                clasificacion: $('#sf_clasificacion').val(),
                contacto: $('#sf_email').val(),
-               cargo: 'SOCIO',
+               cargo: $('#sf_cargo').val(),
                usuario_id: $('#sf_usuario_id').val()
                };
 
@@ -284,6 +286,7 @@ function selectedSocio() {
     $('#sf_apellido').val(socio[0].apellido);
     $('#sf_clasificacion').val(socio[0].clasificacion);
     $('#sf_email').val(socio[0].contacto);
+    $('#sf_cargo').val(socio[0].cargo);
   }
 }
 
@@ -296,6 +299,7 @@ function clearSociosForms() {
   $('#sf_email').val('');
   $('#sf_club_select').val('0');
   $('#sf_socio_select').val('0');
+  $('#sf_cargo').val('SOCIO');
 
   $('#sfb_club_select').val('0');
   $('#sfb_socio_select').val('0');
