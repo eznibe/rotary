@@ -24,7 +24,7 @@ else if (+logged.nivel > 2) {
 
 } else {
   // no admin -> hide some buttons
-  mostrarSubsection([], ['btn-admin']);
+  mostrarSubsection([], ['btn-admin', 'menu-clubes', 'clubes']);
 }
 
 setClubes('sf_club_select');
