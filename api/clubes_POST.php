@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$json = json_decode($request_payload);
 
 	if(isset($_GET['clubAccion'])) {
-		$value = clubAccion($json);
+		$value = clubAccion($json);		
 	}
 	else if(isset($_GET['bajaClub'])) {
 		$value = bajaClub($json);

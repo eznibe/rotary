@@ -266,9 +266,9 @@ function getSociosListado(elementId, nrclub) {
     $('#'+id).html(trs);
   }
 
-  var filter = nrclub ? '?nrclub='+nrclub : '';
+  var filter = nrclub && nrclub != 0 ? '&nrclub='+nrclub : '&nrclub=-1';
 
-  $.get("../api/socios_GET.php"+filter, function(data, status){
+  $.get("../api/socios_GET.php?orderByCargo=true"+filter, function(data, status){
     fillTable(data, elementId);
   });
 }
@@ -313,6 +313,7 @@ function selectedSocio() {
     $('#sf_clasificacion').val(socio[0].clasificacion);
     $('#sf_email').val(socio[0].contacto);
     $('#sf_cargo').val(socio[0].cargo);
+    $('#sf_nrori').val(socio[0].nrori);
   }
 }
 
@@ -323,6 +324,7 @@ function clearSociosForms() {
   $('#sf_apellido').val('');
   $('#sf_clasificacion').val('');
   $('#sf_email').val('');
+  $('#sf_nrori').val('');
   $('#sf_club_select').val('0');
   $('#sf_socio_select').val('0');
   $('#sf_cargo').val('SOCIO');

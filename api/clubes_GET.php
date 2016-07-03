@@ -11,11 +11,11 @@ include_once 'domain/clubes.php';
 db_connect();
 
 
-if(isset($_GET['id'])) {
-	$value = getBoat($_GET['id']);
+if(isset($_GET['nrori'])) {
+	$value = getClub($_GET['nrori']);
 }
-else if(isset($_GET['onedesign'])) {
-	$value = getOneDesignBoats($_GET['onedesign']);
+else if(isset($_GET['version'])) {
+	echo 'Version: '.phpversion();
 }
 else {
 	$value = getClubes();

@@ -18,7 +18,7 @@ else if(isset($_GET['historial'])) {
 	$value = getSociosBajaHistorial();
 }
 else {
-	$value = getSocios($_GET['nrclub']);
+	$value = getSocios($_GET['nrclub'], $_GET['orderByCargo']);
 }
 
 //return JSON array
