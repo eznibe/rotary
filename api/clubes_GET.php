@@ -11,8 +11,8 @@ include_once 'domain/clubes.php';
 db_connect();
 
 
-if(isset($_GET['nrori'])) {
-	$value = getClub($_GET['nrori']);
+if(isset($_GET['nro'])) {
+	$value = getClub($_GET['nro']);
 }
 else if(isset($_GET['version'])) {
 	echo 'Version: '.phpversion();

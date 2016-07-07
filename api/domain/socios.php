@@ -4,7 +4,7 @@ function getSocios($nrclub, $orderByCargo) {
 
 	$condition = "";
 	if (isset($nrclub) && $nrclub != '0') {
-		$condition = " WHERE c.nrori = ".$nrclub;
+		$condition = " AND c.nro = ".$nrclub;
 	}
 
 	$order = "";
@@ -12,12 +12,14 @@ function getSocios($nrclub, $orderByCargo) {
 		$order = ", cargo ";
 	}
 
-	$query = "SELECT s.*, c.nombre as club FROM socios s join clubes c on c.nrori = s.nrclub $condition
+	$query = "SELECT s.*, c.nombre as club FROM socios s join clubes c on c.nro = s.nrclub
+						WHERE 1=1 $condition
 						ORDER BY club $order , apellido, nombre";
 
 	$result = mysql_query($query);
 
 	return fetch_array($result);
+	// return $obj->query = $query;
 }
 
 function getSociosConAccionesPendientes() {
@@ -26,7 +28,7 @@ function getSociosConAccionesPendientes() {
 									 c.nombre as club, a.mes, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, coalesce(a.categoria, s.categoria, '') as categoria,
 									 coalesce(a.clasificacion, s.clasificacion, '') as clasificacion, coalesce(a.contacto, s.contacto, '') as contacto, coalesce(a.cargo, s.cargo, '') as cargo,
 									 coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante
-						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nrori = a.nrclub
+						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nro = a.nrclub
 								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = false
 						ORDER BY a.accion, c.nombre, s.apellido, s.nombre";
@@ -41,7 +43,7 @@ function getSociosBajaHistorial() {
 	$query = "SELECT a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido, c.nombre as club, a.mes, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, a.motivo,
 									 coalesce(a.categoria, s.categoria, '') as categoria, coalesce(a.clasificacion, s.clasificacion, '') as clasificacion,
 									 coalesce(a.contacto, s.contacto, '') as contacto, a.cargo, coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante
-						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nrori = a.nrclub
+						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nro = a.nrclub
 								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = true and a.accion = 'BAJA'
 						ORDER BY s.apellido, s.nombre";

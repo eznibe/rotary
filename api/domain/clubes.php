@@ -9,16 +9,13 @@ function getClubes() {
 	return fetch_array($result);
 }
 
-function getClub($nrori) {
+function getClub($nro) {
 
 	$query = "SELECT * FROM clubes c WHERE nrori = $nrori";
 
 	$result = mysql_query($query);
 
 	$arr = fetch_array($result);
-
-	// echo 'Nombre: '.$arr[0]['nombre'];
-	// echo 'Version: '.phpversion();
 
 	return $arr[0];
 	// return $arr[0]['nombre'];

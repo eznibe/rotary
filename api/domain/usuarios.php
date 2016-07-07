@@ -2,8 +2,8 @@
 
 function getUsuarios($login) {
 
-	$query = "SELECT u.id, u.usuario, u.nivel, s.nombre, s.apellido, s.cargo, s.orden, c.nombre as club, c.nrori as nrclub
-						FROM usuarios u left join socios s ON u.nrori = s.orden LEFT JOIN clubes c on c.nrori = u.nrclub
+	$query = "SELECT u.id, u.usuario, u.nivel, s.nombre, s.apellido, s.cargo, s.orden, c.nombre as club, c.nro as nrclub
+						FROM usuarios u left join socios s ON u.nrori = s.orden LEFT JOIN clubes c on c.nro = u.nrclub
 						WHERE (usuario = '".$login->usuario."' AND password = '".$login->password."')
 							OR (usuario = '".$login->usuario2."' AND password = '".$login->password2."')";
 

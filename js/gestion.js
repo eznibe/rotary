@@ -116,9 +116,9 @@ function setClubes(elementId) {
     var match;
     var options = "<option value='0'>Ingrese Club</option>";
     clubes.map(function(c) {
-      options += "<option value='" + c.nrori + "'>" + c.nombre + "</option>";
-      if (c.nrori == +logged.nrclub) {
-        match = c.nrori;
+      options += "<option value='" + c.nro + "'>" + c.nombre + "</option>";
+      if (c.nro == +logged.nrclub) {
+        match = c.nro;
       }
     });
 
@@ -131,15 +131,14 @@ function setClubes(elementId) {
     }
   }
 
-  if (clubes) {
-    // ya estan cargados
+
+  $.get("../api/clubes_GET.php", function(data, status){
+    clubes = data;
     fillSelect(clubes, elementId);
-  } else {
-    $.get("../api/clubes_GET.php", function(data, status){
-      clubes = data;
-      fillSelect(clubes, elementId);
-    });
-  }
+
+    defaultClub();
+  });
+
 }
 
 function filterClub() {
@@ -149,8 +148,8 @@ function filterClub() {
 function defaultClub() {
   var match;
   clubes.map(function(c) {
-    if (c.nrori == +logged.nrclub) {
-      match = c.nrori;
+    if (c.nro == +logged.nrclub) {
+      match = c.nro;
     }
   });
 
@@ -271,13 +270,18 @@ function getSociosListado(elementId, nrclub) {
   $.get("../api/socios_GET.php?orderByCargo=true"+filter, function(data, status){
     fillTable(data, elementId);
   });
+
+  setClubes('filter_clubes_select');
 }
 
 function initSociosForms(accion) {
 
   clearSociosForms();
 
-  defaultClub();
+  setClubes('sf_club_select');
+  setClubes('sfb_club_select');
+
+  // defaultClub();
 
   // ocultar socios dropdown si es alta
   accionSocio = accion;
@@ -338,14 +342,14 @@ function clearSociosForms() {
 
 //---- Clubes ----//
 
-function initClubesForm(nrori) {
+function initClubesForm(nro) {
 
   clearClubesForm();
 
-  if (nrori) {
+  if (nro) {
     // => modificacion
     var club = clubes.filter(function(c) {
-      return c.nrori == nrori;
+      return c.nro == nro;
     });
 
     if(club && club.length==1) {
@@ -410,7 +414,7 @@ function getClubesListado(zonaSurId, zonaOesteId) {
     .map(function(c) {
       trsSur += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
       "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
-      "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nrori+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
+      "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nro+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
     });
 
     $('#'+zonaSurId).removeData();
@@ -534,13 +538,15 @@ function aceptarAsistenciasPendiente(elem) {
 function clearAsistenciasForm() {
   $('#af_club_select').val('0');
   $('#af_mes').val('0');
-  $('#af_periodo').val('2015');
+  $('#af_periodo').val('2016');
   $('#af_tot_reun').val('');
   $('#af_prom_asist').val('');
   $('#af_reun_comp').val('');
   $('#af_total_soc').val('');
 
-  defaultClub();
+  setClubes('af_club_select');
+
+  // defaultClub();
 }
 
 //---- Perfil ----//
