@@ -156,7 +156,7 @@
             <span class="col-sm-2 col-sm-offset-2">Categoría de socio:</span>
             <span class="col-sm-3 col-sm-offset-2"><select id="sf_categoria" class="form-control small"><option selected value="ACTIVO">Activos</option><option value="HONORARIO">Honorarios</option><option value="ROTARACT">Rotaract</option><option value="INTERACT">Interact</option><option value="RUEDA FAMILIA">Rueda de familia</option></select></span>
         </div>
-        <div class="row sf_cargo_row">
+        <div class="row admin_row">
             <span class="col-sm-2 col-sm-offset-2">Cargo:</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sf_cargo" class="form-control small">
@@ -182,7 +182,7 @@
             <span class="col-sm-3 col-sm-offset-2">E-mail: </span>
             <span class="col-sm-3 col-sm-offset-1"><input id="sf_email" type="text" class="form-control small"></span>
         </div>
-        <div class="row">
+        <div class="row admin_row">
             <span class="col-sm-3 col-sm-offset-2">Nro RI: </span>
             <span class="col-sm-3 col-sm-offset-1"><input id="sf_nrori" type="text" class="form-control small"></span>
         </div>
@@ -378,6 +378,7 @@
             <span class="col-sm-3 col-sm-offset-1">
               <select id="cf_zona" class="form-control small">
                 <option value="Todas">Todas</option>
+                <option value="S">S</option><option value="O">O</option>
                 <option value="NE">NE</option><option value="NO">NO</option><option value="SE">SE</option><option value="SO">SO</option>
               </select>
             </span>
@@ -387,7 +388,7 @@
             <span class="col-sm-3 col-sm-offset-1">
               <select id="cf_dia" class="form-control small">
                 <option value="Todos">Todos</option>
-                <option value="Lunes">Lunes</option><option value="Martes">Martes</option><option value="Miercoles">Miércoles</option><option value="Jueves">Jueves</option><option value="Viernes">Viernes</option>
+                <option value="Lunes">Lunes</option><option value="Martes">Martes</option><option value="Miercoles">Miércoles</option><option value="Jueves">Jueves</option><option value="Viernes">Viernes</option><option value="Sabado">Sábado</option>
               </select>
             </span>
         </div>
@@ -429,7 +430,7 @@
 
     <div class="listado-clubes mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">
       <div style="margin-bottom: 15px;"><a href="index.html#clubes" class="btn btn-primary" onclick="mostrarSubsection(['label-clubes'], ['form-clubes', 'listado-clubes'])">Volver</a></div>
-      <div>ZONA SUR</div>
+      <!-- <div>ZONA SUR</div> -->
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -450,7 +451,7 @@
         </tbody>
       </table>
 
-      <div>ZONA OESTE</div>
+      <!-- <div>ZONA OESTE</div>
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -464,12 +465,11 @@
             <th>Asistente</th>
             <th>Nro RI</th>
             <th>Modificar</th>
-            <!-- <th>Eliminar</th> -->
           </tr>
         </thead>
         <tbody id="listado-clubes-oeste-body">
         </tbody>
-      </table>
+      </table> -->
     </div>
 </section>
 

@@ -26,7 +26,7 @@ else if (+logged.nivel > 2) {
   // no admin -> hide some buttons
   mostrarSubsection([], ['btn-admin', 'menu-clubes', 'clubes']);
 
-  // $('#sf_cargo_row').hide();
+  $('.admin_row').hide();
 }
 
 setClubes('sf_club_select');
@@ -362,7 +362,7 @@ function initClubesForm(nrori) {
       $('#cf_nrori').val(club[0].nrori);
       $('#cf_nro').val(club[0].nro);
 
-      mostrarSubsection(['form-clubes-modificacion', 'form-clubes'], ['form-clubes-alta', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);
+      mostrarSubsection(['form-clubes-modificacion', 'form-clubes'], ['form-clubes-alta', 'label-clubes', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);
     }
   }
 }
@@ -403,9 +403,11 @@ function getClubesListado(zonaSurId, zonaOesteId) {
   function fillTable(clubes, id) {
     var trsSur = "";
     var trsOeste = "";
-    clubes.filter(function(c) {
-      return c.distrito == 4915;
-    }).map(function(c) {
+    clubes
+    // .filter(function(c) {
+    //   return c.distrito == 4915;
+    // })
+    .map(function(c) {
       trsSur += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
       "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
       "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nrori+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
@@ -414,16 +416,16 @@ function getClubesListado(zonaSurId, zonaOesteId) {
     $('#'+zonaSurId).removeData();
     $('#'+zonaSurId).html(trsSur);
 
-    clubes.filter(function(c) {
-      return c.distrito == 4855;
-    }).map(function(c) {
-      trsOeste += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
-      "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
-      "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nrori+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
-    });
-
-    $('#'+zonaOesteId).removeData();
-    $('#'+zonaOesteId).html(trsOeste);
+    // clubes.filter(function(c) {
+    //   return c.distrito == 4855;
+    // }).map(function(c) {
+    //   trsOeste += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
+    //   "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
+    //   "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nrori+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
+    // });
+    //
+    // $('#'+zonaOesteId).removeData();
+    // $('#'+zonaOesteId).html(trsOeste);
   }
 
   $.get("../api/clubes_GET.php", function(data, status){
