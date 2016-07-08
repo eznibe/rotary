@@ -8,11 +8,13 @@ var accionSocio = 'ALTA';
 
 var logged = Cookies.get('logged') ? JSON.parse(Cookies.get('logged')) : null;
 
+var isAdmin = +logged.nivel > 2;
+
 if (!logged) {
   // no logueado -> ocultar todo
   mostrarSubsection([], ['btn-admin', 'btn-user']);
 }
-else if (+logged.nivel > 2) {
+else if (isAdmin) {
   // admin
   getSociosConAccionesPendientes('admin-socios-body');
 
@@ -29,10 +31,10 @@ else if (+logged.nivel > 2) {
   $('.admin_row').hide();
 }
 
-setClubes('sf_club_select');
-setClubes('sfb_club_select');
-setClubes('af_club_select');
-setClubes('filter_clubes_select');
+setClubes(['sf_club_select', 'sfb_club_select', 'af_club_select', 'filter_clubes_select']);
+// setClubes('sfb_club_select');
+// setClubes('af_club_select');
+// setClubes('filter_clubes_select');
 
 setSocios('sf_socio_select');
 setSocios('sfb_socio_select');
@@ -63,10 +65,15 @@ function sendSocioForm(accion) {
       url: '../api/socios_POST.php?accionSocio='+accionSocio,
       data: JSON.stringify(socio), // or JSON.stringify ({name: 'jonas'}),
       success: function(data) {
-        console.log(data);
+
         // TODO mostrar cartel de OK y borrar form
         mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
         mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+
+        if (isAdmin) {
+          // aceptar automaticamente cambios
+          aceptarSocioAccionPendiente(null, data.id);
+        }
       },
       contentType: "application/json",
       dataType: 'json'
@@ -99,10 +106,15 @@ function sendSocioBajaForm(accion) {
       url: '../api/socios_POST.php?bajaSocio=true',
       data: JSON.stringify(socio), // or JSON.stringify ({name: 'jonas'}),
       success: function(data) {
-        console.log(data);
+
         // TODO mostrar cartel de OK
         mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
         mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+
+        if (isAdmin) {
+          // aceptar automaticamente cambios
+          aceptarSocioAccionPendiente(null, data.id);
+        }
       },
       contentType: "application/json",
       dataType: 'json'
@@ -110,7 +122,9 @@ function sendSocioBajaForm(accion) {
 }
 
 
-function setClubes(elementId) {
+function setClubes(elementIds, callback) {
+
+  elementIds = [].concat(elementIds);
 
   function fillSelect(clubes, id) {
     var match;
@@ -134,9 +148,16 @@ function setClubes(elementId) {
 
   $.get("../api/clubes_GET.php", function(data, status){
     clubes = data;
-    fillSelect(clubes, elementId);
+    elementIds.map(function(elementId) {
 
-    defaultClub();
+      fillSelect(clubes, elementId);
+
+      defaultClub(elementId);
+
+      if (callback) {
+        callback();
+      }
+    });
   });
 
 }
@@ -145,10 +166,11 @@ function filterClub() {
   getSociosListado('listado-socios-body', $('#filter_clubes_select').val());
 }
 
-function defaultClub() {
+function defaultClub(clubElementId) {
   var match;
+  var search = $('#'+clubElementId).val() ?  $('#'+clubElementId).val() : +logged.nrclub;
   clubes.map(function(c) {
-    if (c.nro == +logged.nrclub) {
+    if (c.nro == search) {
       match = c.nro;
     }
   });
@@ -214,8 +236,8 @@ function getSociosConAccionesPendientes(elementId) {
   });
 }
 
-function aceptarSocioAccionPendiente(elem) {
-  var accion = {id: $(elem).find('#sa_id').val()};
+function aceptarSocioAccionPendiente(elem, accionId) {
+  var accion = {id: accionId ? accionId : $(elem).find('#sa_id').val()};
 
   $.ajax({
       type: 'POST',
@@ -255,10 +277,11 @@ function getSociosListado(elementId, nrclub) {
 
   function fillTable(socios, id) {
     var trs = "";
+    var onclick = ""
     socios.map(function(s) {
       trs += "<tr><td>"+s.club+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+s.nombre+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td>"+
-      "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.categoria?s.categoria:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.nrori?s.nrori:"")+"</td></tr>";
-      // "<td style='width:80px; text-align:center;' onclick=''><input type='hidden' id='sa_id' value='"+s.orden+"'/><a class='btn btn-default'><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
+      "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.categoria?s.categoria:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.nrori?s.nrori:"")+"</td>"+
+      "<td style='width:80px; text-align:center;' onclick='initSociosForms(\"MODIFICACION\", "+s.orden+");'><input type='hidden' id='sa_id' value='"+s.orden+"'/><a href='index.html#socios' class='btn btn-default'><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
     });
 
     $('#'+id).removeData();
@@ -274,39 +297,66 @@ function getSociosListado(elementId, nrclub) {
   setClubes('filter_clubes_select');
 }
 
-function initSociosForms(accion) {
+function initSociosForms(accion, socio_orden) {
 
   clearSociosForms();
 
-  setClubes('sf_club_select');
-  setClubes('sfb_club_select');
-
-  // defaultClub();
-
-  // ocultar socios dropdown si es alta
-  accionSocio = accion;
-  if (accionSocio === 'ALTA') {
-    $('#sf_socio_row').hide();
-  }
-  else {
-    $('#sf_socio_row').show();
+  if (isAdmin) {
+    $('#sf_mes_row').hide();
   }
 
-  // default socios correctos si hay club seleccionado
-  updateSocios(accion);
+  setClubes(['sf_club_select', 'sfb_club_select'], function() {
+
+    // ocultar socios dropdown si es alta
+    accionSocio = accion;
+    if (accionSocio === 'ALTA') {
+      $('#sf_socio_row').hide();
+    }
+    else if (accionSocio === 'MODIFICACION'){
+
+      var socio;
+
+      if (socio_orden) {
+        // load info del socio ya seleccionado por default
+        socio = selectedSocio(socio_orden);
+      }
+
+      nrclub = socio ? socio.nrclub : null;
+
+      // default socios correctos si hay club seleccionado
+      updateSocios(accion, nrclub);
+
+      if (socio) {
+        $('#sf_socio_select').val(socio.orden);
+      }
+
+      $('#sf_socio_row').show();
+      mostrarSubsection(['form-socios-modificacion', 'form-socios'], ['label-socios', 'form-socios-alta', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-socios']);
+    } else {
+      // BAJA
+      updateSocios(accion, nrclub);
+    }
+  });
+
 }
 
-function updateSocios(accion) {
+
+function updateSocios(accion, nrclub) {
   var clubElementId = accion=='MODIFICACION' ? 'sf_club_select' : 'sfb_club_select';
   var socioElementId = accion=='MODIFICACION' ? 'sf_socio_select' : 'sfb_socio_select';
 
-  setSocios(socioElementId, $('#'+clubElementId).val());
+  nrclub = nrclub ? nrclub : $('#'+clubElementId).val();
+
+  setSocios(socioElementId, nrclub);
 }
 
-function selectedSocio() {
+function selectedSocio(orden) {
+
+  orden = orden ? orden : $('#sf_socio_select').val();
+
   // socio seleccionado -> cargar campos de datos personales actuales
   var socio = socios.filter(function(s) {
-    return s.orden == $('#sf_socio_select').val();
+    return s.orden == orden;
   });
 
   if(socio && socio.length==1) {
@@ -318,7 +368,10 @@ function selectedSocio() {
     $('#sf_email').val(socio[0].contacto);
     $('#sf_cargo').val(socio[0].cargo);
     $('#sf_nrori').val(socio[0].nrori);
+    $('#sf_club_select').val(socio[0].nrclub);
   }
+
+  return socio[0];
 }
 
 function clearSociosForms() {
@@ -466,19 +519,38 @@ function sendAsistenciasForm() {
                      usuario_id: $('#af_usuario_id').val()
                      };
 
-  $.ajax({
-      type: 'POST',
-      url: '../api/asistencias_POST.php?formAsistencias=true',
-      data: JSON.stringify(asistencias),
-      success: function(data) {
-        console.log(data);
-        // TODO mostrar cartel de OK y borrar form
-        mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
-        mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
-      },
-      contentType: "application/json",
-      dataType: 'json'
-  });
+  if (validAsistencias(asistencias)) {
+
+    $.ajax({
+        type: 'POST',
+        url: '../api/asistencias_POST.php?formAsistencias=true',
+        data: JSON.stringify(asistencias),
+        success: function(data) {
+          console.log(data);
+          // TODO mostrar cartel de OK y borrar form
+          mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
+          mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+        },
+        contentType: "application/json",
+        dataType: 'json'
+    });
+  } else {
+    alert('Faltan ingresar campos requeridos en el formulario de asistencias.');
+  }
+}
+
+function validAsistencias(asistencias) {
+  if (asistencias.nrclub == 0 ||
+      asistencias.mes == 0 ||
+      asistencias.periodo == '' ||
+      asistencias.total_reuniones == '' ||
+      asistencias.promedio_asist == '' ||
+      asistencias.reuniones_completas == '' ||
+      asistencias.total_socios == '' ) {
+    return false;
+  }
+
+  return true;
 }
 
 function getAsistenciasPendientes(elementId) {

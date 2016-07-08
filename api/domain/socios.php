@@ -69,6 +69,11 @@ function accionSocio($socio, $accion) {
 	if(!mysql_query($query)) {
 		$obj->successful = false;
 		$obj->query = $query;
+	} else {
+		$query = "SELECT id FROM socios_acciones ORDER BY id desc limit 1";
+		$result = mysql_query($query);
+		$arr = fetch_array($result);
+		$obj->id = $arr[0]['id'];
 	}
 	$obj->query = $query;
 
@@ -90,6 +95,11 @@ function bajaSocio($socio) {
 	if(!mysql_query($query)) {
 		$obj->successful = false;
 		$obj->query = $query;
+	} else {
+		$query = "SELECT id FROM socios_acciones ORDER BY id desc limit 1";
+		$result = mysql_query($query);
+		$arr = fetch_array($result);
+		$obj->id = $arr[0]['id'];
 	}
 
 	return $obj;

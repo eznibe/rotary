@@ -127,7 +127,7 @@
     </div>
 
     <div class="form-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
-        <div class="row">
+        <div class="row" id="sf_club_row">
             <span class="col-sm-2 col-sm-offset-2">Club que informa:</span>
             <span class="col-sm-3 col-sm-offset-2">
               <!-- <span>{{ Club }}</span> -->
@@ -142,7 +142,7 @@
             <select id="sf_socio_select" class="form-control small" onchange="selectedSocio();"><option value="0">Seleccione un socio</option></select>
           </span>
         </div>
-        <div class="row">
+        <div class="row" id="sf_mes_row">
             <span class="col-sm-2 col-sm-offset-2">Mes:</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sf_mes" class="form-control small">
@@ -311,7 +311,7 @@
             <th>Categoría</th>
             <th>E-mail</th>
             <th>Nro RI</th>
-            <!-- <th>Modificar</th> -->
+            <th>Modificar</th>
             <!-- <th>Eliminar</th> -->
           </tr>
         </thead>

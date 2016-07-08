@@ -17,6 +17,9 @@ if(isset($_GET['pendientes'])) {
 else if(isset($_GET['historial'])) {
 	$value = getSociosBajaHistorial();
 }
+else if(isset($_GET['test'])) {
+	$value = 'TEST';
+}
 else {
 	$value = getSocios($_GET['nrclub'], $_GET['orderByCargo']);
 }
