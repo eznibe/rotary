@@ -74,6 +74,8 @@ function sendSocioForm(accion) {
           // aceptar automaticamente cambios
           aceptarSocioAccionPendiente(null, data.id);
         }
+
+        $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
       },
       contentType: "application/json",
       dataType: 'json'
@@ -115,6 +117,8 @@ function sendSocioBajaForm(accion) {
           // aceptar automaticamente cambios
           aceptarSocioAccionPendiente(null, data.id);
         }
+
+        $.notify("Baja enviada", {className: 'success', globalPosition: 'right bottom'});
       },
       contentType: "application/json",
       dataType: 'json'
@@ -449,6 +453,8 @@ function sendClubForm() {
         mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
         mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
         mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);
+
+        $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
       },
       contentType: "application/json",
       dataType: 'json'
@@ -530,6 +536,8 @@ function sendAsistenciasForm() {
           // TODO mostrar cartel de OK y borrar form
           mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
           mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+
+          $.notify("Asistencias enviada", {className: 'success', globalPosition: 'right bottom'});
         },
         contentType: "application/json",
         dataType: 'json'
@@ -642,6 +650,8 @@ function sendPerfilForm() {
         mostrarSubsection(['label-perfil'], ['form-perfil']);
 
         logged.usuario = perfil.usuario;
+
+        $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
       },
       contentType: "application/json",
       dataType: 'json'
