@@ -61,26 +61,6 @@ function bajaSocio($socio) {
 	return $obj;
 }
 
-function updateBoatName($boat) {
-
-	$obj->successful = true;
-
-	if(!isset($boat->boat) || $boat->boat=="") {
-
-		$obj->successful = false;
-		$obj->oldName = $boat->oldName;
-		return $obj;
-	}
-
-	$query = "UPDATE onedesign SET boat = '".$boat->boat."' WHERE boat = '".$boat->oldName."'";
-	if(!mysql_query($query)) {
-		$obj->successful = false;
-		$obj->query = $query;
-	}
-
-	return $obj;
-}
-
 function deleteOneDesignCloth($odId) {
 
 	$obj->successful = true;

@@ -1,20 +1,22 @@
 <?php
 
-function getSocios($nrclub, $orderByCargo) {
+function getSocios($nrclub, $orderBy) {
 
 	$condition = "";
-	if (isset($nrclub) && $nrclub != '0') {
+	if (isset($nrclub) && $nrclub == '-') {
+		$condition = "";
+	}	else if (isset($nrclub) && $nrclub != '0') {
 		$condition = " AND c.nro = ".$nrclub;
 	}
 
 	$order = "";
-	if (isset($orderByCargo)) {
-		$order = ", cargo ";
+	if (isset($orderBy)) {
+		$order = "$orderBy , ";
 	}
 
 	$query = "SELECT s.*, c.nombre as club FROM socios s join clubes c on c.nro = s.nrclub
 						WHERE 1=1 $condition
-						ORDER BY club $order , apellido, nombre";
+						ORDER BY $order apellido, nombre";
 
 	$result = mysql_query($query);
 
@@ -46,7 +48,7 @@ function getSociosBajaHistorial() {
 						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nro = a.nrclub
 								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = true and a.accion = 'BAJA'
-						ORDER BY s.apellido, s.nombre";
+						ORDER BY a.mes, c.nombre, s.apellido, s.nombre";
 
 	$result = mysql_query($query);
 
@@ -61,10 +63,10 @@ function accionSocio($socio, $accion) {
 
 	$nrori = isset($socio->nrori) && trim($socio->nrori)!='' ? $socio->nrori : '' ;
 
-	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id)
+	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id, fechaoriginal)
 						VALUES ('$accion', '".$socio->mes."', '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
 						'".$socio->cargo."', '".$socio->categoria."', '".$socio->contacto."', ".$socio->orden.",
-						'".$nrori."', ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.")";
+						'".$nrori."', ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.", now())";
 
 	if(!mysql_query($query)) {
 		$obj->successful = false;
@@ -87,10 +89,10 @@ function bajaSocio($socio) {
 
 	$nrori = isset($socio->nrori) && trim($socio->nrori)!='' ? $socio->nrori : '' ;
 
-	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id)
+	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id, fechaoriginal)
 						VALUES ('BAJA', '".$socio->mes."', '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
 						'".$socio->cargo."', '".$socio->categoria."', '".$socio->contacto."', ".$socio->orden.",
-						'".$nrori."', ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.")";
+						'".$nrori."', ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.", now())";
 
 	if(!mysql_query($query)) {
 		$obj->successful = false;
@@ -136,7 +138,7 @@ function aceptarAccion($accion) {
 							'".$ares[0]['categoria']."', '".$ares[0]['contacto']."', '".$nrori."', ".$ares[0]['nrclub'].")";
 			// $query='ALTA';
 		} else if ($ares[0]['accion']=='MODIFICACION'){
-			$query = "UPDATE socios SET nombre = '".$ares[0]['nombre']."', apellido = '".$ares[0]['apellido']."', nrori = '".$nrori."',
+			$query = "UPDATE socios SET nombre = '".$ares[0]['nombre']."', apellido = '".$ares[0]['apellido']."', nrori = '".$nrori."', nrclub = ".$ares[0]['nrclub'].",
 							clasificacion = '".$ares[0]['clasificacion']."', cargo = '".$ares[0]['cargo']."', categoria = '".$ares[0]['categoria']."', contacto = '".$ares[0]['contacto']."'
 							WHERE orden = ".$ares[0]['orden'];
 

@@ -128,27 +128,26 @@
 
     <div class="form-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
         <div class="row" id="sf_club_row">
-            <span class="col-sm-2 col-sm-offset-2">Club que informa:</span>
+            <span class="col-sm-2 col-sm-offset-2">Club: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
-              <!-- <span>{{ Club }}</span> -->
               <select id="sf_club_select" class="form-control small" onchange="updateSocios(accionSocio);"><option value="0">Ingrese Club</option>
               </select>
               <input type="hidden" id="sf_club" value="123"/>
             </span>
         </div>
         <div class="row" id="sf_socio_row">
-          <span class="col-sm-2 col-sm-offset-2">Socio:</span>
+          <span class="col-sm-2 col-sm-offset-2">Socio: (*)</span>
           <span class="col-sm-3 col-sm-offset-2">
             <select id="sf_socio_select" class="form-control small" onchange="selectedSocio();"><option value="0">Seleccione un socio</option></select>
           </span>
         </div>
         <div class="row" id="sf_mes_row">
-            <span class="col-sm-2 col-sm-offset-2">Mes:</span>
+            <span class="col-sm-2 col-sm-offset-2">Mes: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sf_mes" class="form-control small">
                 <option value="0">Ingrese mes</option>
-                <option value="ENERO">Enero</option><option value="FEBRERO">Febrero</option><option value="MARZO">Marzo</option><option value="ABRIL">Abril</option><option value="MAYO">Mayo</option><option value="JUNIO">Junio</option>
-                <option value="JULIO">Julio</option><option value="AGOSTO">Agosto</option><option value="SEPTIEMBRE">Septiembre</option><option value="OCTUBRE">Octubre</option><option value="NOVIEMBRE">Noviembre</option><option value="DICIEMBRE">Diciembre</option>
+                <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option><option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
+                <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
               </select>
             </span>
         </div>
@@ -167,11 +166,11 @@
             </span>
         </div>
         <div class="row">
-            <span class="col-sm-3 col-sm-offset-2">Nombre: </span>
+            <span class="col-sm-3 col-sm-offset-2">Nombre: (*)</span>
             <span class="col-sm-3 col-sm-offset-1"><input id="sf_nombre" type="text" class="form-control small"></span>
         </div>
         <div class="row">
-            <span class="col-sm-3 col-sm-offset-2">Apellido: </span>
+            <span class="col-sm-3 col-sm-offset-2">Apellido: (*)</span>
             <span class="col-sm-3 col-sm-offset-1"><input id="sf_apellido" type="text" class="form-control small"></span>
         </div>
         <div class="row">
@@ -203,7 +202,7 @@
 
     <div class="form-socios-baja mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
         <div class="row">
-            <span class="col-sm-2 col-sm-offset-2">Club que informa:</span>
+            <span class="col-sm-2 col-sm-offset-2">Club que informa: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
               <!-- {{ Club }} -->
               <select id="sfb_club_select" class="form-control small" onchange="updateSocios(accionSocio);"><option value="0">Ingrese Club</option>
@@ -211,17 +210,17 @@
             </span>
         </div>
         <div class="row">
-            <span class="col-sm-2 col-sm-offset-2">Mes:</span>
+            <span class="col-sm-2 col-sm-offset-2">Mes: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sfb_mes" class="form-control small">
                 <option value="0">Ingrese mes</option>
-                <option value="ENERO">Enero</option><option value="FEBRERO">Febrero</option><option value="MARZO">Marzo</option><option value="ABRIL">Abril</option><option value="MAYO">Mayo</option><option value="JUNIO">Junio</option>
-                <option value="JULIO">Julio</option><option value="AGOSTO">Agosto</option><option value="SEPTIEMBRE">Septiembre</option><option value="OCTUBRE">Octubre</option><option value="NOVIEMBRE">Noviembre</option><option value="DICIEMBRE">Diciembre</option>
+                <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option><option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
+                <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
               </select>
             </span>
         </div>
         <div class="row">
-            <span class="col-sm-2 col-sm-offset-2">Socio:</span>
+            <span class="col-sm-2 col-sm-offset-2">Socio: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sfb_socio_select" class="form-control small"><option value="0">Seleccione un socio</option></select>
 
@@ -230,8 +229,19 @@
             </span>
         </div>
         <div class="row">
-            <span class="col-sm-2 col-sm-offset-2">Motivo:</span>
-            <span class="col-sm-3 col-sm-offset-2"><textarea id="sfb_motivo" rows="3" class="form-control small" style="height: auto;"></textarea></span>
+            <span class="col-sm-2 col-sm-offset-2">Motivo: (*)</span>
+            <span class="col-sm-3 col-sm-offset-2">
+              <!-- <textarea id="sfb_motivo" rows="3" class="form-control small" style="height: auto;"></textarea> -->
+              <select id="sfb_motivo" class="form-control small">
+                <option value="0" selected>Ingrese motivo</option>
+                <option value="Razones Personales">Razones Personales</option>
+                <option value="Razones Laborales">Razones Laborales</option>
+                <option value="Fallecimiento">Fallecimiento</option>
+                <option value="Falta de Pago">Falta de Pago</option>
+                <option value="Inasistencias">Inasistencias</option>
+                <option value="Inconducta Rotaria">Inconducta Rotaria</option>
+              </select>
+            </span>
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Responsable del informe</span>
@@ -517,8 +527,8 @@
             <span class="col-sm-3 col-sm-offset-2">
               <select id="af_mes" class="form-control small">
                 <option value="0">Ingrese mes</option>
-                <option value="ENERO">Enero</option><option value="FEBRERO">Febrero</option><option value="MARZO">Marzo</option><option value="ABRIL">Abril</option><option value="MAYO">Mayo</option><option value="JUNIO">Junio</option>
-                <option value="JULIO">Julio</option><option value="AGOSTO">Agosto</option><option value="SEPTIEMBRE">Septiembre</option><option value="OCTUBRE">Octubre</option><option value="NOVIEMBRE">Noviembre</option><option value="DICIEMBRE">Diciembre</option>
+                <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option><option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
+                <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
               </select></span>
         </div>
         <div class="row">

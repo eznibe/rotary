@@ -21,7 +21,7 @@ else if(isset($_GET['test'])) {
 	$value = 'TEST';
 }
 else {
-	$value = getSocios($_GET['nrclub'], $_GET['orderByCargo']);
+	$value = getSocios($_GET['nrclub'], $_GET['orderBy']);
 }
 
 //return JSON array

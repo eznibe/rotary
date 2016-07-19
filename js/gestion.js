@@ -60,26 +60,42 @@ function sendSocioForm(accion) {
                usuario_id: $('#sf_usuario_id').val()
                };
 
-  $.ajax({
-      type: 'POST',
-      url: '../api/socios_POST.php?accionSocio='+accionSocio,
-      data: JSON.stringify(socio), // or JSON.stringify ({name: 'jonas'}),
-      success: function(data) {
+  if (validSocio(socio, accion)) {
+    $.ajax({
+        type: 'POST',
+        url: '../api/socios_POST.php?accionSocio='+accionSocio,
+        data: JSON.stringify(socio), // or JSON.stringify ({name: 'jonas'}),
+        success: function(data) {
 
-        // TODO mostrar cartel de OK y borrar form
-        mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
-        mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+          // TODO mostrar cartel de OK y borrar form
+          mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
+          mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
 
-        if (isAdmin) {
-          // aceptar automaticamente cambios
-          aceptarSocioAccionPendiente(null, data.id);
-        }
+          if (isAdmin) {
+            // aceptar automaticamente cambios
+            aceptarSocioAccionPendiente(null, data.id);
+          }
 
-        $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
-      },
-      contentType: "application/json",
-      dataType: 'json'
-  });
+          $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
+        },
+        contentType: "application/json",
+        dataType: 'json'
+    });
+  } else {
+    alert('Faltan ingresar campos requeridos en el formulario de socios.');
+  }
+}
+
+function validSocio(socio, accion) {
+  if ((accion == 'MODIFICACION' && socio.orden == 0) ||
+      socio.nrclub == 0 ||
+      (!isAdmin && socio.mes == 0) ||
+      socio.nombre == '' ||
+      socio.apellido == '') {
+    return false;
+  }
+
+  return true;
 }
 
 
@@ -88,6 +104,10 @@ function sendSocioBajaForm(accion) {
   var selectedSocio = socios.filter(function(s) {
     return s.orden == $('#sfb_socio_select').val();
   });
+
+  if (!selectedSocio[0]) {
+    selectedSocio = [{}];
+  }
 
   var socio = {orden: $('#sfb_socio_select').val(),
                nrori: selectedSocio[0].nrori,
@@ -103,36 +123,54 @@ function sendSocioBajaForm(accion) {
                usuario_id: $('#sfb_usuario_id').val()
                };
 
-  $.ajax({
-      type: 'POST',
-      url: '../api/socios_POST.php?bajaSocio=true',
-      data: JSON.stringify(socio), // or JSON.stringify ({name: 'jonas'}),
-      success: function(data) {
+  if (validSocioBaja(socio)) {
+    $.ajax({
+        type: 'POST',
+        url: '../api/socios_POST.php?bajaSocio=true',
+        data: JSON.stringify(socio), // or JSON.stringify ({name: 'jonas'}),
+        success: function(data) {
 
-        // TODO mostrar cartel de OK
-        mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
-        mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+          // TODO mostrar cartel de OK
+          mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
+          mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
 
-        if (isAdmin) {
-          // aceptar automaticamente cambios
-          aceptarSocioAccionPendiente(null, data.id);
-        }
+          if (isAdmin) {
+            // aceptar automaticamente cambios
+            aceptarSocioAccionPendiente(null, data.id);
+          }
 
-        $.notify("Baja enviada", {className: 'success', globalPosition: 'right bottom'});
-      },
-      contentType: "application/json",
-      dataType: 'json'
-  });
+          $.notify("Baja enviada", {className: 'success', globalPosition: 'right bottom'});
+        },
+        contentType: "application/json",
+        dataType: 'json'
+    });
+  } else {
+    alert('Faltan ingresar campos requeridos en el formulario de baja.');
+  }
+}
+
+function validSocioBaja(socio) {
+  if (socio.orden == 0 ||
+      socio.nrclub == 0 ||
+      socio.mes == 0 ||
+      socio.motivo == 0) {
+    return false;
+  }
+
+  return true;
 }
 
 
-function setClubes(elementIds, callback) {
+function setClubes(elementIds, callback, todos) {
 
   elementIds = [].concat(elementIds);
 
   function fillSelect(clubes, id) {
     var match;
     var options = "<option value='0'>Ingrese Club</option>";
+    if(todos) {
+      options += "<option value='-'>Todos</option>";
+    }
     clubes.map(function(c) {
       options += "<option value='" + c.nro + "'>" + c.nombre + "</option>";
       if (c.nro == +logged.nrclub) {
@@ -189,13 +227,13 @@ function defaultClub(clubElementId) {
   }
 }
 
-function setSocios(elementId, nrclub) {
+function setSocios(elementId, nrclub, mantenerSocioNro) {
 
   function fillSelect(socios, id) {
     var options = "<option value='0'>Seleccione un socio</option>";
     socios.map(function(s) {
-      if (!nrclub || nrclub == s.nrclub) {
-        options += "<option value='" + s.orden + "'>" + (s.apellido ? s.apellido : "") + (s.apellido ? ", " + s.nombre : s.nombre) + "</option>";
+      if (!nrclub || nrclub == s.nrclub || s.orden === mantenerSocioNro) {
+        options += "<option value='" + s.orden + "'" + (s.orden === mantenerSocioNro ? " selected" : "") + ">" + (s.apellido ? s.apellido : "") + (s.apellido ? ", " + s.nombre : s.nombre) + "</option>";
       }
     });
 
@@ -226,7 +264,7 @@ function getSociosConAccionesPendientes(elementId) {
   function fillTable(socios, id) {
     var trs = "";
     socios.map(function(s) {
-      trs += "<tr><td>"+s.accion+"</td><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+s.mes+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
+      trs += "<tr><td>"+s.accion+"</td><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
       "<td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+s.informante+"</td>"+
       "<td style='width:80px; text-align:center;' onclick='aceptarSocioAccionPendiente(this);'><input type='hidden' id='sa_id' value='"+s.id+"'/><a class='btn btn-default'><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
     });
@@ -264,7 +302,7 @@ function getSociosBajaHistorial(elementId) {
   function fillTable(socios, id) {
     var trs = "";
     socios.map(function(s) {
-      trs += "<tr><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+s.mes+"</td><td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td>"+
+      trs += "<tr><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td>"+
       "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.motivo?s.motivo:"")+"</td><td>"+s.informante+"</td></tr>";
     });
 
@@ -294,11 +332,13 @@ function getSociosListado(elementId, nrclub) {
 
   var filter = nrclub && nrclub != 0 ? '&nrclub='+nrclub : '&nrclub=-1';
 
-  $.get("../api/socios_GET.php?orderByCargo=true"+filter, function(data, status){
+  var orderBy = nrclub == '-' ? 'apellido' : 'cargo';
+
+  $.get("../api/socios_GET.php?orderBy="+orderBy+filter, function(data, status){
     fillTable(data, elementId);
   });
 
-  setClubes('filter_clubes_select');
+  setClubes('filter_clubes_select', null, true);
 }
 
 function initSociosForms(accion, socio_orden) {
@@ -307,7 +347,10 @@ function initSociosForms(accion, socio_orden) {
 
   if (isAdmin) {
     $('#sf_mes_row').hide();
+    $('#sf_club_row').show();
   }
+
+  var nrclub = null;
 
   setClubes(['sf_club_select', 'sfb_club_select'], function() {
 
@@ -351,7 +394,9 @@ function updateSocios(accion, nrclub) {
 
   nrclub = nrclub ? nrclub : $('#'+clubElementId).val();
 
-  setSocios(socioElementId, nrclub);
+  var mantenerSocioNro = isAdmin && $('#'+socioElementId).val()!='0' ? $('#'+socioElementId).val() : null;
+
+  setSocios(socioElementId, nrclub, mantenerSocioNro);
 }
 
 function selectedSocio(orden) {
@@ -373,6 +418,7 @@ function selectedSocio(orden) {
     $('#sf_cargo').val(socio[0].cargo);
     $('#sf_nrori').val(socio[0].nrori);
     $('#sf_club_select').val(socio[0].nrclub);
+    // $('#sf_club_mod_select').val(socio[0].nrclub);
   }
 
   return socio[0];
@@ -394,7 +440,7 @@ function clearSociosForms() {
   $('#sfb_socio_select').val('0');
   $('#sfb_nrori').val('');
   $('#sfb_mes').val('0');
-  $('#sfb_motivo').val('');
+  $('#sfb_motivo').val('0');
 }
 
 //---- Clubes ----//
@@ -466,11 +512,7 @@ function getClubesListado(zonaSurId, zonaOesteId) {
   function fillTable(clubes, id) {
     var trsSur = "";
     var trsOeste = "";
-    clubes
-    // .filter(function(c) {
-    //   return c.distrito == 4915;
-    // })
-    .map(function(c) {
+    clubes.map(function(c) {
       trsSur += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
       "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
       "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nro+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
@@ -478,17 +520,6 @@ function getClubesListado(zonaSurId, zonaOesteId) {
 
     $('#'+zonaSurId).removeData();
     $('#'+zonaSurId).html(trsSur);
-
-    // clubes.filter(function(c) {
-    //   return c.distrito == 4855;
-    // }).map(function(c) {
-    //   trsOeste += "<tr><td>"+c.nombre+"</td><td>"+c.direccion+"</td><td>"+c.zona+"</td><td>"+c.dia+"</td><td>"+c.horario+"</td>"+
-    //   "<td>"+c.aniversario+"</td><td>"+c.contacto+"</td><td>"+c.asistente+"</td><td>"+c.nrori+"</td>"+
-    //   "<td style='width:80px; text-align:center;'><a class='btn btn-default' href='index.html#clubes' onclick='initClubesForm("+c.nrori+");'><input type='hidden' id='cf_id' value='"+c.nro+"'/><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
-    // });
-    //
-    // $('#'+zonaOesteId).removeData();
-    // $('#'+zonaOesteId).html(trsOeste);
   }
 
   $.get("../api/clubes_GET.php", function(data, status){
@@ -566,7 +597,7 @@ function getAsistenciasPendientes(elementId) {
   function fillTable(asistencias, id) {
     var trs = "";
     asistencias.map(function(a) {
-      trs += "<tr><td>"+a.club+"</td><td>"+a.mes+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
+      trs += "<tr><td>"+a.club+"</td><td>"+numeroAMes(a.mes)+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
       "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td><td>"+a.informante+"</td>"+
       "<td style='width:80px; text-align:center;'><a class='btn btn-default' onclick='aceptarAsistenciasPendiente(this);'><input type='hidden' id='af_id' value='"+a.id+"'/><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
     });
@@ -585,7 +616,7 @@ function getAsistenciasConfirmadas(elementId) {
   function fillTable(asistencias, id) {
     var trs = "";
     asistencias.map(function(a) {
-      trs += "<tr><td>"+a.club+"</td><td>"+a.mes+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
+      trs += "<tr><td>"+a.club+"</td><td>"+numeroAMes(a.mes)+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
       "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td><td>"+a.informante+"</td></tr>";
     });
 
@@ -597,7 +628,6 @@ function getAsistenciasConfirmadas(elementId) {
     fillTable(data, elementId);
   });
 }
-
 
 function aceptarAsistenciasPendiente(elem) {
   var accion = {id: $(elem).find('#af_id').val()};
@@ -702,4 +732,35 @@ function setResponsable() {
 
   $('#af_responsable').html(responsable);
   $('#af_usuario_id').val(logged.id);
+}
+
+function numeroAMes(nroMes) {
+  switch(nroMes) {
+    case '01':
+        return 'ENERO';
+    case '02':
+        return 'FEBRERO';
+    case '03':
+        return 'MARZO';
+    case '04':
+        return 'ABRIL';
+    case '05':
+        return 'MAYO';
+    case '06':
+        return 'JUNIO';
+    case '07':
+        return 'JULIO';
+    case '08':
+        return 'AGOSTO';
+    case '09':
+        return 'SEPTIEMBRE';
+    case '10':
+        return 'OCTUBRE';
+    case '11':
+        return 'NOVIEMBRE';
+    case '12':
+        return 'DICIEMBRE';
+    default:
+        return '0';
+      }
 }
