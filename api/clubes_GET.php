@@ -17,6 +17,9 @@ if(isset($_GET['nro'])) {
 else if(isset($_GET['version'])) {
 	echo 'Version: '.phpversion();
 }
+else if(isset($_GET['pendientes'])) {
+	$value = getClubesConAccionesPendientes();
+}
 else {
 	$value = getClubes();
 }

@@ -71,7 +71,20 @@
   }
 }
 
-/**/
+@media(min-width:900px){
+  .login input {
+      padding: 6px 6px;
+      font-size: 12px;;
+      height: 24px;
+  }
+
+  .login button {
+    height: 24px;
+    padding: 1px 10px;
+  }
+}
+
+/* Gestion */
 
 .form-control.small {
     font-size: 11px;

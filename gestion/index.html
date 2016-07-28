@@ -40,11 +40,11 @@
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
                         <div class="mbr-navbar__column">
                             <ul class="mbr-navbar__items mbr-navbar__items--right float-left mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios" onclick="mostrarSubsection(['label-socios', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">SOCIOS</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'form-perfil'])">SOCIOS</a></li>
                               <li class="mbr-navbar__item menu-clubes"><a class="mbr-buttons__link btn text-primary" href="index.html#clubes" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'form-clubes', 'form-clubes-alta', 'listado-clubes', 'form-clubes-modificacion', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">CLUBES</a></li>
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#asistencias" onclick="mostrarSubsection(['label-socios', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">ASISTENCIAS</a></li>
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#perfil" onclick="mostrarSubsection(['label-socios', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">PERFIL</a></li>
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="../index.html" onclick="clearLogin();">LOGOUT</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#asistencias" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'form-perfil'])">ASISTENCIAS</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#perfil" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'form-perfil'])">PERFIL</a></li>
+                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="../home" onclick="clearLogin();">LOGOUT</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -236,6 +236,8 @@
                 <option value="0" selected>Ingrese motivo</option>
                 <option value="Razones Personales">Razones Personales</option>
                 <option value="Razones Laborales">Razones Laborales</option>
+                <option value="Razones Familiares">Razones Familiares</option>
+                <option value="Razones de Salud">Razones de Salud</option>
                 <option value="Fallecimiento">Fallecimiento</option>
                 <option value="Falta de Pago">Falta de Pago</option>
                 <option value="Inasistencias">Inasistencias</option>
@@ -342,15 +344,12 @@
           </div>
         </div>
         <div class="label-clubes row row-buttons">
-            <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-user" onclick="initClubesForm(); mostrarSubsection(['form-clubes-alta', 'form-clubes'], ['form-clubes-modificacion', 'label-clubes', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);">Alta de club</a></span>
-            <!-- <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-user" onclick="initClubesForm('MODIFICACION'); mostrarSubsection(['form-clubes-modificacion', 'form-clubes'], ['form-clubes-alta', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);">Modificación de club</a></span> -->
+            <span class="col-sm-4 btn-admin"><a href="index.html#clubes" class="btn btn-primary" onclick="initClubesForm(); mostrarSubsection(['form-clubes-alta', 'form-clubes'], ['form-clubes-modificacion', 'label-clubes', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios', 'listado-clubes']);">Alta de club</a></span>
+            <span class="col-sm-4 btn-admin"><a href="index.html#clubes" class="btn btn-primary" onclick="getClubesConAccionesPendientes('admin-clubes-body'); mostrarSubsection(['admin-clubes'], ['label-clubes', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);">Administración de clubes</a></span>
+            <span class="col-sm-4 btn-only-user"><a href="index.html#clubes" class="btn btn-primary" onclick="initClubesForm(-1); mostrarSubsection(['form-clubes-modificacion', 'form-clubes'], ['form-clubes-alta', 'label-clubes', 'listado-clubes']);">Modificación de club</a></span>
             <!-- <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-primary">Baja de club</a></span> -->
-            <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-admin"  onclick="getClubesListado('listado-clubes-sur-body', 'listado-clubes-oeste-body'); mostrarSubsection(['listado-clubes'], ['form-clubes-modificacion', 'form-clubes', 'form-clubes-alta', 'label-clubes', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios']);">Listado de clubes</a></span>
+            <span class="col-sm-4 btn-admin"><a href="index.html#clubes" class="btn btn-primary"  onclick="getClubesListado('listado-clubes-sur-body', 'listado-clubes-oeste-body'); mostrarSubsection(['listado-clubes'], ['form-clubes-modificacion', 'form-clubes', 'form-clubes-alta', 'label-clubes', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios']);">Listado de clubes</a></span>
         </div>
-        <!-- <div class="label-clubes row row-buttons">
-            <span class="col-sm-4"><a href="javascript:void(0)" class="btn btn-default btn-admin">Administración de clubes</a></span>
-            <span class="col-sm-4"><a href="index.html#clubes" class="btn btn-primary btn-admin"  onclick="getClubes(); mostrarSubsection(['listado-clubes'], ['form-clubes-modificacion', 'form-clubes', 'form-clubes-alta', 'label-clubes', 'label-socios', 'form-socios-modificacion', 'form-socios-baja', 'admin-socios', 'historico-socios']);">Listado de clubes</a></span>
-        </div> -->
 
         <div class="form-clubes-alta mbr-header mbr-header--wysiwyg row" style="display:none;">
             <div class=" mbr-hero col-sm-9 col-sm-offset-2">
@@ -372,7 +371,7 @@
     <div class="form-clubes mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
 
         <div class="row">
-            <span class="col-sm-3 col-sm-offset-2">Nombre: </span>
+            <span class="col-sm-3 col-sm-offset-2">Nombre: (*)</span>
             <span class="col-sm-3 col-sm-offset-1"><input id="cf_nombre" type="text" class="form-control small"></span>
         </div>
         <div class="row">
@@ -418,24 +417,48 @@
             <span class="col-sm-3 col-sm-offset-2">Asistente: </span>
             <span class="col-sm-3 col-sm-offset-1"><input id="cf_asistente" type="text" class="form-control small"></span>
         </div>
-        <div class="row">
+        <div class="row admin_row">
             <span class="col-sm-3 col-sm-offset-2">Nro RI: </span>
             <span class="col-sm-3 col-sm-offset-1"><input id="cf_nrori" type="text" class="form-control small"></span>
             <input id="cf_nro" type="hidden" class="form-control small">
         </div>
-        <!-- <div class="row">
+        <div class="row cf_responsable">
             <span class="col-sm-2 col-sm-offset-2">Responsable del informe</span>
             <span class="col-sm-3 col-sm-offset-2" id="cf_responsable">
               {{ Nombre, Apellido }}
             </span>
             <input type="hidden" id="cf_usuario_id"/>
-        </div> -->
+        </div>
         <div class="row">
         </div>
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2"><a href="index.html#clubes" class="btn btn-primary" onclick="mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes'])">Cancelar</a></span>
             <span class="col-sm-3 col-sm-offset-2" style="text-align: right;"><a href="index.html#clubes" class="btn btn-success" onclick="sendClubForm()">Enviar</a></span>
         </div>
+    </div>
+
+    <div class="admin-clubes mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
+      <div style="margin-bottom: 15px;"><a href="index.html#clubes" class="btn btn-primary" onclick="mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'admin-clubes'])">Volver</a></div>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Acción</th>
+            <th>Club</th>
+            <th nowrap>Fecha inf</th>
+            <th>Dirección</th>
+            <th>Localidad</th>
+            <th>Zona</th>
+            <th>Día</th>
+            <th>Horario</th>
+            <th>Contacto</th>
+            <th>Asistente</th>
+            <th>Informante</th>
+            <th>Aceptar</th>
+          </tr>
+        </thead>
+        <tbody id="admin-clubes-body">
+        </tbody>
+      </table>
     </div>
 
     <div class="listado-clubes mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">

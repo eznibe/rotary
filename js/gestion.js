@@ -24,9 +24,11 @@ else if (isAdmin) {
 
   // getAsistencias('listado-asistencias-body');
 
+  mostrarSubsection([], ['btn-only-user', 'cf_responsable']);
+
 } else {
   // no admin -> hide some buttons
-  mostrarSubsection([], ['btn-admin', 'menu-clubes', 'clubes']);
+  mostrarSubsection([], ['btn-admin', 'form-clubes-alta', 'listado-clubes']);
 
   $('.admin_row').hide();
 }
@@ -447,6 +449,11 @@ function clearSociosForms() {
 
 function initClubesForm(nro) {
 
+  if (nro == -1) {
+    // modificacion desde usuario con rol de socio
+    nro = +logged.nrclub;
+  }
+
   clearClubesForm();
 
   if (nro) {
@@ -486,24 +493,75 @@ function sendClubForm() {
                aniversario: $('#cf_aniversario').val(),
                contacto: $('#cf_contacto').val(),
                asistente: $('#cf_asistente').val(),
-               nro: $('#cf_nro').val()
+               nro: $('#cf_nro').val(),
+               usuario_id: $('#cf_usuario_id').val(),
+               isAdmin: isAdmin
                };
+
+  if (validClub(club)) {
+    $.ajax({
+        type: 'POST',
+        url: '../api/clubes_POST.php?clubAccion=true',
+        data: JSON.stringify(club),
+        success: function(data) {
+          console.log(data);
+          // TODO mostrar cartel de OK y borrar form
+          mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
+          mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+          mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);
+
+          $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
+        },
+        contentType: "application/json",
+        dataType: 'json'
+    });
+  } else {
+    alert('Faltan ingresar campos requeridos en el formulario del club.');
+  }
+}
+
+function validClub(club) {
+  if (club.nombre == '') {
+    return false;
+  }
+
+  return true;
+}
+
+function aceptarClubAccionPendiente(elem, accionId) {
+  var accion = {id: accionId ? accionId : $(elem).find('#ca_id').val()};
 
   $.ajax({
       type: 'POST',
-      url: '../api/clubes_POST.php?clubAccion=true',
-      data: JSON.stringify(club),
+      url: '../api/clubes_POST.php?aceptarAccion=true',
+      data: JSON.stringify(accion),
       success: function(data) {
         console.log(data);
-        // TODO mostrar cartel de OK y borrar form
-        mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
-        mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
-        mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);
+        getClubesConAccionesPendientes('admin-clubes-body');
 
-        $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
+        // updateAllClubes();
       },
       contentType: "application/json",
       dataType: 'json'
+  });
+}
+
+function getClubesConAccionesPendientes(elementId) {
+
+  function fillTable(clubes, id) {
+    var trs = "";
+    clubes.map(function(c) {
+      trs += "<tr><td>MODIFICACION</td><td>"+c.nombre+"</td><td nowrap>"+c.fecha+"</td><td>"+(c.direccion?c.direccion:'')+"</td><td>"+(c.localidad?c.localidad:'')+"</td><td>"+(c.zona?c.zona:'')+"</td>"+
+      "<td>"+(c.dia?c.dia:'')+"</td><td>"+(c.horario?c.horario:'')+"</td><td>"+(c.contacto?c.contacto:"")+"</td><td>"+(c.asistente?c.asistente:"")+"</td><td>"+c.informante+"</td>"+
+      "<td style='width:80px; text-align:center;' onclick='aceptarClubAccionPendiente(this);'><input type='hidden' id='ca_id' value='"+c.id+"'/><a class='btn btn-default'><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
+    });
+
+    $('#'+id).removeData();
+    $('#'+id).html(trs);
+  }
+
+  $.get("../api/clubes_GET.php?pendientes=true", function(data, status){
+    fillTable(data, elementId);
   });
 }
 
@@ -732,6 +790,9 @@ function setResponsable() {
 
   $('#af_responsable').html(responsable);
   $('#af_usuario_id').val(logged.id);
+
+  $('#cf_responsable').html(responsable);
+  $('#cf_usuario_id').val(logged.id);
 }
 
 function numeroAMes(nroMes) {
