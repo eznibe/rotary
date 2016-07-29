@@ -122,7 +122,9 @@
 }
 
 #listado-clubes-sur-body td,
-#listado-clubes-oeste-body td {
+#listado-clubes-oeste-body td,
+#admin-socios-body td,
+#historico-socios-body td {
   font-size: 12px;
 }
 

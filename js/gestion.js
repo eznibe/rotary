@@ -53,6 +53,7 @@ function sendSocioForm(accion) {
                nrori: $('#sf_nrori').val(),
                nrclub: $('#sf_club_select').val(),
                mes: $('#sf_mes').val(),
+               periodo: $('#sf_periodo').val(),
                categoria: $('#sf_categoria').val(),
                nombre: $('#sf_nombre').val(),
                apellido: $('#sf_apellido').val(),
@@ -115,6 +116,7 @@ function sendSocioBajaForm(accion) {
                nrori: selectedSocio[0].nrori,
                nrclub: $('#sfb_club_select').val(),
                mes: $('#sfb_mes').val(),
+               periodo: $('#sfb_periodo').val(),
                motivo: $('#sfb_motivo').val(),
                categoria: selectedSocio[0].categoria,
                nombre: selectedSocio[0].nombre,
@@ -266,7 +268,7 @@ function getSociosConAccionesPendientes(elementId) {
   function fillTable(socios, id) {
     var trs = "";
     socios.map(function(s) {
-      trs += "<tr><td>"+s.accion+"</td><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
+      trs += "<tr><td>"+s.accion+"</td><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+s.periodo+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
       "<td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+s.informante+"</td>"+
       "<td style='width:80px; text-align:center;' onclick='aceptarSocioAccionPendiente(this);'><input type='hidden' id='sa_id' value='"+s.id+"'/><a class='btn btn-default'><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
     });
@@ -304,7 +306,7 @@ function getSociosBajaHistorial(elementId) {
   function fillTable(socios, id) {
     var trs = "";
     socios.map(function(s) {
-      trs += "<tr><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td>"+
+      trs += "<tr><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+s.periodo+"</td><td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td>"+
       "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.motivo?s.motivo:"")+"</td><td>"+s.informante+"</td></tr>";
     });
 
@@ -348,7 +350,7 @@ function initSociosForms(accion, socio_orden) {
   clearSociosForms();
 
   if (isAdmin) {
-    $('#sf_mes_row').hide();
+    // $('#sf_mes_row').hide();
     $('#sf_club_row').show();
   }
 
@@ -428,6 +430,7 @@ function selectedSocio(orden) {
 
 function clearSociosForms() {
   $('#sf_mes').val('0');
+  $('#sf_periodo').val('2016');
   $('#sf_categoria').val('ACTIVO');
   $('#sf_nombre').val('');
   $('#sf_apellido').val('');
@@ -442,6 +445,7 @@ function clearSociosForms() {
   $('#sfb_socio_select').val('0');
   $('#sfb_nrori').val('');
   $('#sfb_mes').val('0');
+  $('#sfb_periodo').val('2016');
   $('#sfb_motivo').val('0');
 }
 

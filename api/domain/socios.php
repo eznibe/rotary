@@ -27,13 +27,13 @@ function getSocios($nrclub, $orderBy) {
 function getSociosConAccionesPendientes() {
 
 	$query = "SELECT a.id, a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido,
-									 c.nombre as club, a.mes, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, coalesce(a.categoria, s.categoria, '') as categoria,
+									 c.nombre as club, a.mes, a.periodo, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, coalesce(a.categoria, s.categoria, '') as categoria,
 									 coalesce(a.clasificacion, s.clasificacion, '') as clasificacion, coalesce(a.contacto, s.contacto, '') as contacto, coalesce(a.cargo, s.cargo, '') as cargo,
 									 coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante
 						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nro = a.nrclub
 								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = false
-						ORDER BY a.accion, c.nombre, s.apellido, s.nombre";
+						ORDER BY a.accion, c.nombre, a.periodo, s.apellido, s.nombre";
 
 	$result = mysql_query($query);
 
@@ -42,13 +42,13 @@ function getSociosConAccionesPendientes() {
 
 function getSociosBajaHistorial() {
 
-	$query = "SELECT a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido, c.nombre as club, a.mes, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, a.motivo,
+	$query = "SELECT a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido, c.nombre as club, a.mes, a.periodo, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, a.motivo,
 									 coalesce(a.categoria, s.categoria, '') as categoria, coalesce(a.clasificacion, s.clasificacion, '') as clasificacion,
 									 coalesce(a.contacto, s.contacto, '') as contacto, a.cargo, coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante
 						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nro = a.nrclub
 								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = true and a.accion = 'BAJA'
-						ORDER BY a.mes, c.nombre, s.apellido, s.nombre";
+						ORDER BY a.periodo desc, a.mes desc, c.nombre, s.apellido, s.nombre";
 
 	$result = mysql_query($query);
 
@@ -63,8 +63,8 @@ function accionSocio($socio, $accion) {
 
 	$nrori = isset($socio->nrori) && trim($socio->nrori)!='' ? $socio->nrori : '' ;
 
-	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id, fechaoriginal)
-						VALUES ('$accion', '".$socio->mes."', '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
+	$query = "INSERT INTO socios_acciones (accion, mes, periodo, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id, fechaoriginal)
+						VALUES ('$accion', '".$socio->mes."', ".$socio->periodo.", '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
 						'".$socio->cargo."', '".$socio->categoria."', '".$socio->contacto."', ".$socio->orden.",
 						'".$nrori."', ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.", now())";
 
@@ -89,8 +89,8 @@ function bajaSocio($socio) {
 
 	$nrori = isset($socio->nrori) && trim($socio->nrori)!='' ? $socio->nrori : '' ;
 
-	$query = "INSERT INTO socios_acciones (accion, mes, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id, fechaoriginal)
-						VALUES ('BAJA', '".$socio->mes."', '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
+	$query = "INSERT INTO socios_acciones (accion, mes, periodo, nombre, apellido, clasificacion, cargo, categoria, contacto, orden, nrori, nrclub, motivo, usuario_id, fechaoriginal)
+						VALUES ('BAJA', '".$socio->mes."', ".$socio->periodo.", '".$socio->nombre."', '".$socio->apellido."', '".$socio->clasificacion."',
 						'".$socio->cargo."', '".$socio->categoria."', '".$socio->contacto."', ".$socio->orden.",
 						'".$nrori."', ".$socio->nrclub.", '".$socio->motivo."', ".$socio->usuario_id.", now())";
 
