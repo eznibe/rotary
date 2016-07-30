@@ -218,7 +218,8 @@ function getSociosListado(elementId, nrclub) {
     socios.map(function(s) {
       trs += "<tr><td>"+s.club+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+s.nombre+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td>"+
       "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.categoria?s.categoria:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.nrori?s.nrori:"")+"</td>"+
-      "<td style='width:80px; text-align:center;' onclick='initSociosForms(\"MODIFICACION\", "+s.orden+");'><input type='hidden' id='sa_id' value='"+s.orden+"'/><a href='index.html#socios' class='btn btn-default'><span class='glyphicon glyphicon-edit'></span></a></td></tr>";
+      "<td style='width:80px; text-align:center;' onclick='initSociosForms(\"MODIFICACION\", "+s.orden+");'><input type='hidden' id='sa_id' value='"+s.orden+"'/><a href='index.html#socios' class='btn btn-default'><span class='glyphicon glyphicon-edit'></span></a></td>"+
+       (!s.usuario_id ? "<td style='width:80px; text-align:center;' onclick='crearUsuario("+s.orden+", "+s.nrclub+", \""+s.nombre+"\", \""+s.apellido+"\", \""+s.club+"\");'><a class='btn btn-default'><span class='glyphicon glyphicon-user'></span></a></td></tr>" : "<td></td></tr>");
     });
 
     $('#'+id).removeData();

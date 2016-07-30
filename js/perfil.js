@@ -36,3 +36,31 @@ function clearPerfilForm() {
   $('#pf_password').val('');
   $('#pf_repeat_password').val('');
 }
+
+
+function crearUsuario(nrorden, nrclub, nombre, apellido, club) {
+
+  var usuario = nombre.toLowerCase()+'.'+apellido.toLowerCase();
+  var password = club.toLowerCase();
+
+  var user = {usuario: usuario,
+              password: password,
+              nrori: nrorden,
+              nrclub: nrclub
+            };
+
+  if (confirm('Confirma creación de usuario para el socio: ' + nombre + ' ' + apellido + ' ?')) {
+
+    $.ajax({
+        type: 'POST',
+        url: '../api/usuarios_POST.php?nuevoUsuario=true',
+        data: JSON.stringify(user),
+        success: function(data) {
+
+          prompt('Copie y guarde estos datos del usuario creado:', 'Usuario: '+ usuario +' Contraseña: ' + password);
+        },
+        contentType: "application/json",
+        dataType: 'json'
+    });
+  }
+}

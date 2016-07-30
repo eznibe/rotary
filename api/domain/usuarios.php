@@ -29,19 +29,13 @@ function modificacionUsuario($usuario) {
 	return $obj;
 }
 
-
-function updateBoatName($boat) {
+function nuevoUsuario($usuario) {
 
 	$obj->successful = true;
+	$obj->method = 'nuevoUsuario';
 
-	if(!isset($boat->boat) || $boat->boat=="") {
+	$query = "INSERT INTO usuarios (nrori, nrclub, usuario, password, nivel) VALUES (".$usuario->nrori.", ".$usuario->nrclub.", '".$usuario->usuario."', '".$usuario->password."', 1)";
 
-		$obj->successful = false;
-		$obj->oldName = $boat->oldName;
-		return $obj;
-	}
-
-	$query = "UPDATE onedesign SET boat = '".$boat->boat."' WHERE boat = '".$boat->oldName."'";
 	if(!mysql_query($query)) {
 		$obj->successful = false;
 		$obj->query = $query;
@@ -50,19 +44,8 @@ function updateBoatName($boat) {
 	return $obj;
 }
 
-function deleteOneDesignCloth($odId) {
 
-	$obj->successful = true;
 
-	$query = "DELETE FROM onedesign WHERE id = '$odId'";
-
-	if(!mysql_query($query)) {
-		$obj->successful = false;
-		$obj->query = $query;
-	}
-
-	return $obj;
-}
 
 
 ?>

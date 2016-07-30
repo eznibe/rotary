@@ -14,7 +14,7 @@ function getSocios($nrclub, $orderBy) {
 		$order = "$orderBy , ";
 	}
 
-	$query = "SELECT s.*, c.nombre as club FROM socios s join clubes c on c.nro = s.nrclub
+	$query = "SELECT s.*, c.nombre as club, u.id as usuario_id FROM socios s join clubes c on c.nro = s.nrclub left join usuarios u on u.nrori = s.orden
 						WHERE 1=1 $condition
 						ORDER BY $order apellido, nombre";
 

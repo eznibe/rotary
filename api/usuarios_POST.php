@@ -24,6 +24,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	else if(isset($_GET['formPerfil'])) {
 		$value = modificacionUsuario($json);
 	}
+	else if(isset($_GET['nuevoUsuario'])) {
+		$value = nuevoUsuario($json);
+	}
 
 	//return JSON array
 	exit(json_encode($value));
