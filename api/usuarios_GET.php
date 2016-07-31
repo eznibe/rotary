@@ -7,6 +7,7 @@ include_once 'include/dbutils.php';
 include_once 'include/main.php';
 
 include_once 'domain/socios.php';
+include_once 'domain/usuarios.php';
 
 db_connect();
 
@@ -20,6 +21,9 @@ else if(isset($_GET['pendientes'])) {
 }
 else if(isset($_GET['historial'])) {
 	$value = getSociosBajaHistorial();
+}
+else if(isset($_GET['hash'])) {
+	$value = getUsuarioConHash($_GET['hash']);
 }
 else {
 	$value = getSocios();

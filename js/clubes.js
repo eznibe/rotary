@@ -185,7 +185,7 @@ function setClubes(elementIds, callback, todos) {
     }
     clubes.map(function(c) {
       options += "<option value='" + c.nro + "'>" + c.nombre + "</option>";
-      if (c.nro == +logged.nrclub) {
+      if (logged && c.nro == +logged.nrclub) {
         match = c.nro;
       }
     });

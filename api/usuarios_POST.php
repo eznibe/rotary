@@ -27,6 +27,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	else if(isset($_GET['nuevoUsuario'])) {
 		$value = nuevoUsuario($json);
 	}
+	else if(isset($_GET['restablecerPasswordCheck'])) {
+		$value = restablecerPasswordCheck($json);
+	}
+	else if(isset($_GET['enviarRestablecerPasswordMail'])) {
+		$value = enviarRestablecerPasswordMail($json);
+	}
 
 	//return JSON array
 	exit(json_encode($value));

@@ -24,6 +24,19 @@ function getSocios($nrclub, $orderBy) {
 	// return $obj->query = $query;
 }
 
+function getSocio($orden) {
+
+	$query = "SELECT s.*, c.nombre as club, u.id as usuario_id, u.usuario, u.nivel
+					FROM socios s join clubes c on c.nro = s.nrclub left join usuarios u on u.nrori = s.orden
+					WHERE 1=1 AND s.orden = $orden";
+
+	$result = mysql_query($query);
+
+	$rows = fetch_array($result);
+
+	return $rows[0];
+}
+
 function getSociosConAccionesPendientes() {
 
 	$query = "SELECT a.id, a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido,

@@ -20,6 +20,9 @@ else if(isset($_GET['historial'])) {
 else if(isset($_GET['test'])) {
 	$value = 'TEST';
 }
+else if(isset($_GET['orden'])) {
+	$value = getSocio($_GET['orden']);
+}
 else {
 	$value = getSocios($_GET['nrclub'], $_GET['orderBy']);
 }

@@ -8,9 +8,14 @@ var accionSocio = 'ALTA';
 
 var logged = Cookies.get('logged') ? JSON.parse(Cookies.get('logged')) : null;
 
-var isAdmin = +logged.nivel > 2;
+var isAdmin = logged && +logged.nivel > 2;
 
-if (!logged) {
+var resetHash = getParameterByName('hash');
+
+if (resetHash && !logged) {  
+  setUsuarioHash(resetHash);
+}
+else if (!logged) {
   // no logueado -> ocultar todo
   mostrarSubsection([], ['btn-admin', 'btn-user']);
 }
@@ -131,4 +136,14 @@ function numeroAMes(nroMes) {
     default:
         return '0';
       }
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
