@@ -112,7 +112,9 @@ function enviarRestablecerPasswordMail($usuario) {
 
 		$hash = uniqid();
 
-		$to = "enbertran@gmail.com";
+		// $to = "enbertran@gmail.com";
+		$to =  $rows[0]['contacto'];
+
 		$subject = "Restablecer contraseña";
 		$message = '
 							<html>
@@ -121,7 +123,7 @@ function enviarRestablecerPasswordMail($usuario) {
 							</head>
 							<body>
 							  <p>Estimado/a '.$rows[0]['nombre'] . ' ' . $rows[0]['apellido'] . ',</p>
-							  <p>Haga click en el siguiente link para restablecer su contraseña en Rotary distrito 4905: http://rotary4905.com.ar/gestion?hash='.$hash.'#perfil</p>
+							  <p>Haga click en el siguiente link para restablecer su contraseña en Rotary distrito 4905: http://rotary4905.com.ar/gestion?hash='.$hash.'</p>
 								<p>Muchas gracias.</p>
 							</body>
 							</html>
