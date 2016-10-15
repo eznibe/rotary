@@ -515,7 +515,7 @@ html {
   position: relative;
 }
 .mbr-section--fixed-size {
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .mbr-section--full-height {
   height: 100vh;

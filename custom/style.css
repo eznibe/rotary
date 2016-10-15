@@ -121,6 +121,11 @@
   background-color: #4c6972;
 }
 
+.table-striped > tbody > tr:nth-of-type(even),
+.table-striped > thead > tr {
+  background-color: rgb(40, 50, 78);
+}
+
 #listado-clubes-sur-body td,
 #listado-clubes-oeste-body td,
 #admin-socios-body td,

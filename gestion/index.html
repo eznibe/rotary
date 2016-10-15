@@ -185,7 +185,7 @@
             <span class="col-sm-3 col-sm-offset-2">E-mail: </span>
             <span class="col-sm-3 col-sm-offset-1"><input id="sf_email" type="text" class="form-control small"></span>
         </div>
-        <div class="row admin_row">
+        <div class="row">
             <span class="col-sm-3 col-sm-offset-2">Nro RI: </span>
             <span class="col-sm-3 col-sm-offset-1"><input id="sf_nrori" type="text" class="form-control small"></span>
         </div>
@@ -268,13 +268,13 @@
         </div>
     </div>
 
-    <div class="admin-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
+    <div class="admin-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none; margin-left:10px; margin-right:10px; width:100%;">
       <div style="margin-bottom: 15px;"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios'])">Volver</a></div>
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>Acción</th>
-            <th>Club</th>
+            <th nowrap>Club</th>
             <th nowrap>Fecha inf</th>
             <th>Mes</th>
             <th>Período</th>
@@ -284,6 +284,7 @@
             <th>Cargo</th>
             <th>Clasificación</th>
             <th>E-mail</th>
+            <th>Motivo</th>
             <th>Informante</th>
             <th>Aceptar</th>
           </tr>
@@ -585,6 +586,7 @@
       			<th>Club</th>
       			<th>Mes</th>
       			<th>Período</th>
+            <th>Fecha enviada</th>
       			<th>Total reuniones</th>
       			<th>Promedio asistencia</th>
             <th>Reuniones 100%</th>
@@ -606,6 +608,7 @@
       			<th>Club</th>
       			<th>Mes</th>
       			<th>Período</th>
+            <th>Fecha enviada</th>
       			<th>Total reuniones</th>
       			<th>Promedio asistencia</th>
             <th>Reuniones 100%</th>
@@ -698,7 +701,7 @@
   <script src="../js/inc/notify.min.js"></script>
   <script src="../js/inc/moment.min.js"></script>
 
-  <script src="../js/socios.js"></script>
+  <script src="../js/socios.js?v=1"></script>
   <script src="../js/clubes.js"></script>
   <script src="../js/asistencias.js"></script>
   <script src="../js/perfil.js"></script>
