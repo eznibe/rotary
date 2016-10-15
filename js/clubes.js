@@ -63,7 +63,14 @@ function sendClubForm() {
           mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
           mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);
 
-          $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
+          if (data.successful) {
+            $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
+
+            club.type = 'MODIFICACION club';
+            sendMail(club);
+          } else {
+            $.notify("Error al enviar, intente de nuevo", {className: 'error', globalPosition: 'right bottom'});
+          }
         },
         contentType: "application/json",
         dataType: 'json'

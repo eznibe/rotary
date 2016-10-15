@@ -12,7 +12,7 @@ var isAdmin = logged && +logged.nivel > 2;
 
 var resetHash = getParameterByName('hash');
 
-if (resetHash && !logged) {  
+if (resetHash && !logged) {
   setUsuarioHash(resetHash);
 }
 else if (!logged) {
@@ -146,4 +146,18 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function sendMail(form) {
+
+  $.ajax({
+      type: 'POST',
+      url: '../api/mails_POST.php',
+      data: JSON.stringify(form), // or JSON.stringify ({name: 'jonas'}),
+      success: function(data) {
+        
+      },
+      contentType: "application/json",
+      dataType: 'json'
+  });
 }

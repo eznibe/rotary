@@ -32,7 +32,14 @@ function sendSocioForm(accion) {
             aceptarSocioAccionPendiente(null, data.id);
           }
 
-          $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
+          if (data.successful) {
+            $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
+
+            socio.type = accionSocio + ' socio';
+            sendMail(socio);
+          } else {
+            $.notify("Error al enviar, intente de nuevo", {className: 'error', globalPosition: 'right bottom'});
+          }
         },
         contentType: "application/json",
         dataType: 'json'
@@ -98,7 +105,12 @@ function sendSocioBajaForm(accion) {
             aceptarSocioAccionPendiente(null, data.id);
           }
 
-          $.notify("Baja enviada", {className: 'success', globalPosition: 'right bottom'});
+          if (data.successful) {
+            $.notify("Baja enviada", {className: 'success', globalPosition: 'right bottom'});
+
+            socio.type = 'BAJA socio';
+            sendMail(socio);
+          }
         },
         contentType: "application/json",
         dataType: 'json'
@@ -159,8 +171,9 @@ function getSociosConAccionesPendientes(elementId) {
   function fillTable(socios, id) {
     var trs = "";
     socios.map(function(s) {
-      trs += "<tr><td>"+s.accion+"</td><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+s.periodo+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
-      "<td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+s.informante+"</td>"+
+      var accion = s.accion == 'MODIFICACION' ? 'MODIF' : s.accion;
+      trs += "<tr><td>"+accion+"</td><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+s.periodo+"</td><td>"+(s.categoria?s.categoria:"")+"</td>"+
+      "<td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td><td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+s.motivo+"</td><td>"+s.informante+"</td>"+
       "<td style='width:80px; text-align:center;' onclick='aceptarSocioAccionPendiente(this);'><input type='hidden' id='sa_id' value='"+s.id+"'/><a class='btn btn-default'><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
     });
 

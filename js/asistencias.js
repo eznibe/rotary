@@ -24,7 +24,14 @@ function sendAsistenciasForm() {
           mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
           mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
 
-          $.notify("Asistencias enviada", {className: 'success', globalPosition: 'right bottom'});
+          if (data.successful) {
+            $.notify("Asistencias enviada", {className: 'success', globalPosition: 'right bottom'});
+
+            asistencias.type = 'Asistencias';
+            sendMail(asistencias);
+          } else {
+            $.notify("Error al enviar, intente de nuevo", {className: 'error', globalPosition: 'right bottom'});
+          }
         },
         contentType: "application/json",
         dataType: 'json'
@@ -53,7 +60,7 @@ function getAsistenciasPendientes(elementId) {
   function fillTable(asistencias, id) {
     var trs = "";
     asistencias.map(function(a) {
-      trs += "<tr><td>"+a.club+"</td><td>"+numeroAMes(a.mes)+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
+      trs += "<tr><td>"+a.club+"</td><td>"+numeroAMes(a.mes)+"</td><td>"+a.periodo+"</td><td>"+a.fecha+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
       "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td><td>"+a.informante+"</td>"+
       "<td style='width:80px; text-align:center;'><a class='btn btn-default' onclick='aceptarAsistenciasPendiente(this);'><input type='hidden' id='af_id' value='"+a.id+"'/><span class='glyphicon glyphicon-ok'></span></a></td></tr>";
     });
@@ -72,7 +79,7 @@ function getAsistenciasConfirmadas(elementId) {
   function fillTable(asistencias, id) {
     var trs = "";
     asistencias.map(function(a) {
-      trs += "<tr><td>"+a.club+"</td><td>"+numeroAMes(a.mes)+"</td><td>"+a.periodo+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
+      trs += "<tr><td>"+a.club+"</td><td>"+numeroAMes(a.mes)+"</td><td>"+a.periodo+"</td><td>"+a.fecha+"</td><td>"+a.total_reuniones+"</td><td>"+a.promedio_asist+"</td>"+
       "<td>"+a.reuniones_completas+"</td><td>"+a.total_socios+"</td><td>"+a.informante+"</td></tr>";
     });
 
