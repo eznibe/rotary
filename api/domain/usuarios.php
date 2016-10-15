@@ -9,7 +9,18 @@ function getUsuarios($login) {
 
 	$result = mysql_query($query);
 
-	return fetch_array($result);
+	$resultarray = fetch_array($result);
+
+	// insert log of attempt
+	$insert = "INSERT INTO log_logins (usuario, password, results) values ('".$login->usuario."', '".$login->password."', ".count($resultarray).")";
+
+	if(!mysql_query($insert)) {
+		$obj->successful = false;
+		$obj->insert = $insert;
+		// return $obj;
+	}
+
+	return $resultarray;
 }
 
 
