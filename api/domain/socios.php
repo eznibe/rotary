@@ -1,5 +1,7 @@
 <?php
 
+include_once 'domain/mails.php';
+
 function getSocios($nrclub, $orderBy) {
 
 	$condition = "";
@@ -42,7 +44,7 @@ function getSociosConAccionesPendientes() {
 	$query = "SELECT a.id, a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido,
 									 c.nombre as club, a.mes, a.periodo, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, coalesce(a.categoria, s.categoria, '') as categoria,
 									 coalesce(a.clasificacion, s.clasificacion, '') as clasificacion, coalesce(a.contacto, s.contacto, '') as contacto, coalesce(a.cargo, s.cargo, '') as cargo,
-									 coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante
+									 coalesce(concat(coalesce(us.apellido,''), ', ', us.nombre), u.usuario) as informante, a.motivo
 						FROM socios_acciones a left join socios s on a.orden = s.orden left join clubes c on c.nro = a.nrclub
 								 left join usuarios u on u.id = a.usuario_id left join socios us on us.orden = u.nrori
 						WHERE a.aceptado = false
@@ -168,21 +170,5 @@ function aceptarAccion($accion) {
 
 	return $obj;
 }
-
-
-function deleteOneDesignCloth($odId) {
-
-	$obj->successful = true;
-
-	$query = "DELETE FROM onedesign WHERE id = '$odId'";
-
-	if(!mysql_query($query)) {
-		$obj->successful = false;
-		$obj->query = $query;
-	}
-
-	return $obj;
-}
-
 
 ?>
