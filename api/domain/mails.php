@@ -6,7 +6,7 @@ function enviarFormularioIngresado($form) {
 	$obj->method = 'enviarFormularioIngresado';
 
 	// chequear que exista un usuario con nombre o email asignado igual a lo enviado
-	$query = "SELECT s.* FROM socios s JOIN usuarios u on u.nrori = s.orden WHERE u.id = ". $form->usuario_id;
+	$query = "SELECT s.*, u.nivel FROM usuarios u LEFT JOIN socios s on u.nrori = s.orden WHERE u.id = ". $form->usuario_id;
 
 	$result = mysql_query($query);
 
@@ -23,10 +23,12 @@ function enviarFormularioIngresado($form) {
 
 		$hash = uniqid();
 
-		$to = "enbertran@gmail.com";
-		// $to =  $rows[0]['contacto'];
+		// $to = "enbertran@gmail.com";
+		$to =  $rows[0]['contacto'];
 
-    if (isset($to) && $to!='') {
+    if (isset($to) && $to!='' && +$rows[0]['nivel'] != 5) { // dont' send mail if no user has no email address or is the admin doing a change
+
+			$obj->nivel = $rows[0]['nivel'];
 
   		$subject = "Formulario enviado";
   		$message = '
@@ -45,7 +47,7 @@ function enviarFormularioIngresado($form) {
 
   		$headers  = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
   		$headers .= "From: Rotary distrito 4905 <rotary@rotary4905.com.ar>" . "\r\n";
-  		$headers .= 'Bcc: eznibe@gmail.com' . "\r\n";
+  		$headers .= 'Bcc: enbertran@gmail.com' . "\r\n";
 
   		if(!mail($to, $subject, $message, $headers)) {
   			$obj->message = 'Error mandando mail';
@@ -63,6 +65,8 @@ function enviarFormularioIngresado($form) {
   		}
     } else {
       $obj->successful = false;
+			$obj->nivel = $rows[0]['nivel'];
+			$obj->to = $to;
     }
 	}
 
