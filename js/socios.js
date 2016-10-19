@@ -17,6 +17,9 @@ function sendSocioForm(accion) {
                };
 
   if (validSocio(socio, accion)) {
+
+    $('.btn-send-form').hide();
+
     $.ajax({
         type: 'POST',
         url: '../api/socios_POST.php?accionSocio='+accionSocio,
@@ -26,6 +29,8 @@ function sendSocioForm(accion) {
           // TODO mostrar cartel de OK y borrar form
           mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
           mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+
+          $('.btn-send-form').show();
 
           if (isAdmin) {
             // aceptar automaticamente cambios
@@ -90,6 +95,9 @@ function sendSocioBajaForm(accion) {
                };
 
   if (validSocioBaja(socio)) {
+
+    $('.btn-send-form').hide();
+
     $.ajax({
         type: 'POST',
         url: '../api/socios_POST.php?bajaSocio=true',
@@ -99,6 +107,8 @@ function sendSocioBajaForm(accion) {
           // TODO mostrar cartel de OK
           mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
           mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+
+          $('.btn-send-form').show();
 
           if (isAdmin) {
             // aceptar automaticamente cambios

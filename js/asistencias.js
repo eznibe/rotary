@@ -14,15 +14,20 @@ function sendAsistenciasForm() {
 
   if (validAsistencias(asistencias)) {
 
+    $('.btn-send-form').hide();
+
     $.ajax({
         type: 'POST',
         url: '../api/asistencias_POST.php?formAsistencias=true',
         data: JSON.stringify(asistencias),
         success: function(data) {
           console.log(data);
+
           // TODO mostrar cartel de OK y borrar form
           mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios']);
           mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
+
+          $('.btn-send-form').show();
 
           if (data.successful) {
             $.notify("Asistencias enviada", {className: 'success', globalPosition: 'right bottom'});

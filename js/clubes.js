@@ -52,6 +52,9 @@ function sendClubForm() {
                };
 
   if (validClub(club)) {
+
+    $('.btn-send-form').hide();
+
     $.ajax({
         type: 'POST',
         url: '../api/clubes_POST.php?clubAccion=true',
@@ -63,6 +66,8 @@ function sendClubForm() {
           mostrarSubsection(['label-asistencias'], ['form-asistencias', 'admin-asistencias', 'listado-asistencias']);
           mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);
 
+          $('.btn-send-form').show();
+          
           if (data.successful) {
             $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
 
