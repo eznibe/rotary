@@ -41,7 +41,8 @@ setSocios('sfb_socio_select');
 
 setResponsable();
 
-setMesActual(['sf_mes', 'sfb_mes', 'af_mes']);
+// setMesActual(['sf_mes', 'sfb_mes', 'af_mes']);
+setMesActual(['sf_mes', 'sfb_mes']);
 
 setPerfil();
 
@@ -155,7 +156,7 @@ function sendMail(form) {
       url: '../api/mails_POST.php',
       data: JSON.stringify(form), // or JSON.stringify ({name: 'jonas'}),
       success: function(data) {
-        
+
       },
       contentType: "application/json",
       dataType: 'json'

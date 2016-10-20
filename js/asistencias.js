@@ -115,7 +115,7 @@ function aceptarAsistenciasPendiente(elem) {
 
 function clearAsistenciasForm() {
   $('#af_club_select').val('0');
-  $('#af_mes').val(getMesActual());
+  // $('#af_mes').val(getMesActual());
   $('#af_periodo').val(getPeriodoActual());
   $('#af_tot_reun').val('');
   $('#af_prom_asist').val('');
