@@ -110,8 +110,8 @@ function fillFormData($form) {
   // fill html
   if ($form->type == 'Asistencias') {
 
-    $html .= "<li>Club que informa:".  $form->club ."</li>";
-    $html .= "<li>Mes que informa:".  $form->nombremes ."</li>";
+    $html .= "<li>Club que informa: ".  $form->club ."</li>";
+    $html .= "<li>Mes que informa: ".  $form->nombremes ."</li>";
     $html .= "<li>Período: ".  $form->periodo ."</li>";
     $html .= "<li>Total de Reuniones del mes: ".  $form->total_reuniones ."</li>";
     $html .= "<li>Promedio de asistencia del mes: ". $form->promedio_asist ."</li>";
