@@ -70,7 +70,7 @@ function clearPerfilForm() {
 
 function crearUsuario(nrorden, nrclub, nombre, apellido, club) {
 
-  var usuario = nombre.toLowerCase()+'.'+apellido.toLowerCase();
+  var usuario = nombre.toLowerCase().trim()+'.'+apellido.toLowerCase().trim();
   var password = club.toLowerCase();
 
   var user = {usuario: usuario,
