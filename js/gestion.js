@@ -32,6 +32,11 @@ else if (isAdmin) {
   mostrarSubsection([], ['btn-admin', 'form-clubes-alta', 'listado-clubes']);
 
   $('.admin_row').hide();
+
+  // show message to fill the email if neccesary
+  if (qs('l')) {
+    alertarFaltaEmail(logged.id);
+  }
 }
 
 setClubes(['sf_club_select', 'sfb_club_select', 'af_club_select', 'filter_clubes_select']);
@@ -161,4 +166,10 @@ function sendMail(form) {
       contentType: "application/json",
       dataType: 'json'
   });
+}
+
+function qs(key) {
+    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }

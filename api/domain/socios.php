@@ -39,6 +39,19 @@ function getSocio($orden) {
 	return $rows[0];
 }
 
+function getSocioByUsuario($usuario_id) {
+
+	$query = "SELECT s.*, coalesce(s.contacto, sa.contacto) as contacto
+					FROM socios s join usuarios u on u.nrori = s.orden left join socios_acciones sa on (sa.orden = s.orden and sa.aceptado = false)
+					WHERE 1=1 AND u.id = $usuario_id";
+
+	$result = mysql_query($query);
+
+	$rows = fetch_array($result);
+
+	return $rows[0];
+}
+
 function getSociosConAccionesPendientes() {
 
 	$query = "SELECT a.id, a.accion, coalesce(a.nombre, s.nombre, '') as nombre, coalesce(a.apellido, s.apellido, '') as apellido,

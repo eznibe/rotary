@@ -23,6 +23,9 @@ else if(isset($_GET['test'])) {
 else if(isset($_GET['orden'])) {
 	$value = getSocio($_GET['orden']);
 }
+else if(isset($_GET['byUsuario'])) {
+	$value = getSocioByUsuario($_GET['usuario_id']);
+}
 else {
 	$value = getSocios($_GET['nrclub'], $_GET['orderBy']);
 }

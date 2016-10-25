@@ -367,3 +367,12 @@ function clearSociosForms() {
 function filterClub() {
   getSociosListado('listado-socios-body', $('#filter_clubes_select').val());
 }
+
+function alertarFaltaEmail(usuario_id) {
+
+  $.get("../api/socios_GET.php?byUsuario=true&usuario_id="+usuario_id, function(data, status){
+    if (!data.contacto) {
+      alert('Por favor complete su email así podemos enviarle constancia de sus modificaciones en el sistema de gestión. Para esto actualice en su información de socio el campo "contacto".');
+    }
+  });
+}
