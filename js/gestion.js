@@ -35,7 +35,7 @@ else if (isAdmin) {
 
   // show message to fill the email if neccesary
   if (qs('l')) {
-    alertarFaltaEmail(logged.id);
+    // alertarFaltaEmail(logged.id);
   }
 }
 
