@@ -6,11 +6,12 @@ var accionSocio = 'ALTA';
 
 // start init //
 
-var logged = Cookies.get('logged') ? JSON.parse(Cookies.get('logged')) : null;
+var resetHash = getParameterByName('hash');
+
+var logged = Cookies.get('logged') && !resetHash ? JSON.parse(Cookies.get('logged')) : null;
 
 var isAdmin = logged && +logged.nivel > 2;
 
-var resetHash = getParameterByName('hash');
 
 if (resetHash && !logged) {
   setUsuarioHash(resetHash);
