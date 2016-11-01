@@ -15,7 +15,7 @@ if(isset($_GET['pendientes'])) {
 	$value = getSociosConAccionesPendientes();
 }
 else if(isset($_GET['historial'])) {
-	$value = getSociosBajaHistorial();
+	$value = getSociosHistorial($_GET['tipo']);
 }
 else if(isset($_GET['test'])) {
 	$value = 'TEST';

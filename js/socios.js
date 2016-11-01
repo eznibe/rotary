@@ -228,7 +228,25 @@ function getSociosBajaHistorial(elementId) {
     $('#'+id).html(trs);
   }
 
-  $.get("../api/socios_GET.php?historial=true", function(data, status){
+  $.get("../api/socios_GET.php?historial=true&tipo=BAJA", function(data, status){
+    fillTable(data, elementId);
+  });
+}
+
+function getSociosAltaHistorial(elementId) {
+
+  function fillTable(socios, id) {
+    var trs = "";
+    socios.map(function(s) {
+      trs += "<tr><td>"+s.club+"</td><td nowrap>"+s.fecha+"</td><td>"+numeroAMes(s.mes)+"</td><td>"+s.periodo+"</td><td>"+s.nombre+"</td><td>"+(s.apellido?s.apellido:'')+"</td>"+
+      "<td>"+(s.cargo?s.cargo:"")+"</td><td>"+(s.clasificacion?s.clasificacion:"")+"</td><td>"+(s.contacto?s.contacto:"")+"</td><td>"+(s.motivo?s.motivo:"")+"</td><td>"+s.informante+"</td></tr>";
+    });
+
+    $('#'+id).removeData();
+    $('#'+id).html(trs);
+  }
+
+  $.get("../api/socios_GET.php?historial=true&tipo=ALTA", function(data, status){
     fillTable(data, elementId);
   });
 }
@@ -366,6 +384,14 @@ function clearSociosForms() {
 
 function filterClub() {
   getSociosListado('listado-socios-body', $('#filter_clubes_select').val());
+}
+
+function filterHistorico() {
+  if ($('#filter_historico_select').val() == 'BAJAS') {
+    getSociosBajaHistorial('historico-socios-body');
+  } else {
+    getSociosAltaHistorial('historico-socios-body');
+  }
 }
 
 function alertarFaltaEmail(usuario_id) {

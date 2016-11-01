@@ -296,6 +296,12 @@
 
     <div class="historico-socios mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 93px; display: none;">
       <div style="margin-bottom: 15px;"><a href="index.html#socios" class="btn btn-primary" onclick="mostrarSubsection(['label-socios'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios'])">Volver</a></div>
+      <div style="margin-bottom: 15px;">
+        <select id="filter_historico_select" class="form-control small" onchange="filterHistorico();">
+          <option value="BAJAS" selected>BAJAS</option>
+          <option value="ALTAS">ALTAS</option>
+        </select>
+      </div>
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>

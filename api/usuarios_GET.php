@@ -19,9 +19,6 @@ if(isset($_GET['id'])) {
 else if(isset($_GET['pendientes'])) {
 	$value = getSociosConAccionesPendientes();
 }
-else if(isset($_GET['historial'])) {
-	$value = getSociosBajaHistorial();
-}
 else if(isset($_GET['hash'])) {
 	$value = getUsuarioConHash($_GET['hash']);
 }
