@@ -134,7 +134,7 @@ function enviarRestablecerPasswordMail($usuario) {
 							</head>
 							<body>
 							  <p>Estimado/a '.$rows[0]['nombre'] . ' ' . $rows[0]['apellido'] . ',</p>
-							  <p>Haga click en el siguiente link para restablecer su contraseña en Rotary distrito 4905: http://rotary4905.com.ar/gestion?hash='.$hash.'</p>
+							  <p>Haga click en el siguiente link para restablecer su contraseña en Rotary distrito 4905: http://www.rotary4905.com.ar/gestion/reset.html?hash='.$hash.'</p>
 								<p>Muchas gracias.</p>
 							</body>
 							</html>
@@ -144,7 +144,7 @@ function enviarRestablecerPasswordMail($usuario) {
 
 		$headers  = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 		$headers .= "From: Rotary distrito 4905 <rotary@rotary4905.com.ar>" . "\r\n";
-		$headers .= 'Bcc: eznibe@gmail.com' . "\r\n";
+		$headers .= 'Bcc: enbertran@gmail.com' . "\r\n";
 
 		if(!mail($to, $subject, $message, $headers)) {
 			$obj->message = 'Error mandando mail';

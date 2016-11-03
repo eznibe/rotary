@@ -33,6 +33,8 @@ function sendPerfilForm() {
               setClubes(['sf_club_select', 'sfb_club_select', 'af_club_select', 'filter_clubes_select']);
               setResponsable();
               $('.admin_row').hide();
+
+              window.location = 'index.html';
             });
           }
 
@@ -106,7 +108,6 @@ function setUsuarioHash(hash) {
       $('#pf_orden').val(data.result.orden);
 
       // mostrar solo la section de perfil
-      // mostrarSubsection(['form-perfil'], ['label-perfil', 'label-socios', 'label-clubes', 'label-asistencias', 'btn-admin', 'btn-user', 'btn-only-user', 'mbr-navbar__column li']);
       mostrarSubsection(['form-perfil'], ['label-perfil', 'section-socios', 'section-clubes', 'section-asistencias', 'mbr-navbar__column li']);
 
       // location.hash = "#perfil";
