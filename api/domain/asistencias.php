@@ -4,8 +4,12 @@ include_once 'domain/mails.php';
 
 function getAsistencias($aceptadas) {
 
-	$query = "SELECT a.*, c.nombre as club, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, coalesce(concat(coalesce(s.apellido,''), ', ', s.nombre), u.usuario) as informante
-						FROM asistencias a left join clubes c on c.nro = a.nrclub left join usuarios u on u.id = a.usuario_id left join socios s on s.orden = u.nrori
+	$query = "SELECT a.*, coalesce(c.nombre,cb.nombre) as club, DATE_FORMAT(a.fecha,'%d-%m-%Y') as fecha, coalesce(coalesce(concat(coalesce(s.apellido,''), ', ', s.nombre), u.usuario),'-') as informante
+						FROM asistencias a
+						left join clubes c on c.nro = a.nrclub
+						left join clubes_borrados cb on cb.nro = a.nrclub
+						left join usuarios u on u.id = a.usuario_id
+						left join socios s on s.orden = u.nrori
 						WHERE a.aceptado = $aceptadas
 						ORDER BY a.periodo desc, a.mes desc,
 										--  date(a.fecha) desc,
