@@ -108,7 +108,7 @@ function getMesActual() {
 function getPeriodoActual() {
   if (+moment().format('MM') <= 6) {
     // segunda parte del periodo => año actual menos 1
-    returnmoment().add(-1, 'years').format('YYYY');;
+    return moment().add(-1, 'years').format('YYYY');
   } else {
     return moment().format('YYYY');
   }
