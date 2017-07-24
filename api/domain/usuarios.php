@@ -2,7 +2,7 @@
 
 function getUsuarios($login) {
 
-	$query = "SELECT u.id, u.usuario, u.nivel, s.nombre, s.apellido, s.cargo, s.orden, c.nombre as club, c.nro as nrclub
+	$query = "SELECT u.id, u.usuario, u.nivel, s.nombre, s.apellido, s.cargo, s.orden, c.nombre as club, c.nro as nrclub, u.responsable, u.mail
 						FROM usuarios u left join socios s ON u.nrori = s.orden LEFT JOIN clubes c on c.nro = u.nrclub
 						WHERE (usuario = '".$login->usuario."' AND password = '".$login->password."')
 							OR (usuario = '".$login->usuario2."' AND password = '".$login->password2."')";
@@ -23,6 +23,26 @@ function getUsuarios($login) {
 	return $resultarray;
 }
 
+function getUsuario($userId) {
+
+	$query = "SELECT u.* FROM usuarios u WHERE id = ".$userId."";
+
+	$result = mysql_query($query);
+
+	while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		$row['successful'] = true;
+		if (substr( $row['password'], 0, 2 ) === "az") {
+			$row['changePassword'] = true;
+		}
+		return $row;
+	}
+
+	$obj->successful = false;
+	$obj->query = $query;
+
+	return $obj;
+}
+
 
 
 function modificacionUsuario($usuario) {
@@ -30,7 +50,11 @@ function modificacionUsuario($usuario) {
 	$obj->successful = true;
 	$obj->method = 'modificacionUsuario';
 
-	$query = "UPDATE usuarios SET usuario = '".$usuario->usuario."' , password = '".$usuario->password."' WHERE id = ".$usuario->id;
+	if (isset($usuario->password) && $usuario->password != '') {
+		$query = "UPDATE usuarios SET usuario = '".$usuario->usuario."' , password = '".$usuario->password."' , responsable = '".$usuario->responsable."' , mail = '".$usuario->mail."' WHERE id = ".$usuario->id;
+	} else {
+		$query = "UPDATE usuarios SET usuario = '".$usuario->usuario."' , responsable = '".$usuario->responsable."' , mail = '".$usuario->mail."' WHERE id = ".$usuario->id;
+	}
 
 	if(!mysql_query($query)) {
 		$obj->successful = false;
@@ -58,7 +82,9 @@ function nuevoUsuario($usuario) {
 	$obj->successful = true;
 	$obj->method = 'nuevoUsuario';
 
-	$query = "INSERT INTO usuarios (nrori, nrclub, usuario, password, nivel) VALUES (".$usuario->nrori.", ".$usuario->nrclub.", '".$usuario->usuario."', '".$usuario->password."', 1)";
+	$nrsocio = isset($usuario->nrori) && trim($usuario->nrori)!='' ? $usuario->nrori : 'null' ;
+
+	$query = "INSERT INTO usuarios (nrori, nrclub, usuario, password, nivel) VALUES (".$nrsocio.", ".$usuario->nrclub.", '".$usuario->usuario."', '".$usuario->password."', 2)";
 
 	if(!mysql_query($query)) {
 		$obj->successful = false;
@@ -75,7 +101,8 @@ function restablecerPasswordCheck($usuario) {
 	$obj->method = 'restablecerPasswordCheck';
 
 	// chequear que exista un usuario con nombre o email asignado igual a lo enviado
-	$query = "SELECT s.orden, s.contacto FROM usuarios u JOIN socios s ON s.orden = u.nrori WHERE u.usuario = '". $usuario->value ."' OR s.contacto = '". $usuario->value ."'";
+	$query = "SELECT s.orden, s.contacto, u.id, u.mail FROM usuarios u LEFT JOIN socios s ON s.orden = u.nrori
+					  WHERE u.usuario = '". $usuario->value ."' OR s.contacto = '". $usuario->value ."' OR u.mail = '". $usuario->value ."'";
 
 	$result = mysql_query($query);
 
@@ -85,15 +112,18 @@ function restablecerPasswordCheck($usuario) {
 	} else {
 
 		$rows = fetch_array($result);
-		if (isset($usuario->value) && $usuario->value!='' && count($rows) > 0 && isset($rows[0]['contacto']) && $rows[0]['contacto']!='') {
+		if (isset($usuario->value) && $usuario->value!='' && count($rows) > 0
+		&& ((isset($rows[0]['contacto']) && $rows[0]['contacto']!='') || (isset($rows[0]['mail']) && $rows[0]['mail']!=''))) {
 
 			$obj->value = $usuario->value;
 			// $obj->email = $rows[0]['contacto']; //remove
 			$obj->orden = $rows[0]['orden'];
+			$obj->usuario_id = $rows[0]['id'];
 
 		} else {
 			$obj->successful = false;
 			$obj->message = 'Usuario o mail no encontrado';
+			$obj->data1 = $rows[0]['mail'];
 		}
 	}
 
@@ -106,7 +136,9 @@ function enviarRestablecerPasswordMail($usuario) {
 	$obj->method = 'enviarRestablecerPasswordMail';
 
 	// chequear que exista un usuario con nombre o email asignado igual a lo enviado
-	$query = "SELECT * FROM socios s WHERE s.orden = ". $usuario->orden;
+	// $query = "SELECT * FROM socios s WHERE s.orden = ". $usuario->orden;
+	$query = "SELECT s.*, u.id, u.usuario, u.mail, u.responsable FROM usuarios u LEFT JOIN socios s ON s.orden = u.nrori WHERE u.id = ". $usuario->usuario_id;
+
 
 	$result = mysql_query($query);
 
@@ -124,7 +156,11 @@ function enviarRestablecerPasswordMail($usuario) {
 		$hash = uniqid();
 
 		// $to = "enbertran@gmail.com";
-		$to =  $rows[0]['contacto'];
+		$to =  isset($rows[0]['mail']) && $rows[0]['mail']!='' ? $rows[0]['mail'] : $rows[0]['contacto'];
+
+		$nombre = isset($rows[0]['responsable']) && $rows[0]['responsable']!=''
+								? $rows[0]['responsable']
+								: (isset($rows[0]['nombre']) && $rows[0]['nombre']!='' ? ($rows[0]['nombre'] . ' ' . $rows[0]['apellido']) : $rows[0]['usuario']);
 
 		$subject = "Restablecer contraseña";
 		$message = '
@@ -133,7 +169,7 @@ function enviarRestablecerPasswordMail($usuario) {
 							  <title>Restablecer contraseña</title>
 							</head>
 							<body>
-							  <p>Estimado/a '.$rows[0]['nombre'] . ' ' . $rows[0]['apellido'] . ',</p>
+							  <p>Estimado/a '.$nombre. ',</p>
 							  <p>Haga click en el siguiente link para restablecer su contraseña en Rotary distrito 4905: http://www.rotary4905.com.ar/gestion/reset.html?hash='.$hash.'</p>
 								<p>Muchas gracias.</p>
 							</body>
@@ -149,11 +185,15 @@ function enviarRestablecerPasswordMail($usuario) {
 		if(!mail($to, $subject, $message, $headers)) {
 			$obj->message = 'Error mandando mail';
 			$obj->successful = false;
+			$obj->mail = $message;
 		} else {
 			$obj->message = 'Mandó mail';
+			$obj->mail = $message;
+
+			$orden = isset($rows[0]['orden']) ? $rows[0]['orden'] : 'null';
 
 			// guardar hash para restaurar clave luego
-			$insert = "INSERT INTO reset_claves (id, orden, fechacreado) VALUES ('".$hash."', ".$rows[0]['orden'].", now())";
+			$insert = "INSERT INTO reset_claves (id, orden, fechacreado, usuarioid) VALUES ('".$hash."', ".$orden.", now(), ".$rows[0]['id'].")";
 
 			if (!mysql_query($insert)) {
 				$obj->successful = false;
@@ -171,7 +211,7 @@ function getUsuarioConHash($hash) {
 	$obj->successful = true;
 	$obj->method = 'getUsuarioConHash';
 
-	$query = "SELECT r.id as hash, u.id, u.usuario, r.orden FROM reset_claves r JOIN usuarios u on u.nrori = r.orden WHERE r.usado = false AND r.id = '". $hash ."'";
+	$query = "SELECT r.id as hash, u.*, r.orden FROM reset_claves r JOIN usuarios u on (u.nrori = r.orden or u.id = r.userid) WHERE r.usado = false AND r.id = '". $hash ."'";
 
 	$result = mysql_query($query);
 

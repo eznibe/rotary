@@ -41,8 +41,8 @@ function getSocio($orden) {
 
 function getSocioByUsuario($usuario_id) {
 
-	$query = "SELECT s.*, coalesce(s.contacto, sa.contacto) as contacto
-					FROM socios s join usuarios u on u.nrori = s.orden left join socios_acciones sa on (sa.orden = s.orden and sa.aceptado = false)
+	$query = "SELECT s.*, coalesce(s.contacto, sa.contacto) as contacto, u.*, u.id as usuario_id
+					FROM usuarios u left join socios s on u.nrori = s.orden left join socios_acciones sa on (sa.orden = s.orden and sa.aceptado = false)
 					WHERE 1=1 AND u.id = $usuario_id";
 
 	$result = mysql_query($query);

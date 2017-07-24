@@ -40,7 +40,7 @@
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
                         <div class="mbr-navbar__column">
                             <ul class="mbr-navbar__items mbr-navbar__items--right float-left mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
-                              <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'form-perfil'])">SOCIOS</a></li>
+                              <!-- <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#socios" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'form-perfil'])">SOCIOS</a></li> -->
                               <li class="mbr-navbar__item menu-clubes"><a class="mbr-buttons__link btn text-primary" href="index.html#clubes" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'form-clubes', 'form-clubes-alta', 'listado-clubes', 'form-clubes-modificacion', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-perfil'])">CLUBES</a></li>
                               <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#asistencias" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'form-perfil'])">ASISTENCIAS</a></li>
                               <li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-primary" href="index.html#perfil" onclick="mostrarSubsection(['label-socios', 'label-clubes', 'label-asistencias', 'label-perfil'], ['form-socios-baja', 'form-socios', 'form-socios-modificacion', 'form-socios-alta', 'admin-socios', 'historico-socios', 'listado-socios', 'form-asistencias', 'admin-asistencias', 'listado-asistencias', 'form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes', 'form-perfil'])">PERFIL</a></li>
@@ -75,8 +75,8 @@
     </div>
 </section>
 
-
-<section class="mbr-section mbr-section--relative mbr-section--fixed-size section-socios" id="socios" style="background-color: rgb(40, 50, 78);">
+<!--
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size section-socios" id="socios" style="background-color: rgb(40, 50, 78); display:none;">
 
     <div class="mbr-section__container container mbr-section__container--first form-horizontal" style="padding-top: 50px;">
         <div class="label-socios mbr-header mbr-header--wysiwyg row">
@@ -145,7 +145,6 @@
             <span class="col-sm-2 col-sm-offset-2">Mes: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sf_mes" class="form-control small">
-                <!-- <option value="0">Ingrese mes</option> -->
                 <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option><option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
                 <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
               </select>
@@ -208,7 +207,6 @@
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Club que informa: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
-              <!-- {{ Club }} -->
               <select id="sfb_club_select" class="form-control small" onchange="updateSocios(accionSocio);"><option value="0">Ingrese Club</option>
               </select>
             </span>
@@ -217,7 +215,6 @@
             <span class="col-sm-2 col-sm-offset-2">Mes: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
               <select id="sfb_mes" class="form-control small">
-                <!-- <option value="0">Ingrese mes</option> -->
                 <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option><option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
                 <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
               </select>
@@ -239,7 +236,6 @@
         <div class="row">
             <span class="col-sm-2 col-sm-offset-2">Motivo: (*)</span>
             <span class="col-sm-3 col-sm-offset-2">
-              <!-- <textarea id="sfb_motivo" rows="3" class="form-control small" style="height: auto;"></textarea> -->
               <select id="sfb_motivo" class="form-control small">
                 <option value="0" selected>Ingrese motivo</option>
                 <option value="Razones Personales">Razones Personales</option>
@@ -349,7 +345,7 @@
       </table>
 
     </div>
-</section>
+</section> -->
 
 
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size clubes section-clubes" id="clubes" style="background-color: rgb(40, 50, 78);">
@@ -435,7 +431,7 @@
             <span class="col-sm-3 col-sm-offset-1"><input id="cf_asistente" type="text" class="form-control small"></span>
         </div>
         <div class="row admin_row">
-            <span class="col-sm-3 col-sm-offset-2">Nro RI: </span>
+            <span class="col-sm-3 col-sm-offset-2">Nro RI: (*)</span>
             <span class="col-sm-3 col-sm-offset-1"><input id="cf_nrori" type="text" class="form-control small"></span>
             <input id="cf_nro" type="hidden" class="form-control small">
         </div>
@@ -649,14 +645,23 @@
     </div>
 
     <div class="form-perfil mbr-hero mbr-section__container container mbr-section__container--last form-horizontal" style="padding-bottom: 50px; display: none;">
-        <div class="row">
-            <span class="col-sm-2 col-sm-offset-2">Usuario: (*)</span>
-            <span class="col-sm-3 col-sm-offset-2">
-              <input type="text" id="pf_usuario" class="form-control small">
-              <input type="hidden" id="pf_id" class="form-control small">
-              <input type="hidden" id="pf_hash" class="form-control small">
-              <input type="hidden" id="pf_orden" class="form-control small">
+        <div class="row" style="margin-bottom: 15px;">
+            <span class="col-sm-2 col-sm-offset-2">Usuario:</span>
+            <span class="col-sm-3 col-sm-offset-2" id="pf_usuario_lbl">
+              <!-- <input type="text" id="pf_usuario" class="form-control small" disabled> -->
             </span>
+            <input type="hidden" id="pf_id" class="form-control small">
+            <input type="hidden" id="pf_hash" class="form-control small">
+            <input type="hidden" id="pf_orden" class="form-control small">
+            <input type="hidden" id="pf_usuario" class="form-control small">
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Responsable:</span>
+            <span class="col-sm-3 col-sm-offset-1"><input type="text" id="pf_responsable" class="form-control small"></span>
+        </div>
+        <div class="row">
+            <span class="col-sm-3 col-sm-offset-2">Mail de contacto:</span>
+            <span class="col-sm-3 col-sm-offset-1"><input type="text" id="pf_mail" class="form-control small"></span>
         </div>
         <div class="row">
             <span class="col-sm-3 col-sm-offset-2">Nueva contraseña: (*)</span>
@@ -688,6 +693,23 @@
         </div>
     </div>
 </footer>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="messageModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Mensaje</h4>
+      </div>
+      <div class="modal-body">
+        <span id="messageText"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
   <script src="../assets/web/assets/jquery/jquery.min.js"></script>

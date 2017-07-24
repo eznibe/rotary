@@ -36,7 +36,7 @@ else if (isAdmin) {
 
   // show message to fill the email if neccesary
   if (qs('l')) {
-    alertarFaltaEmail(logged.id);
+    alertarFaltaEmail(logged);
   }
 }
 
@@ -77,7 +77,13 @@ function setResponsable() {
     return;
   }
 
-  var responsable = +logged.nivel > 1 ? 'Admin' : (logged.nombre + (logged.apellido ? (', '+logged.apellido) : ''));
+  var responsable = +logged.nivel > 2 ?
+      'Admin' :
+      (
+      +logged.nivel === 2
+            ? (logged.responsable ? logged.responsable : logged.usuario)
+            : (logged.nombre + (logged.apellido ? (', '+logged.apellido) : ''))
+      );
 
 
   $('#sf_responsable').html(responsable);

@@ -14,7 +14,7 @@ db_connect();
 
 
 if(isset($_GET['id'])) {
-	$value = getBoat($_GET['id']);
+	$value = getUsuario($_GET['id']);
 }
 else if(isset($_GET['pendientes'])) {
 	$value = getSociosConAccionesPendientes();

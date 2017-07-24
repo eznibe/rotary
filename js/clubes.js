@@ -67,12 +67,17 @@ function sendClubForm() {
           mostrarSubsection(['label-clubes'], ['form-clubes', 'form-clubes-alta', 'form-clubes-modificacion', 'listado-clubes']);
 
           $('.btn-send-form').show();
-          
+
           if (data.successful) {
             $.notify("Modificación enviada", {className: 'success', globalPosition: 'right bottom'});
 
             club.type = 'MODIFICACION club';
             sendMail(club);
+
+            if (!club.nro) {
+              // new club
+              crearUsuarioClub(data.newnro, club.nrori, club.nombre);
+            }
           } else {
             $.notify("Error al enviar, intente de nuevo", {className: 'error', globalPosition: 'right bottom'});
           }
@@ -87,6 +92,11 @@ function sendClubForm() {
 
 function validClub(club) {
   if (club.nombre == '') {
+    return false;
+  }
+
+  if (!club.nro && !club.nrori) {
+    // if new club then should have nrori
     return false;
   }
 
@@ -167,7 +177,7 @@ function clearClubesForm() {
 
 function defaultClub(clubElementId) {
   var match;
-  var search = $('#'+clubElementId).val() ?  $('#'+clubElementId).val() : +logged.nrclub;
+  var search = $('#'+clubElementId).val() ?  $('#'+clubElementId).val() : (logged ? +logged.nrclub : '');
   clubes.map(function(c) {
     if (c.nro == search) {
       match = c.nro;

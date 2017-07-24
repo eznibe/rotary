@@ -6,7 +6,7 @@ function enviarFormularioIngresado($form) {
 	$obj->method = 'enviarFormularioIngresado';
 
 	// chequear que exista un usuario con nombre o email asignado igual a lo enviado
-	$query = "SELECT s.*, u.nivel FROM usuarios u LEFT JOIN socios s on u.nrori = s.orden WHERE u.id = ". $form->usuario_id;
+	$query = "SELECT s.*, u.* FROM usuarios u LEFT JOIN socios s on u.nrori = s.orden WHERE u.id = ". $form->usuario_id;
 
 	$result = mysql_query($query);
 
@@ -24,7 +24,11 @@ function enviarFormularioIngresado($form) {
 		$hash = uniqid();
 
 		// $to = "enbertran@gmail.com";
-		$to =  $rows[0]['contacto'];
+		$to =  isset($rows[0]['mail']) && $rows[0]['mail']!='' ? $rows[0]['mail'] : $rows[0]['contacto'];
+
+		$nombre = isset($rows[0]['responsable']) && $rows[0]['responsable']!=''
+								? $rows[0]['responsable']
+								: (isset($rows[0]['nombre']) && $rows[0]['nombre']!='' ? ($rows[0]['nombre'] . ' ' . $rows[0]['apellido']) : $rows[0]['usuario']);
 
     if (isset($to) && $to!='' && +$rows[0]['nivel'] != 5) { // dont' send mail if no user has no email address or is the admin doing a change
 
@@ -37,7 +41,7 @@ function enviarFormularioIngresado($form) {
   							  <title>Formulario enviado</title>
   							</head>
   							<body>
-  							  <p>Estimado/a '.$rows[0]['nombre'] . ' ' . $rows[0]['apellido'] . ',</p>
+  							  <p>Estimado/a '.$nombre . ',</p>
   							  <p>El formulario de "' . $form->type . '" fue enviado con éxito. Verifique que no haya errores en los datos y de haberlos por favor comuníqueselo al administrador.</p>
                   <p>' . fillFormData($form) . '</p>
   								<p>Muchas gracias.</p>
@@ -55,8 +59,10 @@ function enviarFormularioIngresado($form) {
   		} else {
   			$obj->message = $message;
 
+				$orden = isset($rows[0]['orden']) ? $rows[0]['orden'] : 'null';
+
   			// guardar log de formulario enviado por mail
-  			$insert = "INSERT INTO envio_mail_formularios (orden, form, fechacreado) VALUES (".$rows[0]['orden'].", '". $form->type ."', now())";
+  			$insert = "INSERT INTO envio_mail_formularios (orden, form, fechacreado, usuarioid) VALUES (".$orden.", '". $form->type ."', now(), ".$rows[0]['id'].")";
 
   			if (!mysql_query($insert)) {
   				$obj->successful = false;

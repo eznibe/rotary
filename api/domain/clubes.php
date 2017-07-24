@@ -23,7 +23,7 @@ function getClub($nro) {
 
 function getClubesConAccionesPendientes() {
 
-	$query = "SELECT a.*, DATE_FORMAT(a.fechaoriginal,'%d-%m-%Y') as fecha, coalesce(concat(coalesce(s.apellido,''), ', ', s.nombre), u.usuario) as informante
+	$query = "SELECT a.*, DATE_FORMAT(a.fechaoriginal,'%d-%m-%Y') as fecha, coalesce(concat(coalesce(s.apellido,''), ', ', s.nombre), u.responsable) as informante
 						FROM clubes_acciones a left join clubes c on a.nro = c.nro left join usuarios u on u.id = a.usuario_id left join socios s on s.orden = u.nrori
 						WHERE a.aceptado = false
 						ORDER BY c.nombre, s.apellido, s.nombre";
@@ -51,6 +51,7 @@ function clubAccion($club) {
 		VALUES (".($maxnro[0]['maxnro'] + 1).", '".$club->nrori."', '".$club->nombre."', '".$club->direccion."', '".$club->localidad."',
 						'".$club->zona."', '".$club->dia."', '".$club->horario."', '".$club->aniversario."', '".$club->contacto."', '".$club->asistente."')";
 		// $query='ALTA';
+		$obj->newnro = $maxnro[0]['maxnro'] + 1;
 	} else {
 		// incluir en acciones clubes (siempre es como modificaion)
 		$nrori = isset($club->nrori) && trim($club->nrori)!='' ? $club->nrori : '' ;
